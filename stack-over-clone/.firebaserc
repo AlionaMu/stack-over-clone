@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fir-stack-over": {
+      "hosting": {
+        "stack-over-clone": [
+          "fir-stack-over"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fir-stack-over"
+  }
+}
