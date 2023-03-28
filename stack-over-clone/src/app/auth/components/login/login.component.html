@@ -1,0 +1,29 @@
+<section class="login">
+  <div class="login__container">
+    <div class="login__title">
+      <h1>Sign In</h1>
+      <p>
+        <a [routerLink]="['/register']">Need an account?</a>
+      </p>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="text"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+      <button type="submit" mat-button>Sign In</button>
+    </form>
+  </div>
+</section>

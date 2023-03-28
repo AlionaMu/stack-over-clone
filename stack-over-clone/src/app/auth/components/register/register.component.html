@@ -1,46 +1,37 @@
-<section class="signup">
-  <div class="signup__container">
-    <div class="signup__title">
-        <h1>Sign Up</h1>
-        <p>
-          <a [routerLink]="['/login']">Have an account?</a>
-        </p>
+<section class="register">
+  <div class="register__container">
+    <div class="register__title">
+      <h1>Sign Up</h1>
+      <p>
+        <a [routerLink]="['/login']">Have an account?</a>
+      </p>
     </div>
-        <form [formGroup]="form" (ngSubmit)="handleSubmit()">
-          <mat-form-field appearance="fill">
-              <input
-              matInput
-                type="text"
-                placeholder="Username"
-                formControlName="username"
-              />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <input
-            matInput
-              type="text"
-              placeholder="Email"
-              formControlName="email"
-            />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <input
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+      <mat-form-field appearance="fill">
+        <input
           matInput
-            type="password"
-            placeholder="Password"
-            formControlName="password"
-          />
+          type="text"
+          placeholder="Username"
+          formControlName="username"
+        />
       </mat-form-field>
-
-            <button
-            type="submit"
-            mat-button
-            >
-              Sign Up
-            </button>
-
-        </form>
-      </div>
-    </section>
-
-
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="text"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+      <button type="submit" mat-button>Sign Up</button>
+    </form>
+  </div>
+</section>
