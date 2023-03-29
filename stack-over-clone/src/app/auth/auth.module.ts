@@ -7,6 +7,8 @@ import {MatInputModule} from '@angular/material/input'
 
 import {RegisterComponent} from './components/register/register.component'
 import {LoginComponent} from './components/login/login.component'
+import { StoreModule } from '@ngrx/store'
+import { reducers } from './store/reducers'
 
 const routes = [
   {
@@ -25,6 +27,7 @@ const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
+    StoreModule.forFeature('auth', reducers),
     MatFormFieldModule,
     MatInputModule,
   ],

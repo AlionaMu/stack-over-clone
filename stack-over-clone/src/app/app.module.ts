@@ -12,6 +12,7 @@ import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {AuthModule} from './auth/auth.module'
 import { StoreModule } from '@ngrx/store'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,10 @@ import { StoreModule } from '@ngrx/store'
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
