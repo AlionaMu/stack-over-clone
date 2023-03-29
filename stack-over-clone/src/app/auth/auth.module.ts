@@ -7,8 +7,12 @@ import {MatInputModule} from '@angular/material/input'
 
 import {RegisterComponent} from './components/register/register.component'
 import {LoginComponent} from './components/login/login.component'
-import { StoreModule } from '@ngrx/store'
-import { reducers } from './store/reducers'
+import {StoreModule} from '@ngrx/store'
+import {reducers} from './store/reducers'
+import {EffectsModule} from '@ngrx/effects'
+import {RegisterEffect} from './store/effects/register.effect'
+import {AuthService} from './services/auth.service'
+import {PersistanceService} from '../shared/services/persistance.service'
 
 const routes = [
   {
@@ -28,9 +32,10 @@ const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
+    EffectsModule.forFeature([RegisterEffect]),
     MatFormFieldModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [AuthService, PersistanceService],
 })
 export class AuthModule {}

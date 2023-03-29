@@ -1,21 +1,21 @@
-import { BackendErrorsInterface } from './../../../shared/types/backendErrors.interface';
-import { CurrentUserInterface } from './../../../shared/types/currentUser.interface';
-import { RegisterRequestInterface } from './../../types/registerRequest.interface';
-import { createAction, props } from '@ngrx/store'
-import { ActionTypes } from '../actionTypes'
-import { LoginRequestInterface } from '../../types/loginRequest.interface';
+import {BackendErrorsInterface} from './../../../shared/types/backendErrors.interface'
+import {CurrentUserInterface} from './../../../shared/types/currentUser.interface'
+import {RegisterRequestInterface} from './../../types/registerRequest.interface'
+import {createAction, props} from '@ngrx/store'
+import {ActionTypes} from '../actionTypes'
+import {LoginRequestInterface} from '../../types/loginRequest.interface'
 
 export const loginAction = createAction(
   ActionTypes.LOGIN,
-  props<{ request: LoginRequestInterface}>()
-  )
+  props<{request: LoginRequestInterface}>(),
+)
 
 export const loginSuccessAction = createAction(
   ActionTypes.LOGIN_SUCCESS,
-  props<{currentUser: CurrentUserInterface}>()
-  )
+  props<{currentUser: CurrentUserInterface}>(),
+)
 
-  export const loginFailureAction = createAction(
-    ActionTypes.LOGIN_FAILURE,
-    props<{errors: BackendErrorsInterface}>()
-  )
+export const loginFailureAction = createAction(
+  ActionTypes.LOGIN_FAILURE,
+  props<{errors: BackendErrorsInterface}>(),
+)
