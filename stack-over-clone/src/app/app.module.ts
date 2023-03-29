@@ -11,6 +11,7 @@ import {provideDatabase, getDatabase} from '@angular/fire/database'
 import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {AuthModule} from './auth/auth.module'
+import { StoreModule } from '@ngrx/store'
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import {AuthModule} from './auth/auth.module'
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    StoreModule.forRoot({}, {}),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
