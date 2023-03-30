@@ -1,16 +1,16 @@
-import { on, createReducer, Action } from '@ngrx/store';
+import {on, createReducer, Action} from '@ngrx/store'
 
-import { CreateQuestionStateInterface } from '../types/createQuestionState.interface';
+import {CreateQuestionStateInterface} from '../types/createQuestionState.interface'
 import {
   createQuestionAction,
   createQuestionFailureAction,
   createQuestionSuccessAction,
-} from './actions/createQuestion.action';
+} from './actions/createQuestion.action'
 
 const initialState: CreateQuestionStateInterface = {
   isSubmitting: false,
   validationErrors: null,
-};
+}
 
 const createQuestionReducer = createReducer(
   initialState,
@@ -19,14 +19,14 @@ const createQuestionReducer = createReducer(
     (state): CreateQuestionStateInterface => ({
       ...state,
       isSubmitting: true,
-    })
+    }),
   ),
   on(
     createQuestionSuccessAction,
     (state): CreateQuestionStateInterface => ({
       ...state,
       isSubmitting: false,
-    })
+    }),
   ),
   on(
     createQuestionFailureAction,
@@ -34,10 +34,10 @@ const createQuestionReducer = createReducer(
       ...state,
       isSubmitting: false,
       validationErrors: action.errors,
-    })
-  )
-);
+    }),
+  ),
+)
 
 export function reducers(state: CreateQuestionStateInterface, action: Action) {
-  return createQuestionReducer(state, action);
+  return createQuestionReducer(state, action)
 }

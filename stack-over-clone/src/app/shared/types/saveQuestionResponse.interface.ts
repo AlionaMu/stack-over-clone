@@ -1,5 +1,5 @@
-import { QuestionInterface } from './question.interface';
+import {QuestionInterface} from './question.interface'
 
 export interface SaveQuestionResponseInterface {
-  article: QuestionInterface;
+  article: QuestionInterface
 }

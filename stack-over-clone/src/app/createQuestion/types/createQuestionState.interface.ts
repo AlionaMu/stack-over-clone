@@ -1,6 +1,6 @@
-import { BackendErrorsInterface } from '../../shared/types/backendErrors.interface';
+import {BackendErrorsInterface} from '../../shared/types/backendErrors.interface'
 
 export interface CreateQuestionStateInterface {
-  isSubmitting: boolean;
-  validationErrors: BackendErrorsInterface | null;
+  isSubmitting: boolean
+  validationErrors: BackendErrorsInterface | null
 }

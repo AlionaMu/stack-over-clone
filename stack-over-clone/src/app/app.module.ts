@@ -1,3 +1,4 @@
+import {CoreModule} from './core/core.module'
 import {environment} from './../environments/environment'
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
@@ -25,6 +26,7 @@ import {AuthInterceptor} from './shared/services/authinterceptor.service'
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    CoreModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, {}),
