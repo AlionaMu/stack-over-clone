@@ -20,8 +20,8 @@ import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interfa
 export class CreateQuestionComponent implements OnInit {
   initialValues: QuestionInputInterface = {
     title: '',
-    description: '',
     body: '',
+    tags: []
   }
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>

@@ -29,8 +29,8 @@ export class QuestionFormComponent implements OnInit {
   initializeForm(): void {
     this.form = this.fb.group({
       title: this.initialValuesProps.title,
-      description: this.initialValuesProps.description,
       body: this.initialValuesProps.body,
+      tags: this.initialValuesProps.tags,
     })
   }
 

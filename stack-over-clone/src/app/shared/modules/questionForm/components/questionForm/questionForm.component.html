@@ -1,32 +1,23 @@
-<div class="editor-page">
-  <div class="container page">
-    <div class="row">
-      <div class="col-md-10 offset-md-1 col-xs-12">
+<div class="question-form">
+  <div class="question-form__container">
+
         <!-- <mc-backend-error-messages
           *ngIf="errorsProps"
           [backendErrors]="errorsProps"
         ></mc-backend-error-messages> -->
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="question-form__form">
           <fieldset>
-            <fieldset class="form-group">
+            <fieldset class="question-form__form-group">
               <input
                 type="text"
-                class="form-control form-control-lg"
+                class="question-form__input"
                 placeholder="Question title"
                 formControlName="title"
               />
             </fieldset>
-            <fieldset class="form-group">
-              <input
-                type="text"
-                class="form-control form-control-lg"
-                placeholder="What is this question about?"
-                formControlName="description"
-              />
-            </fieldset>
-            <fieldset class="form-group">
+            <fieldset class="question-form__form-group">
               <textarea
-                class="form-control form-control-lg"
+              class="question-form__text-area"
                 rows="8"
                 placeholder="Write your question (in markdown)"
                 formControlName="body"
@@ -36,7 +27,7 @@
             <fieldset>
               <button
                 type="submit"
-                class="btn btn-lg pull-xs-right btn-primary"
+                class="question-form__button"
                 [disabled]="isSubmittingProps"
               >
                 Publish question
@@ -44,7 +35,5 @@
             </fieldset>
           </fieldset>
         </form>
-      </div>
-    </div>
   </div>
 </div>

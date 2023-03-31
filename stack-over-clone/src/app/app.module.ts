@@ -2,11 +2,12 @@ import {CoreModule} from './core/core.module'
 import {environment} from './../environments/environment'
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-
+import { CreateQuestionModule } from './createQuestion/createQuestion.module';
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {AngularFireModule} from '@angular/fire/compat'
 import {AngularFireAuthModule} from '@angular/fire/compat/auth'
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app'
 import {provideAuth, getAuth} from '@angular/fire/auth'
 import {provideDatabase, getDatabase} from '@angular/fire/database'
@@ -27,6 +28,7 @@ import {AuthInterceptor} from './shared/services/authinterceptor.service'
     AppRoutingModule,
     AuthModule,
     CoreModule,
+    CreateQuestionModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, {}),
@@ -36,10 +38,11 @@ import {AuthInterceptor} from './shared/services/authinterceptor.service'
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
+      maxAge: 25,
+      logOnly: environment.production,
     }),
   ],
   providers: [
