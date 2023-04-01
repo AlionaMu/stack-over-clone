@@ -6,11 +6,10 @@ import {CreateQuestionService} from './services/createQuestion.service'
 import {CreateQuestionEffect} from './store/effects/createQuestion.effect'
 import {CreateQuestionComponent} from './components/createQuestion/createQuestion.component'
 import {EffectsModule} from '@ngrx/effects'
-import { StoreModule } from '@ngrx/store'
-import { reducers } from './store/reducers'
+import {StoreModule} from '@ngrx/store'
+import {reducers} from './store/reducers'
 
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore'
 
 const routes = [
   {
@@ -26,9 +25,9 @@ const routes = [
     QuestionFormModule,
     EffectsModule.forFeature([CreateQuestionEffect]),
     StoreModule.forFeature('createQuestion', reducers),
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   declarations: [CreateQuestionComponent],
-  providers: [CreateQuestionService]
+  providers: [CreateQuestionService],
 })
 export class CreateQuestionModule {}

@@ -1,39 +1,60 @@
 <div class="question-form">
   <div class="question-form__container">
-
-        <!-- <mc-backend-error-messages
+    <!-- <mc-backend-error-messages
           *ngIf="errorsProps"
           [backendErrors]="errorsProps"
         ></mc-backend-error-messages> -->
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="question-form__form">
-          <fieldset>
-            <fieldset class="question-form__form-group">
-              <input
-                type="text"
-                class="question-form__input"
-                placeholder="Question title"
-                formControlName="title"
-              />
-            </fieldset>
-            <fieldset class="question-form__form-group">
-              <textarea
-              class="question-form__text-area"
-                rows="8"
-                placeholder="Write your question (in markdown)"
-                formControlName="body"
-              ></textarea>
-            </fieldset>
-
-            <fieldset>
-              <button
-                type="submit"
-                class="question-form__button"
-                [disabled]="isSubmittingProps"
-              >
-                Publish question
-              </button>
-            </fieldset>
-          </fieldset>
-        </form>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="question-form__form"
+    >
+      <fieldset>
+        <fieldset class="question-form__form-group">
+          <input
+            type="text"
+            class="question-form__input"
+            placeholder="Question title"
+            formControlName="title"
+          />
+        </fieldset>
+        <fieldset class="question-form__form-group">
+          <textarea
+            class="question-form__text-area"
+            rows="8"
+            placeholder="Write your question (in markdown)"
+            formControlName="body"
+          ></textarea>
+        </fieldset>
+        <fieldset>
+          <h4>Select your tags:</h4>
+          <mat-selection-list
+            (selectionChange)="selectionChange($event)"
+            formControlName="tags"
+            class="question-form__tags-list"
+          >
+            <mat-list-option
+              *ngFor="let tag of tags"
+              checkboxPosition="before"
+              [value]="tag"
+              [selected]="tagsSet.get(tag)"
+              class="question-form__tags-list-item"
+            >
+              {{ tag }}
+            </mat-list-option>
+          </mat-selection-list>
+        </fieldset>
+        <fieldset>
+          <button
+            mat-button
+            type="submit"
+            class="question-form__button"
+            [disabled]="isSubmittingProps"
+          >
+            Publish question
+          </button>
+        </fieldset>
+      </fieldset>
+    </form>
   </div>
 </div>

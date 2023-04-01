@@ -2,12 +2,12 @@ import {CoreModule} from './core/core.module'
 import {environment} from './../environments/environment'
 import {NgModule} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import { CreateQuestionModule } from './createQuestion/createQuestion.module';
+import {CreateQuestionModule} from './createQuestion/createQuestion.module'
 import {AppRoutingModule} from './app-routing.module'
 import {AppComponent} from './app.component'
 import {AngularFireModule} from '@angular/fire/compat'
 import {AngularFireAuthModule} from '@angular/fire/compat/auth'
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {AngularFirestoreModule} from '@angular/fire/compat/firestore'
 import {initializeApp, provideFirebaseApp} from '@angular/fire/app'
 import {provideAuth, getAuth} from '@angular/fire/auth'
 import {provideDatabase, getDatabase} from '@angular/fire/database'
@@ -21,6 +21,8 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {PersistanceService} from './shared/services/persistance.service'
 import {AuthInterceptor} from './shared/services/authinterceptor.service'
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -29,13 +31,14 @@ import {AuthInterceptor} from './shared/services/authinterceptor.service'
     AuthModule,
     CoreModule,
     CreateQuestionModule,
+    MatSlideToggleModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}, {}),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore()),
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideAuth(() => getAuth()),
+    // provideDatabase(() => getDatabase()),
+    // provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

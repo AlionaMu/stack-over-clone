@@ -11,6 +11,7 @@ import {createQuestionAction} from '../../store/actions/createQuestion.action'
 import {async} from 'rxjs/internal/scheduler/async'
 import {map} from 'rxjs/operators'
 import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
+import {CreateQuestionService} from '../../services/createQuestion.service'
 
 @Component({
   selector: 'app-create-question',
@@ -21,18 +22,30 @@ export class CreateQuestionComponent implements OnInit {
   initialValues: QuestionInputInterface = {
     title: '',
     body: '',
-    tags: []
+    tags: [],
   }
+
+  public valuesList: any[] = []
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>
   public backendErrors$: Observable<BackendErrorsInterface | null> =
     {} as Observable<BackendErrorsInterface | null>
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, public service: CreateQuestionService) {}
 
   ngOnInit(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
     this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
+
+    this.service.getAllQuestions().subscribe((response) => {
+      console.log(response, 'response')
+      this.valuesList = response.map((document: any) => {
+        return {
+          title: document.title,
+          body: document.body,
+        }
+      })
+    })
   }
 
   onSubmit(questionInput: QuestionInputInterface) {

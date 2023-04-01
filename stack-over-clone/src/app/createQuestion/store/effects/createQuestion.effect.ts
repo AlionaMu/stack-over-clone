@@ -19,7 +19,9 @@ export class CreateQuestionEffect {
     this.actions$.pipe(
       ofType(createQuestionAction),
       switchMap(({questionInput}) => {
-        return from(this.createQuestionService.createQuestion(questionInput)).pipe(
+        return from(
+          this.createQuestionService.createQuestion(questionInput),
+        ).pipe(
           map((question: any) => {
             return createQuestionSuccessAction({question})
           }),
@@ -27,7 +29,7 @@ export class CreateQuestionEffect {
           catchError((errorResponse: HttpErrorResponse) => {
             console.log(errorResponse)
             return of(
-              createQuestionFailureAction({errors: errorResponse.error.errors}),  //errors: errorResponse.error.errors
+              createQuestionFailureAction({errors: errorResponse.error.errors}), //errors: errorResponse.error.errors
             )
           }),
         )
@@ -40,7 +42,7 @@ export class CreateQuestionEffect {
       this.actions$.pipe(
         ofType(createQuestionSuccessAction),
         tap(({question}) => {
-          this.router.navigate(['/questions', question])  //question.slug
+          this.router.navigate(['/questions', question]) //question.slug
         }),
       ),
     {dispatch: false},
