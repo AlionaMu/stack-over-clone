@@ -32,7 +32,6 @@ export class QuestionFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm()
-    console.log(this.tags)
   }
 
   initializeForm(): void {
@@ -45,13 +44,12 @@ export class QuestionFormComponent implements OnInit {
 
   onSubmit(): void {
     this.questionSubmitEvent.emit(this.form.value)
-    // console.log(this.form.get('selectedTag')?.value);
   }
 
   selectionChange($event: any) {
     this.tagsSet.set(
-      $event.option.value,
-      !this.tagsSet.get($event.option.value),
+      $event.source.value,
+      !this.tagsSet.get($event.source.value),
     )
   }
 }

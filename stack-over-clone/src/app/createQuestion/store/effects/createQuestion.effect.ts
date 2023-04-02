@@ -27,7 +27,6 @@ export class CreateQuestionEffect {
           }),
 
           catchError((errorResponse: HttpErrorResponse) => {
-            console.log(errorResponse)
             return of(
               createQuestionFailureAction({errors: errorResponse.error.errors}), //errors: errorResponse.error.errors
             )

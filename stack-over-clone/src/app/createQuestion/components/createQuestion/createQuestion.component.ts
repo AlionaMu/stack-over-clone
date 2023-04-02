@@ -8,8 +8,6 @@ import {
 
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {createQuestionAction} from '../../store/actions/createQuestion.action'
-import {async} from 'rxjs/internal/scheduler/async'
-import {map} from 'rxjs/operators'
 import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 import {CreateQuestionService} from '../../services/createQuestion.service'
 
@@ -36,16 +34,6 @@ export class CreateQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
     this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
-
-    this.service.getAllQuestions().subscribe((response) => {
-      console.log(response, 'response')
-      this.valuesList = response.map((document: any) => {
-        return {
-          title: document.title,
-          body: document.body,
-        }
-      })
-    })
   }
 
   onSubmit(questionInput: QuestionInputInterface) {

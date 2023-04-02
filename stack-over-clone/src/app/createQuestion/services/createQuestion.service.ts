@@ -10,9 +10,7 @@ export class CreateQuestionService {
   constructor(private firestore: AngularFirestore, public store: Store) {}
 
   createQuestion(questionInput: QuestionInputInterface) {
-    console.log(questionInput)
     // questionInput.title = this.firestore.createId()
-    // return this.firestore.collection('/questions').add(questionInput);
     return this.firestore.collection('questions').add(questionInput)
   }
 

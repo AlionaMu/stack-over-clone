@@ -21,7 +21,6 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(data.user.email, data.user.password)
       .then((result) => {
-        console.log('SUCCESS', result)
       })
       .catch((error) => {
         window.alert(error.message)

@@ -21,13 +21,10 @@ export class RegisterEffect {
     this.actions$.pipe(
       ofType(registerAction),
       switchMap(({request}) => {
-        console.log('effect', request)
-        console.log('$$$$', this.actions$)
         return from(this.authService.register(request)).pipe(
           map((currentUser: any) => {
             this.persistanceService.set('accessToken', currentUser.token)
             // window.localStorage.setItem('accessToken', currentUser.token)
-            console.log('effect', currentUser)
             return registerSuccessAction({currentUser})
           }),
           catchError((errorResponse: HttpErrorResponse) => {
