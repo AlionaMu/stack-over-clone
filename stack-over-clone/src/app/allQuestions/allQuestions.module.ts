@@ -21,7 +21,8 @@ const routes: Routes = [
     CommonModule,
     EffectsModule.forFeature([GetAllQuestionsEffect]),
     StoreModule.forFeature('allQuestions', reducers),
-    RouterModule.forChild(routes)],
+    RouterModule.forChild(routes)
+  ],
   providers: [AllQuestionsService],
 })
 export class AllQuestionsModule {}

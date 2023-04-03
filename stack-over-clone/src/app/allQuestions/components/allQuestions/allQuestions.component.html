@@ -1,25 +1,15 @@
-<div class="all-questions">
-  <!-- <div *ngIf="allQuestions$ | async"> -->
-    <div
-      class="article-preview"
-      *ngFor="let question of (allQuestions$ | async)"
-    >
-      <!-- <div class="article-meta">
-        <a [routerLink]="['/profiles', article.author.username]">
-          <img [src]="article.author.image" alt="profile avatar" />
-        </a>
-        <div class="info">
-          <a [routerLink]="['/profiles', article.author.username]" class="author">
-            {{ article.author.username }}
-          </a>
-          <span class="date">{{ article.createdAt }}</span>
-        </div>
-        <div class="pull-xs-right">
-        </div>
-      </div> -->
-      <!-- <a [routerLink]="['/articles', article.slug]" class="preview-link"> -->
-        <h1>{{ question.title }}</h1>
-        <p>{{ question.body }}</p>
-      <!-- </a> -->
+<section
+  class="all-questions"
+  *ngFor="let question of (allQuestions$ | async)"
+>
+  <div class="all-questions__item">
+    <h2 class="all-questions__item-title">{{ question.title }}</h2>
+    <p class="all-questions__item-body">{{ question.body }}</p>
+    <div>
+      <span>Tags: </span>
+      <span *ngFor="let tag of question.tags">
+        #{{tag}}
+      </span>
     </div>
-</div>
+  </div>
+</section>
