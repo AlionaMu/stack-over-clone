@@ -1,14 +1,12 @@
-<section
-  class="all-questions"
-  *ngFor="let question of (allQuestions$ | async)"
->
+<section class="all-questions" *ngFor="let question of allQuestions$ | async">
   <div class="all-questions__item">
     <h2 class="all-questions__item-title">{{ question.title }}</h2>
     <p class="all-questions__item-body">{{ question.body }}</p>
-    <div>
-      <span>Tags: </span>
-      <span *ngFor="let tag of question.tags">
-        #{{tag}}
+    <div class="all-questions__item-info">
+      <span>Date: {{ question.date | date : 'fullDate' }} </span>
+      <span
+        >Tags:
+        <span *ngFor="let tag of question.tags"> #{{ tag }} </span>
       </span>
     </div>
   </div>

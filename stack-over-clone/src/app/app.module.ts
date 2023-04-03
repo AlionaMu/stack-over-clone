@@ -1,4 +1,4 @@
-import { AllQuestionsModule } from './allQuestions/allQuestions.module';
+import {AllQuestionsModule} from './allQuestions/allQuestions.module'
 import {CoreModule} from './core/core.module'
 import {environment} from './../environments/environment'
 import {NgModule} from '@angular/core'
@@ -21,7 +21,7 @@ import {EffectsModule} from '@ngrx/effects'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {PersistanceService} from './shared/services/persistance.service'
 import {AuthInterceptor} from './shared/services/authinterceptor.service'
-import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +34,7 @@ import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
     AllQuestionsModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
-    StoreModule.forRoot({ router: routerReducer }),
+    StoreModule.forRoot({router: routerReducer}),
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),
     // provideDatabase(() => getDatabase()),

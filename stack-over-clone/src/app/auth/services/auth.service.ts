@@ -20,8 +20,7 @@ export class AuthService {
   register(data: RegisterRequestInterface) {
     return this.afAuth
       .createUserWithEmailAndPassword(data.user.email, data.user.password)
-      .then((result) => {
-      })
+      .then((result) => {})
       .catch((error) => {
         window.alert(error.message)
       })

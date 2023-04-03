@@ -8,7 +8,7 @@ import {Store} from '@ngrx/store'
 export class AllQuestionsService {
   constructor(private firestore: AngularFirestore, public store: Store) {}
 
-  getAllQuestions(value:string) {
+  getAllQuestions(value: string) {
     return this.firestore.collection(value).valueChanges()
   }
 }

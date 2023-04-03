@@ -1,6 +1,6 @@
-import { QuestionInterface } from 'src/app/shared/types/question.interface';
+import {QuestionInterface} from 'src/app/shared/types/question.interface'
 
 export interface GetAllQuestionsResponseInterface {
-  articles: QuestionInterface[];
+  questions: QuestionInterface[]
   // articlesCount: number;
 }

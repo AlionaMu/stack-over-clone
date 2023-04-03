@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core'
 import {QuestionInputInterface} from './../../shared/types/questionInput.interface'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
 import {Store} from '@ngrx/store'
+import {map} from 'rxjs'
 
 @Injectable({
   providedIn: 'root',

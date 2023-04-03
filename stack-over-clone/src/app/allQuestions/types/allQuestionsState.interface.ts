@@ -1,7 +1,7 @@
-import { GetAllQuestionsResponseInterface } from './getAllQuestionsResponse.interface';
+import {GetAllQuestionsResponseInterface} from './getAllQuestionsResponse.interface'
 
 export interface AllQuestionsStateInterface {
-  isLoading: boolean;
-  error: string | null;
-  questions: GetAllQuestionsResponseInterface | null;
+  isLoading: boolean
+  error: string | null
+  questions: GetAllQuestionsResponseInterface | null
 }

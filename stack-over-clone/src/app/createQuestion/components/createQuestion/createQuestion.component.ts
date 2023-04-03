@@ -21,9 +21,10 @@ export class CreateQuestionComponent implements OnInit {
     title: '',
     body: '',
     tags: [],
+    date: 0,
   }
 
-  public valuesList: any[] = []
+  // public valuesList: any[] = []
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>
   public backendErrors$: Observable<BackendErrorsInterface | null> =
@@ -37,6 +38,7 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   onSubmit(questionInput: QuestionInputInterface) {
+    questionInput.date = Date.now()
     this.store.dispatch(createQuestionAction({questionInput}))
   }
 }
