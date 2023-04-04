@@ -5,6 +5,10 @@
   flex-direction: column;
   color: $dark-font-color;
 
+  &:hover {
+    opacity: 0.8;
+  }
+
   &__link {
     text-decoration: none;
     color: $dark-font-color;
