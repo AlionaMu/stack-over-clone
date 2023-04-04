@@ -4,18 +4,26 @@
     <!-- <mc-loading *ngIf="isLoading$ | async"></mc-loading>
     <mc-error-message *ngIf="error$ | async"></mc-error-message> -->
     <div class="question__info-content">
+      <div class="question__info-about">
+        <p class="question__date">
+          Created at: {{ question?.date | date : 'fullDate' }}
+        </p>
+        <p class="question__date">Author:</p>
+      </div>
       <h4 class="question__item-title">{{ question?.title }}</h4>
-      <p class="question__date">{{ question?.date | date : 'fullDate' }}</p>
     </div>
-    <div class="questioo__description-content">
-      <p class="detailed-info__description-title">Answer:</p>
-      <div class="detailed-info__description-text">{{ question?.body }}</div>
+    <div class="question__description-content">
+      <div class="question__description-text">{{ question?.body }}</div>
     </div>
-    <div class="question__tags">
-      <span>
+    <div class="question__info-manage">
+      <div class="question__tags">
         Tags:
         <span *ngFor="let tag of question?.tags"> #{{ tag }} </span>
-      </span>
+      </div>
+      <!-- <div class="question__buttons">
+        <button class="question__button">Approve</button>
+        <button class="question__button">Delete</button>
+      </div> -->
     </div>
   </div>
 </section>

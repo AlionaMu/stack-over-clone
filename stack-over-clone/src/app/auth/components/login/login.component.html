@@ -1,12 +1,12 @@
 <section class="login">
   <div class="login__container">
-    <div class="login__title">
-      <h1>Sign In</h1>
-      <p>
-        <a [routerLink]="['/register']">Need an account?</a>
-      </p>
+    <div class="login__title-container">
+      <h2 class="login__title">Sign In</h2>
+      <div>
+        <a [routerLink]="['/register']" class="login__link">Need an account?</a>
+      </div>
     </div>
-    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="login__form">
       <mat-form-field appearance="fill">
         <input
           matInput
@@ -23,7 +23,7 @@
           formControlName="password"
         />
       </mat-form-field>
-      <button type="submit" mat-button>Sign In</button>
+      <button type="submit" mat-button class="login__button">Sign In</button>
     </form>
   </div>
 </section>

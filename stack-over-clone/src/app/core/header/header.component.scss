@@ -1,11 +1,29 @@
 @import 'src/styles/_mixins';
+@import 'src/styles/_variables';
 
 .header {
   width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  transition: all 0.25s ease-out;
+  height: 80px;
+  text-decoration: none;
+
+  &__nav {
+    padding: 20px 40px;
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    @include smart {
+      flex-direction: column;
+    }
+  }
+
+  &__list {
+    @include smart {
+      justify-content: center;
+    }
+  }
 
   &__toolbar {
     @include smart {
@@ -27,8 +45,22 @@
     }
   }
 
-  &__title {
+  &__title-link {
+    align-self: center;
     cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $dark-font-color;
+    transition: all 0.5s ease-out;
+
+    &:hover {
+      color: $add-color;
+      opacity: 0.8;
+    }
   }
 
   &__menu {
@@ -62,10 +94,6 @@
   &__list {
     display: flex;
     list-style: none;
-
-    @include tablet {
-      display: none;
-    }
   }
 
   &__toolbar-row {

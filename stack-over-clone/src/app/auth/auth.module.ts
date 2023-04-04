@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router'
 import {ReactiveFormsModule} from '@angular/forms'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
+import {MatButtonModule} from '@angular/material/button'
 
 import {RegisterComponent} from './components/register/register.component'
 import {LoginComponent} from './components/login/login.component'
@@ -35,6 +36,7 @@ const routes = [
     EffectsModule.forFeature([RegisterEffect]),
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
   ],
   providers: [AuthService, PersistanceService],
 })

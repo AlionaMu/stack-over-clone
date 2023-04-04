@@ -1,3 +1,6 @@
+@import 'src/styles/_mixins';
+@import 'src/styles/_variables';
+
 .question {
   width: 70vw;
 
@@ -18,37 +21,37 @@
   &__container {
     display: flex;
     height: 460px;
+    flex-direction: column;
+    justify-content: space-around;
+
+    & > * {
+      border-bottom: 1px solid $dark-font-color;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+    }
     // @include tablet {
     //   width: 500px;
     //   flex-direction: column;
     //   box-shadow: none;
     // }
   }
-  &__info {
+
+  &__info-about {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    background-color: blue;
-    padding: 35px;
+    font-size: 10px;
+    font-weight: 200;
   }
+
   &__item-title {
     font-size: 24px;
     font-weight: 700;
   }
+
   &__info-content {
     display: flex;
-    margin-bottom: 20px;
-  }
-  &__date {
-    align-self: end;
-    font-size: 10px;
-    font-weight: 400;
-    width: 200px;
-    color: yellow;
-  }
-  &__description-title {
-    font-size: 14px;
-    font-weight: 400;
+    flex-direction: column;
+    color: $dark-color;
   }
 
   &__description-text {
@@ -57,6 +60,10 @@
     font-size: 12px;
     overflow-y: hidden;
     margin-bottom: 20px;
-    color: yellow;
+    color: $add-color;
+  }
+
+  &__info-manage {
+    color: $dark-color;
   }
 }
