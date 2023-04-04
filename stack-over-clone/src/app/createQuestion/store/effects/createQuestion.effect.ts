@@ -36,16 +36,16 @@ export class CreateQuestionEffect {
     ),
   )
 
-  redirectAfterCreate$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(createQuestionSuccessAction),
-        tap(({question}) => {
-          this.router.navigate(['/questions', question]) //question.slug
-        }),
-      ),
-    {dispatch: false},
-  )
+  // redirectAfterCreate$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(createQuestionSuccessAction),
+  //       tap(({question}) => {
+  //         this.router.navigate(['/questions', question.slug]) //question.slug
+  //       }),
+  //     ),
+  //   {dispatch: false},
+  // )
 
   constructor(
     private actions$: Actions,

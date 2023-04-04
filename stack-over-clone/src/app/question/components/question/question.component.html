@@ -1,0 +1,21 @@
+<section class="question">
+  <!-- <button class="question__back-button" (click)="goToPreviousPage()"><</button> -->
+  <div class="question__container">
+    <!-- <mc-loading *ngIf="isLoading$ | async"></mc-loading>
+    <mc-error-message *ngIf="error$ | async"></mc-error-message> -->
+    <div class="question__info-content">
+      <h4 class="question__item-title">{{ question?.title }}</h4>
+      <p class="question__date">{{ question?.date | date : 'fullDate' }}</p>
+    </div>
+    <div class="questioo__description-content">
+      <p class="detailed-info__description-title">Answer:</p>
+      <div class="detailed-info__description-text">{{ question?.body }}</div>
+    </div>
+    <div class="question__tags">
+      <span>
+        Tags:
+        <span *ngFor="let tag of question?.tags"> #{{ tag }} </span>
+      </span>
+    </div>
+  </div>
+</section>

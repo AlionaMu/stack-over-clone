@@ -3,4 +3,5 @@ export interface QuestionInputInterface {
   body: string
   tags?: string[]
   date: number
+  slug: string
 }

@@ -5,6 +5,11 @@
   flex-direction: column;
   color: $dark-font-color;
 
+  &__link {
+    text-decoration: none;
+    color: $dark-font-color;
+  }
+
   &__item {
     display: flex;
     flex-direction: column;

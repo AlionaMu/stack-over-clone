@@ -1,3 +1,5 @@
+import {AngularFirestore} from '@angular/fire/compat/firestore'
+import {getFirestore} from '@angular/fire/firestore'
 import {Component, OnInit} from '@angular/core'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
@@ -22,15 +24,18 @@ export class CreateQuestionComponent implements OnInit {
     body: '',
     tags: [],
     date: 0,
+    slug: '',
   }
-
-  // public valuesList: any[] = []
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>
   public backendErrors$: Observable<BackendErrorsInterface | null> =
     {} as Observable<BackendErrorsInterface | null>
 
-  constructor(private store: Store, public service: CreateQuestionService) {}
+  constructor(
+    private store: Store,
+    public service: CreateQuestionService,
+    public firestore: AngularFirestore,
+  ) {}
 
   ngOnInit(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
@@ -38,7 +43,9 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   onSubmit(questionInput: QuestionInputInterface) {
+    questionInput.slug = this.firestore.createId()
     questionInput.date = Date.now()
+
     this.store.dispatch(createQuestionAction({questionInput}))
   }
 }

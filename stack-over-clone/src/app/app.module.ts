@@ -1,3 +1,4 @@
+import {QuestionModule} from './question/question.module'
 import {AllQuestionsModule} from './allQuestions/allQuestions.module'
 import {CoreModule} from './core/core.module'
 import {environment} from './../environments/environment'
@@ -32,6 +33,7 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
     CoreModule,
     CreateQuestionModule,
     AllQuestionsModule,
+    QuestionModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({router: routerReducer}),

@@ -1,3 +1,4 @@
+import {SharedQuestionService} from './../../../shared/services/sharedQuestion.service'
 import {Component} from '@angular/core'
 import {Router, ActivatedRoute, Params} from '@angular/router'
 import {Store, select} from '@ngrx/store'
@@ -24,6 +25,7 @@ export class AllQuestionsComponent {
     private store: Store,
     private router: Router,
     private route: ActivatedRoute,
+    public sharedQuestionService: SharedQuestionService,
   ) {}
 
   ngOnInit(): void {
