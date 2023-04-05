@@ -1,3 +1,4 @@
+import {EditQuestionModule} from 'src/app/editQuestion/editQuestion.module'
 import {QuestionModule} from './question/question.module'
 import {AllQuestionsModule} from './allQuestions/allQuestions.module'
 import {CoreModule} from './core/core.module'
@@ -34,6 +35,7 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
     CreateQuestionModule,
     AllQuestionsModule,
     QuestionModule,
+    EditQuestionModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({router: routerReducer}),

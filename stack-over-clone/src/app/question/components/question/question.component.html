@@ -20,10 +20,17 @@
         Tags:
         <span *ngFor="let tag of question?.tags"> #{{ tag }} </span>
       </div>
-      <!-- <div class="question__buttons">
-        <button class="question__button">Approve</button>
-        <button class="question__button">Delete</button>
-      </div> -->
+      <div class="question__buttons">
+        <!-- <button class="question__button">Approve</button>
+        <button class="question__button">Delete</button> -->
+        <a
+          mat-raised-button
+          [routerLink]="['/questions', question?.slug, 'edit']"
+          class="question__button"
+        >
+          Edit question
+        </a>
+      </div>
     </div>
   </div>
 </section>

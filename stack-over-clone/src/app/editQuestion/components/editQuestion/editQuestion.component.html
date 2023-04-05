@@ -1,0 +1,8 @@
+<!-- <mc-loading *ngIf="isLoading$ | async"></mc-loading> -->
+<app-question-form
+  *ngIf="initialValues$ | async"
+  [initialValues]="initialValues$ | async"
+  [isSubmitting]="isSubmitting$ | async"
+  [errors]="backendErrors$ | async"
+  (questionSubmit)="onSubmit($event)"
+></app-question-form>

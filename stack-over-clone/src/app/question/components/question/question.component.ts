@@ -8,12 +8,12 @@ import {currentUserSelector} from 'src/app/auth/store/selectors'
 import {getQuestionAction} from '../../store/actions/getQuestion.action'
 import {deleteQuestionAction} from '../../store/actions/deleteQuestion.action'
 import {QuestionInterface} from 'src/app/shared/types/question.interface'
-import {CurrentUserInterface} from './../../../shared/types/currentUser.interface'
+import {CurrentUserInterface} from '../../../shared/types/currentUser.interface'
 import {
   questionSelector,
   isLoadingSelector,
   errorSelector,
-} from './../../store/selectors'
+} from '../../store/selectors'
 
 @Component({
   selector: 'app-question',
@@ -42,7 +42,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   initializeValues(): void {
     this.slug = this.route.snapshot.paramMap.get('slug')
-    console.log(this.slug)
     this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
   }

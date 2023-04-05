@@ -11,6 +11,7 @@ import {reducers} from './store/reducers'
 
 import {QuestionComponent} from './components/question/question.component'
 import {SharedQuestionService} from '../shared/services/sharedQuestion.service'
+import {MatButtonModule} from '@angular/material/button'
 
 // import { LoadingModule } from '../shared/modules/loading/loading.module';
 // import { ErrorMessageModule } from '../shared/modules/errorMessage/errorMessage.module';
@@ -30,6 +31,7 @@ const routes = [
     EffectsModule.forFeature([GetQuestionEffect, DeleteQuestionEffect]),
     StoreModule.forFeature('question', reducers),
     RouterModule,
+    MatButtonModule,
     // LoadingModule,
     // ErrorMessageModule,
     // TagListModule,

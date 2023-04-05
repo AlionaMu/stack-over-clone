@@ -28,23 +28,18 @@
         </fieldset>
         <fieldset>
           <h4>Select your tags:</h4>
-          <mat-selection-list
-            (selectionChange)="selectionChange($event)"
-            formControlName="tags"
-            class="question-form__tags-list"
-          >
-            <mat-list-option
-              *ngFor="let tag of tags"
-              checkboxPosition="before"
-              [value]="tag"
-              [selected]="tagsSet.get(tag)"
-              class="question-form__tags-list-item"
-              [value]="tag"
-            >
+          <div *ngFor="let tag of tags" (change)="onCheckboxChange($event)">
+            <label>
+              <input
+                type="checkbox"
+                [value]="tag"
+                [checked]="tagsSet.get(tag)"
+              />
               {{ tag }}
-            </mat-list-option>
-          </mat-selection-list>
+            </label>
+          </div>
         </fieldset>
+
         <fieldset>
           <button
             mat-button

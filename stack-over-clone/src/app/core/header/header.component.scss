@@ -23,28 +23,9 @@
   }
 
   &__list {
+    padding: 0;
     @include smart {
       justify-content: center;
-    }
-  }
-
-  &__toolbar {
-    @include smart {
-      min-height: 128px;
-    }
-  }
-
-  & .header__toolbar-row_onscroll {
-    transform: scaleY(1.1);
-
-    @include smart {
-      flex-direction: column;
-    }
-  }
-
-  & .header__toolbar-row {
-    @include smart {
-      flex-direction: column;
     }
   }
 
@@ -64,6 +45,10 @@
       color: $add-color;
       opacity: 0.8;
     }
+  }
+
+  &__list-item {
+    margin: 0 10px;
   }
 
   &__button-container {
