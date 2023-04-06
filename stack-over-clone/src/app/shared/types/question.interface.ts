@@ -4,4 +4,5 @@ export interface QuestionInterface {
   tags: string[]
   date: number
   slug: string
+  comments: string[]
 }

@@ -15,6 +15,8 @@ import {
   errorSelector,
 } from '../../store/selectors'
 
+import {QuestionService} from 'src/app/question/services/question.service'
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -28,7 +30,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
   public error$: Observable<string | null> = {} as Observable<string | null>
   public isAuthor$: Observable<boolean> = {} as Observable<boolean>
 
-  constructor(private store: Store, private route: ActivatedRoute) {}
+  constructor(
+    private store: Store,
+    private route: ActivatedRoute,
+    public questionService: QuestionService,
+  ) {}
 
   ngOnInit(): void {
     this.initializeValues()
@@ -57,11 +63,19 @@ export class QuestionComponent implements OnInit, OnDestroy {
       })
   }
 
+  onSubmit($event: any) {
+    console.log($event)
+  }
+
   fetchData(): void {
     if (this.slug) this.store.dispatch(getQuestionAction({slug: this.slug}))
   }
 
   deleteQuestion(): void {
     if (this.slug) this.store.dispatch(deleteQuestionAction({slug: this.slug}))
+  }
+
+  toggleComment() {
+    this.questionService.toggleComment()
   }
 }

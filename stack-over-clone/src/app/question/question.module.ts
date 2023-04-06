@@ -3,15 +3,15 @@ import {CommonModule} from '@angular/common'
 import {RouterModule} from '@angular/router'
 import {EffectsModule} from '@ngrx/effects'
 import {StoreModule} from '@ngrx/store'
-
 import {QuestionService} from 'src/app/question/services/question.service'
 import {GetQuestionEffect} from './store/effects/getQuestion.effect'
 import {DeleteQuestionEffect} from './store/effects/deleteQuestion.effect'
 import {reducers} from './store/reducers'
-
+import {CommentFormComponent} from './components/commentForm/commentForm.component'
 import {QuestionComponent} from './components/question/question.component'
 import {SharedQuestionService} from '../shared/services/sharedQuestion.service'
 import {MatButtonModule} from '@angular/material/button'
+import {ReactiveFormsModule} from '@angular/forms'
 
 // import { LoadingModule } from '../shared/modules/loading/loading.module';
 // import { ErrorMessageModule } from '../shared/modules/errorMessage/errorMessage.module';
@@ -32,11 +32,12 @@ const routes = [
     StoreModule.forFeature('question', reducers),
     RouterModule,
     MatButtonModule,
+    ReactiveFormsModule,
     // LoadingModule,
     // ErrorMessageModule,
     // TagListModule,
   ],
-  declarations: [QuestionComponent],
+  declarations: [QuestionComponent, CommentFormComponent],
   exports: [],
   providers: [SharedQuestionService, QuestionService],
 })

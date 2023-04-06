@@ -20,7 +20,7 @@
 
   &__container {
     display: flex;
-    height: 460px;
+    min-height: 460px;
     flex-direction: column;
     justify-content: space-around;
 
@@ -65,5 +65,12 @@
 
   &__info-manage {
     color: $dark-color;
+  }
+
+  &__link {
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
+    padding: 5px;
   }
 }

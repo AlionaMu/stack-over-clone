@@ -58,9 +58,9 @@ export class QuestionFormComponent implements OnInit {
 
   onSubmit(): void {
     this.form.value.tags = Array.from(this.tagsSet.keys())
-    ;(this.form.value.slug = this.initialValuesProps.slug),
-      (this.form.value.date = this.initialValuesProps.date),
-      this.questionSubmitEvent.emit(this.form.value)
+    this.form.value.slug = this.initialValuesProps.slug
+    this.form.value.date = this.initialValuesProps.date
+    this.questionSubmitEvent.emit(this.form.value)
   }
 
   selectionChange($event: any) {

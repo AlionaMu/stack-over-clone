@@ -24,13 +24,20 @@
         <!-- <button class="question__button">Approve</button>
         <button class="question__button">Delete</button> -->
         <a
-          mat-raised-button
           [routerLink]="['/questions', question?.slug, 'edit']"
-          class="question__button"
+          class="question__link"
         >
           Edit question
         </a>
+        <div class="question__link" (click)="toggleComment()">Comment</div>
       </div>
+      <app-comment-form
+        *ngIf="this.questionService.isOpenComment"
+        (commentSubmit)="onSubmit($event)"
+      ></app-comment-form>
     </div>
   </div>
 </section>
+
+<!-- [initialValues]="initialValues"
+      [isSubmitting]="isSubmitting$ | async" -->

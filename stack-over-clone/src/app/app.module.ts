@@ -11,10 +11,6 @@ import {AppComponent} from './app.component'
 import {AngularFireModule} from '@angular/fire/compat'
 import {AngularFireAuthModule} from '@angular/fire/compat/auth'
 import {AngularFirestoreModule} from '@angular/fire/compat/firestore'
-import {initializeApp, provideFirebaseApp} from '@angular/fire/app'
-import {provideAuth, getAuth} from '@angular/fire/auth'
-import {provideDatabase, getDatabase} from '@angular/fire/database'
-import {provideFirestore, getFirestore} from '@angular/fire/firestore'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {AuthModule} from './auth/auth.module'
 import {StoreModule} from '@ngrx/store'
@@ -39,10 +35,6 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({router: routerReducer}),
-    // provideFirebaseApp(() => initializeApp(environment.firebase)),
-    // provideAuth(() => getAuth()),
-    // provideDatabase(() => getDatabase()),
-    // provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
