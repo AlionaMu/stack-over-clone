@@ -12,6 +12,8 @@ import {QuestionComponent} from './components/question/question.component'
 import {SharedQuestionService} from '../shared/services/sharedQuestion.service'
 import {MatButtonModule} from '@angular/material/button'
 import {ReactiveFormsModule} from '@angular/forms'
+import {EditQuestionService} from 'src/app/shared/services/editQuestion.service'
+import { UpdateQuestionEffect } from './store/effects/updateQuestion.effect'
 
 // import { LoadingModule } from '../shared/modules/loading/loading.module';
 // import { ErrorMessageModule } from '../shared/modules/errorMessage/errorMessage.module';
@@ -28,7 +30,7 @@ const routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    EffectsModule.forFeature([GetQuestionEffect, DeleteQuestionEffect]),
+    EffectsModule.forFeature([GetQuestionEffect, DeleteQuestionEffect, UpdateQuestionEffect]),
     StoreModule.forFeature('question', reducers),
     RouterModule,
     MatButtonModule,
@@ -39,6 +41,6 @@ const routes = [
   ],
   declarations: [QuestionComponent, CommentFormComponent],
   exports: [],
-  providers: [SharedQuestionService, QuestionService],
+  providers: [SharedQuestionService, QuestionService, EditQuestionService],
 })
 export class QuestionModule {}

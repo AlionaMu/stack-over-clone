@@ -7,7 +7,7 @@ import {EffectsModule} from '@ngrx/effects'
 import {QuestionFormModule} from 'src/app/shared/modules/questionForm/questionForm.module'
 // import { LoadingModule } from '../shared/modules/loading/loading.module';
 import {EditQuestionComponent} from './components/editQuestion/editQuestion.component'
-import {EditQuestionService} from './services/editQuestion.service'
+import {EditQuestionService} from '../shared/services/editQuestion.service'
 import {SharedQuestionService} from '../shared/services/sharedQuestion.service'
 import {GetQuestionEffect} from './store/effects/getQuestion.effect'
 import {UpdateQuestionEffect} from './store/effects/updateQuestion.effect'

@@ -6,4 +6,8 @@ export enum ActionTypes {
   DELETE_QUESTION = '[Question] Delete Question',
   DELETE_QUESTION_SUCCESS = '[Question] Delete question success',
   DELETE_QUESTION_FAILURE = '[Question] Delete question failure',
+
+  UPDATE_QUESTION = '[Question] Update question',
+  UPDATE_QUESTION_SUCCESS = '[Question] Update question success',
+  UPDATE_QUESTION_FAILURE = '[Question] Update question failure',
 }

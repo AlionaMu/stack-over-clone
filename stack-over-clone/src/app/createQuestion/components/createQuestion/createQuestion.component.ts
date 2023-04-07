@@ -25,6 +25,7 @@ export class CreateQuestionComponent implements OnInit {
     tags: [],
     date: 0,
     slug: '',
+    comments: []
   }
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>

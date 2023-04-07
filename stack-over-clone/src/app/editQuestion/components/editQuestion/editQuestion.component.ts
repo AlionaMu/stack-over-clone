@@ -15,6 +15,9 @@ import {
   isLoadingSelector,
   questionSelector,
 } from 'src/app/editQuestion/store/selectors'
+import { QuestionInputInterface } from 'src/app/shared/types/questionInput.interface'
+
+type NewType = QuestionInputInterface
 
 @Component({
   selector: 'app-edit-question',
@@ -60,6 +63,7 @@ export class EditQuestionComponent implements OnInit {
           body: question.body,
           tags: question.tags,
           date: question.date,
+          comments: question.comments
         }
       }),
     )
@@ -71,8 +75,6 @@ export class EditQuestionComponent implements OnInit {
   }
 
   onSubmit(questionInput: any): void {
-    //QuestionInputInterface
-    console.log(questionInput, this.slug)
     if (this.slug) this.store.dispatch(updateQuestionAction({questionInput}))
   }
 }

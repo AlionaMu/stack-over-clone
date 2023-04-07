@@ -18,5 +18,11 @@ export const errorSelector = createSelector(
 
 export const questionSelector = createSelector(
   questionFeatureSelector,
-  (questionState: QuestionStateInterface) => questionState.data,
+  (questionState: QuestionStateInterface) => questionState.question,
+)
+
+export const isSubmittingSelector = createSelector(
+  questionFeatureSelector,
+  (QuestionState: QuestionStateInterface) =>
+    QuestionState.isSubmitting,
 )

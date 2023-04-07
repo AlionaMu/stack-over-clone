@@ -34,10 +34,9 @@
       <app-comment-form
         *ngIf="this.questionService.isOpenComment"
         (commentSubmit)="onSubmit($event)"
+        [question]="question"
+        [isSubmitting]="isSubmitting$ | async"
       ></app-comment-form>
     </div>
   </div>
 </section>
-
-<!-- [initialValues]="initialValues"
-      [isSubmitting]="isSubmitting$ | async" -->

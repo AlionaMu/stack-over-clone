@@ -5,7 +5,7 @@ import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {from, of} from 'rxjs'
 import {switchMap, catchError, map, tap} from 'rxjs/operators'
 
-import {EditQuestionService} from '../../../shared/services/editQuestion.service'
+import {EditQuestionService} from 'src/app/shared/services/editQuestion.service'
 import {QuestionInterface} from '../../../shared/types/question.interface'
 import {
   updateQuestionAction,
@@ -18,11 +18,11 @@ export class UpdateQuestionEffect {
   updateQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateQuestionAction),
-      switchMap(({questionInput}) => {
-        console.log(questionInput) // est
+      switchMap((questionInput) => {
+        console.log({questionInput})
         return from(
-          this.editQuestionService.updateQuestion(questionInput),
-        ).pipe(
+          this.editQuestionService.updateQuestion(questionInput))
+          .pipe(
           map((question: any) => {
             console.log(question)
             return updateQuestionSuccessAction({question})
@@ -38,17 +38,17 @@ export class UpdateQuestionEffect {
     ),
   )
 
-  redirectAfterCreate$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(updateQuestionSuccessAction),
-        tap(({question}) => {
-          console.log(question)
-          this.router.navigate(['/questions', question.slug])
-        }),
-      ),
-    {dispatch: false},
-  )
+  // redirectAfterCreate$ = createEffect(
+  //   () =>
+  //     this.actions$.pipe(
+  //       ofType(updateQuestionSuccessAction),
+  //       tap(({question}) => {
+  //         console.log(question)
+  //         this.router.navigate(['/questions', question.slug])
+  //       }),
+  //     ),
+  //   {dispatch: false},
+  // )
 
   constructor(
     private actions$: Actions,

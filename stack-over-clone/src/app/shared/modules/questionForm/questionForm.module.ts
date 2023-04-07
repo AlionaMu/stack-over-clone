@@ -9,7 +9,6 @@ import {MatSelectModule} from '@angular/material/select'
 import {MatListModule} from '@angular/material/list'
 
 import {QuestionFormComponent} from './components/questionForm/questionForm.component'
-import {MatListOptionFixDirective} from './directives/MatListOptionFix.directive'
 
 @NgModule({
   imports: [
@@ -20,7 +19,6 @@ import {MatListOptionFixDirective} from './directives/MatListOptionFix.directive
     MatButtonModule,
     MatSelectModule,
     MatListModule,
-    // MatListOptionFixDirective,
   ],
   declarations: [QuestionFormComponent],
   exports: [QuestionFormComponent],

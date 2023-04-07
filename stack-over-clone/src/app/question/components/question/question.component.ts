@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
 import {select, Store} from '@ngrx/store'
 import {combineLatest, Observable, Subscription} from 'rxjs'
-import {map} from 'rxjs/operators'
+import {filter, map} from 'rxjs/operators'
 
 import {currentUserSelector} from 'src/app/auth/store/selectors'
 import {getQuestionAction} from '../../store/actions/getQuestion.action'
@@ -13,9 +13,12 @@ import {
   questionSelector,
   isLoadingSelector,
   errorSelector,
+  isSubmittingSelector,
 } from '../../store/selectors'
 
 import {QuestionService} from 'src/app/question/services/question.service'
+import { updateQuestionAction } from '../../store/actions/updateQuestion.action'
+import { QuestionInputInterface } from 'src/app/shared/types/questionInput.interface'
 
 @Component({
   selector: 'app-question',
@@ -30,6 +33,9 @@ export class QuestionComponent implements OnInit, OnDestroy {
   public error$: Observable<string | null> = {} as Observable<string | null>
   public isAuthor$: Observable<boolean> = {} as Observable<boolean>
 
+  public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean | null>
+  public question$: Observable<QuestionInputInterface> = {} as Observable<QuestionInputInterface>
+
   constructor(
     private store: Store,
     private route: ActivatedRoute,
@@ -40,6 +46,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.initializeValues()
     this.fetchData()
     this.initializeListeners()
+
   }
 
   ngOnDestroy(): void {
@@ -50,6 +57,23 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.slug = this.route.snapshot.paramMap.get('slug')
     this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
+
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
+    this.question$ = this.store.pipe(
+      select(questionSelector),
+      filter(Boolean),
+      map((question: QuestionInterface) => {
+        console.log('initialValue', question)
+        return {
+          title: question.title,
+          slug: question.slug,
+          body: question.body,
+          tags: question.tags,
+          date: question.date,
+          comments: question.comments
+        }
+      }),
+    )
   }
 
   initializeListeners(): void {
@@ -63,8 +87,13 @@ export class QuestionComponent implements OnInit, OnDestroy {
       })
   }
 
-  onSubmit($event: any) {
-    console.log($event)
+  onSubmit(questionInput: any) {
+    console.log(questionInput)
+
+    const obj = Object.assign<any, any, any>({}, this.question, {comments: questionInput})
+    console.log(obj)
+
+    this.store.dispatch(updateQuestionAction(obj))
   }
 
   fetchData(): void {

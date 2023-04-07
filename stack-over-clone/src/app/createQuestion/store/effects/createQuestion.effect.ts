@@ -23,7 +23,6 @@ export class CreateQuestionEffect {
           this.createQuestionService.createQuestion(questionInput),
         ).pipe(
           map((question: any) => {
-            console.log('create', question)
             return createQuestionSuccessAction({question})
           }),
 
