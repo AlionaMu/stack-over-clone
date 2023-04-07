@@ -43,9 +43,10 @@ const questionReducer = createReducer(
 
   on(
     updateQuestionAction,
-    (state): QuestionStateInterface => ({  // EditStateInterface
+    (state, action): QuestionStateInterface => ({  // EditStateInterface
       ...state,
       isSubmitting: true,
+      // question: action.questionInput
     }),
   ),
   on(
@@ -57,7 +58,7 @@ const questionReducer = createReducer(
   ),
   on(
     updateQuestionFailureAction,
-    (state, action): QuestionStateInterface => ({
+    (state): QuestionStateInterface => ({
       ...state,
       isSubmitting: false,
       // validationErrors: action.errors,

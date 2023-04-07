@@ -25,7 +25,7 @@ export class UpdateQuestionEffect {
           .pipe(
           map((question: any) => {
             console.log(question)
-            return updateQuestionSuccessAction({question})
+            return updateQuestionSuccessAction(question)
           }),
 
           catchError((errorResponse: HttpErrorResponse) => {

@@ -1,9 +1,5 @@
-import {map} from 'rxjs/operators'
-import {SaveQuestionResponseInterface} from '../types/saveQuestionResponse.interface'
-import {environment} from '../../../environments/environment'
 import {Injectable} from '@angular/core'
-import {HttpClient} from '@angular/common/http'
-import {from, Observable} from 'rxjs'
+import {from} from 'rxjs'
 
 import {QuestionInterface} from '../types/question.interface'
 import {QuestionInputInterface} from '../types/questionInput.interface'

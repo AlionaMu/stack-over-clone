@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button'
 import {ReactiveFormsModule} from '@angular/forms'
 import {EditQuestionService} from 'src/app/shared/services/editQuestion.service'
 import { UpdateQuestionEffect } from './store/effects/updateQuestion.effect'
+import { ConvertDataService } from '../shared/services/convertData.service'
 
 // import { LoadingModule } from '../shared/modules/loading/loading.module';
 // import { ErrorMessageModule } from '../shared/modules/errorMessage/errorMessage.module';
@@ -41,6 +42,6 @@ const routes = [
   ],
   declarations: [QuestionComponent, CommentFormComponent],
   exports: [],
-  providers: [SharedQuestionService, QuestionService, EditQuestionService],
+  providers: [SharedQuestionService, QuestionService, EditQuestionService, ConvertDataService],
 })
 export class QuestionModule {}

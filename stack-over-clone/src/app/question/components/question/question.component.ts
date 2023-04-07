@@ -19,6 +19,7 @@ import {
 import {QuestionService} from 'src/app/question/services/question.service'
 import { updateQuestionAction } from '../../store/actions/updateQuestion.action'
 import { QuestionInputInterface } from 'src/app/shared/types/questionInput.interface'
+import { ConvertDataService } from 'src/app/shared/services/convertData.service'
 
 @Component({
   selector: 'app-question',
@@ -40,6 +41,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private store: Store,
     private route: ActivatedRoute,
     public questionService: QuestionService,
+    public convertService: ConvertDataService
   ) {}
 
   ngOnInit(): void {
@@ -87,10 +89,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
       })
   }
 
-  onSubmit(questionInput: any) {
-    console.log(questionInput)
+  onSubmit(commentInput: any) {
+    console.log(commentInput)
 
-    const obj = Object.assign<any, any, any>({}, this.question, {comments: questionInput})
+    const obj = this.convertService.convertObj(commentInput, this.question)
+
     console.log(obj)
 
     this.store.dispatch(updateQuestionAction(obj))

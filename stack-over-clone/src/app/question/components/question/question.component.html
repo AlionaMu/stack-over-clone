@@ -6,7 +6,7 @@
     <div class="question__info-content">
       <div class="question__info-about">
         <p class="question__date">
-          Created at: {{ question?.date | date : 'fullDate' }}
+          CreatedAt: {{ question?.date | date : 'medium' }}
         </p>
         <p class="question__date">Author:</p>
       </div>
@@ -37,6 +37,16 @@
         [question]="question"
         [isSubmitting]="isSubmitting$ | async"
       ></app-comment-form>
+      <span class="question__comments-title">Comments</span>
+      <div class="question__comments" *ngFor="let comment of question?.comments">
+        <div class="question__comments-item">
+          <p class="question__item-body">{{ comment.body }}</p>
+          <div class="question__comments-info">
+            <span class="question__item-author">Author</span>
+            <span>CreatedAt: {{ comment.date | date : 'medium' }} </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

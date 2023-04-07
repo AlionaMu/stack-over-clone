@@ -46,7 +46,7 @@ export class CreateQuestionComponent implements OnInit {
   onSubmit(questionInput: QuestionInputInterface) {
     questionInput.slug = this.firestore.createId()
     questionInput.date = Date.now()
-
+    questionInput.comments = []
     this.store.dispatch(createQuestionAction({questionInput}))
   }
 }
