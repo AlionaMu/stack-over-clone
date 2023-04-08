@@ -9,11 +9,14 @@ import {AngularFirestore} from '@angular/fire/compat/firestore'
 export class EditQuestionService {
   constructor(private firestore: AngularFirestore) {}
 
-  updateQuestion(questionInput: any) {  //QuestionInputInterface
+  updateQuestion(questionInput: any) {
+    //QuestionInputInterface
     console.log(questionInput)
-    return from(this.firestore
-      .collection('questions')
-      .doc(questionInput.slug)
-      .update(questionInput))
+    return from(
+      this.firestore
+        .collection('questions')
+        .doc(questionInput.slug)
+        .update(questionInput),
+    )
   }
 }

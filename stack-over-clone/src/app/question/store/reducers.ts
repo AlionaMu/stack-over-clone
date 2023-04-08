@@ -7,13 +7,17 @@ import {
   getQuestionSuccessAction,
   getQuestionFailureAction,
 } from './actions/getQuestion.action'
-import { updateQuestionAction, updateQuestionSuccessAction, updateQuestionFailureAction } from './actions/updateQuestion.action'
+import {
+  updateQuestionAction,
+  updateQuestionSuccessAction,
+  updateQuestionFailureAction,
+} from './actions/updateQuestion.action'
 
 const initialState: QuestionStateInterface = {
   question: null,
   isLoading: false,
   error: null,
-  isSubmitting: false
+  isSubmitting: false,
 }
 
 const questionReducer = createReducer(
@@ -43,7 +47,8 @@ const questionReducer = createReducer(
 
   on(
     updateQuestionAction,
-    (state, action): QuestionStateInterface => ({  // EditStateInterface
+    (state, action): QuestionStateInterface => ({
+      // EditStateInterface
       ...state,
       isSubmitting: true,
       // question: action.questionInput
@@ -66,7 +71,6 @@ const questionReducer = createReducer(
   ),
 
   on(routerNavigationAction, (): QuestionStateInterface => initialState),
-
 )
 
 export function reducers(state: QuestionStateInterface, action: Action) {

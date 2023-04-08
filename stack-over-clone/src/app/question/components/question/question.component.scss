@@ -65,7 +65,7 @@
   &__link {
     cursor: pointer;
     text-decoration: underline;
-    color: red;
+    color: $dark-font-color;
     padding: 5px;
   }
 
@@ -80,9 +80,45 @@
     justify-content: space-between;
   }
 
+  &__comments-title {
+    color: $dark-color;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid $dark-font-color;
+    @include smart {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 20px;
+
+      & > * {
+        margin-top: 10px;
+      }
+    }
+  }
+
   &__comments-info {
     display: flex;
     justify-content: space-between;
     font-size: 10px;
+  }
+
+  &__tags {
+    margin-top: 6px;
+  }
+
+  &__links {
+    display: flex;
+  }
+
+  &__button {
+    margin: 5px;
+    color: $dark-font-color;
   }
 }

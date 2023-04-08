@@ -40,6 +40,6 @@ export class AllQuestionsComponent {
   }
 
   fetchAllQuestions(): void {
-    this.store.dispatch(getAllQuestionsAction({value:'questions'}))
+    this.store.dispatch(getAllQuestionsAction({value: 'questions'}))
   }
 }

@@ -21,8 +21,8 @@ export class UpdateQuestionEffect {
       switchMap((questionInput) => {
         console.log({questionInput})
         return from(
-          this.editQuestionService.updateQuestion(questionInput))
-          .pipe(
+          this.editQuestionService.updateQuestion(questionInput),
+        ).pipe(
           map((question: any) => {
             console.log(question)
             return updateQuestionSuccessAction(question)

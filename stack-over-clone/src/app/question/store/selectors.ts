@@ -23,6 +23,5 @@ export const questionSelector = createSelector(
 
 export const isSubmittingSelector = createSelector(
   questionFeatureSelector,
-  (QuestionState: QuestionStateInterface) =>
-    QuestionState.isSubmitting,
+  (QuestionState: QuestionStateInterface) => QuestionState.isSubmitting,
 )

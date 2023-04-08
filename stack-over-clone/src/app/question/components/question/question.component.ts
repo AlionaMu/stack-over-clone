@@ -17,9 +17,9 @@ import {
 } from '../../store/selectors'
 
 import {QuestionService} from 'src/app/question/services/question.service'
-import { updateQuestionAction } from '../../store/actions/updateQuestion.action'
-import { QuestionInputInterface } from 'src/app/shared/types/questionInput.interface'
-import { ConvertDataService } from 'src/app/shared/services/convertData.service'
+import {updateQuestionAction} from '../../store/actions/updateQuestion.action'
+import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
+import {ConvertDataService} from 'src/app/shared/services/convertData.service'
 
 @Component({
   selector: 'app-question',
@@ -34,21 +34,23 @@ export class QuestionComponent implements OnInit, OnDestroy {
   public error$: Observable<string | null> = {} as Observable<string | null>
   public isAuthor$: Observable<boolean> = {} as Observable<boolean>
 
-  public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean | null>
-  public question$: Observable<QuestionInputInterface> = {} as Observable<QuestionInputInterface>
+  public isSubmitting$: Observable<boolean | null> = {} as Observable<
+    boolean | null
+  >
+  public question$: Observable<QuestionInputInterface> =
+    {} as Observable<QuestionInputInterface>
 
   constructor(
     private store: Store,
     private route: ActivatedRoute,
     public questionService: QuestionService,
-    public convertService: ConvertDataService
+    public convertService: ConvertDataService,
   ) {}
 
   ngOnInit(): void {
     this.initializeValues()
     this.fetchData()
     this.initializeListeners()
-
   }
 
   ngOnDestroy(): void {
@@ -72,7 +74,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
           body: question.body,
           tags: question.tags,
           date: question.date,
-          comments: question.comments
+          comments: question.comments,
         }
       }),
     )

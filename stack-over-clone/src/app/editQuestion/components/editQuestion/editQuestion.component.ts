@@ -15,7 +15,7 @@ import {
   isLoadingSelector,
   questionSelector,
 } from 'src/app/editQuestion/store/selectors'
-import { QuestionInputInterface } from 'src/app/shared/types/questionInput.interface'
+import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 
 type NewType = QuestionInputInterface
 
@@ -63,7 +63,7 @@ export class EditQuestionComponent implements OnInit {
           body: question.body,
           tags: question.tags,
           date: question.date,
-          comments: question.comments
+          comments: question.comments,
         }
       }),
     )
