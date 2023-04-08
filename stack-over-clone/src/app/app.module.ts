@@ -1,3 +1,4 @@
+import {SettingPanelModule} from './settingPanel/settingPanel.module'
 import {EditQuestionModule} from 'src/app/editQuestion/editQuestion.module'
 import {QuestionModule} from './question/question.module'
 import {AllQuestionsModule} from './allQuestions/allQuestions.module'
@@ -32,6 +33,7 @@ import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
     AllQuestionsModule,
     QuestionModule,
     EditQuestionModule,
+    SettingPanelModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({router: routerReducer}),
