@@ -13,22 +13,22 @@ import {
 
 @Injectable()
 export class DeleteQuestionEffect {
-  // deleteQuestion$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(deleteQuestionAction),
-  //     switchMap(({ slug }) => {
-  //       return from(this.questionService.deleteQuestion(slug)).pipe(
-  //         map(() => {
-  //           return deleteQuestionSuccessAction();
-  //         }),
+  deleteQuestion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteQuestionAction),
+      switchMap(({slug}) => {
+        return from(this.questionService.deleteQuestion(slug)).pipe(
+          map(() => {
+            return deleteQuestionSuccessAction()
+          }),
 
-  //         catchError(() => {
-  //           return of(deleteQuestionFailureAction());
-  //         })
-  //       );
-  //     })
-  //   )
-  // );
+          catchError(() => {
+            return of(deleteQuestionFailureAction())
+          }),
+        )
+      }),
+    ),
+  )
 
   redirectAfterDelete$ = createEffect(
     () =>

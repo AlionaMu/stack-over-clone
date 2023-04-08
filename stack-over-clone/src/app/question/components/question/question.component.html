@@ -31,7 +31,13 @@
         </div>
         <div class="question__buttons">
           <button class="question__button" mat-raised-button>Approve</button>
-          <button class="question__button" mat-raised-button>Delete</button>
+          <button
+            class="question__button"
+            mat-raised-button
+            (click)="deleteQuestion()"
+          >
+            Delete
+          </button>
         </div>
       </div>
       <app-comment-form
