@@ -8,6 +8,7 @@ export class SettingsService {
   public selectedTag: string | null = null
   public filterByDate: string = ''
   public filterByTag: string = ''
+  public sortByDate: string = ''
 
   setAnswered(value: boolean | null) {
     this.isAnswered = value
@@ -19,5 +20,9 @@ export class SettingsService {
 
   setFilterByTag(value: string) {
     this.filterByTag = value
+  }
+
+  setSortByDate(value: string) {
+    this.sortByDate = value
   }
 }

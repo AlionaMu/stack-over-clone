@@ -11,6 +11,7 @@ import {reducers} from './store/reducers'
 import {isAnsweredPipe} from './pipes/isAnswered.pipe'
 import {FilterByDatePipe} from './pipes/filterByDate.pipe'
 import {FilterByTagPipe} from './pipes/filterByTag.pipe'
+import {SortByDatePipe} from './pipes/sortByDate.pipe'
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     isAnsweredPipe,
     FilterByDatePipe,
     FilterByTagPipe,
+    SortByDatePipe,
   ],
   imports: [
     CommonModule,

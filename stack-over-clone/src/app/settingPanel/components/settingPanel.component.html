@@ -47,8 +47,8 @@
       <h3 class="settings-panel__title">Sort</h3>
       <span class="setting-panel__span">By Date</span>
       <div class="setting-panel__buttons">
-        <button mat-stroked-button>Asc</button>
-        <button mat-stroked-button>Desc</button>
+        <button mat-stroked-button (click)="sortByDate('asc')">Asc</button>
+        <button mat-stroked-button (click)="sortByDate('desc')">Desc</button>
       </div>
     </section>
 

@@ -6,6 +6,7 @@
       | isAnswered : this.settingsService.isAnswered
       | filterByDate : this.settingsService.filterByDate
       | filterByTag : this.settingsService.filterByTag
+      | sortByDate : this.settingsService.sortByDate
   "
 >
   <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
@@ -13,7 +14,7 @@
       <h2 class="all-questions__item-title">{{ question.title }}</h2>
       <p class="all-questions__item-body">{{ question.body }}</p>
       <div class="all-questions__item-info">
-        <span>Date: {{ question.date | date : 'fullDate' }} </span>
+        <span>Date: {{ question.date | date : 'medium' }} </span>
         <span>Comments: {{ question.comments.length }} </span>
         <span
           >Tags:

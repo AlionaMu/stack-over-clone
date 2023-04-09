@@ -56,4 +56,8 @@ export class SettingPanelComponent implements OnInit {
   filterByTag(value: string): void {
     this.settingsService.setFilterByTag(value)
   }
+
+  sortByDate(value: string): void {
+    this.settingsService.setSortByDate(value)
+  }
 }
