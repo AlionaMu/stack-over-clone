@@ -64,6 +64,7 @@ export class EditQuestionComponent implements OnInit {
           tags: question.tags,
           date: question.date,
           comments: question.comments,
+          isAnswered: question.isAnswered,
         }
       }),
     )

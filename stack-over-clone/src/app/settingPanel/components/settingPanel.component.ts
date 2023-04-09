@@ -1,3 +1,4 @@
+import {SettingsService} from './../../shared/services/settings.service'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
 import {getFirestore} from '@angular/fire/firestore'
 import {Component, OnInit} from '@angular/core'
@@ -33,11 +34,16 @@ export class SettingPanelComponent implements OnInit {
     private store: Store,
     public service: SettingPanelService,
     public firestore: AngularFirestore,
+    public settingsService: SettingsService,
   ) {}
 
   ngOnInit(): void {}
 
   toggleResultsPanel(): void {
     this.isSettingsOpen = !this.isSettingsOpen
+  }
+
+  clickIsAnswered(value: boolean | null): void {
+    this.settingsService.setAnswered(value)
   }
 }

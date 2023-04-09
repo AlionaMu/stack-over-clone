@@ -37,6 +37,7 @@ export class CommentFormComponent implements OnInit {
       // author: this.initialValuesProps.author,
       body: '',
       date: '',
+      isRightAnswer: false,
     })
   }
 

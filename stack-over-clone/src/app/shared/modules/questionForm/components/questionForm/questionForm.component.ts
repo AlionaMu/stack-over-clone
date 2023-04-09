@@ -60,6 +60,7 @@ export class QuestionFormComponent implements OnInit {
     this.form.value.tags = Array.from(this.tagsSet.keys())
     this.form.value.slug = this.initialValuesProps.slug
     this.form.value.date = this.initialValuesProps.date
+    this.form.value.isAnswered = false
     this.questionSubmitEvent.emit(this.form.value)
   }
 

@@ -1,3 +1,4 @@
+import {CommentInterface} from './../../../shared/types/comment.interface'
 import {Component, OnDestroy, OnInit} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
 import {select, Store} from '@ngrx/store'
@@ -75,6 +76,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
           tags: question.tags,
           date: question.date,
           comments: question.comments,
+          isAnswered: question.isAnswered,
         }
       }),
     )
@@ -92,12 +94,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(commentInput: any) {
-    console.log(commentInput)
-
     const obj = this.convertService.convertObj(commentInput, this.question)
-
-    console.log(obj)
-
     this.store.dispatch(updateQuestionAction(obj))
   }
 
@@ -111,5 +108,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   toggleComment() {
     this.questionService.toggleComment()
+  }
+
+  clickRightAnswer(value: string) {
+    const obj = this.convertService.convertAnswerInObj(value, this.question)
+    console.log('obj in ts', obj)
+    this.store.dispatch(updateQuestionAction(obj))
   }
 }

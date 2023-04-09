@@ -8,6 +8,8 @@ import {AllQuestionsService} from './services/allQuestions.service'
 import {GetAllQuestionsEffect} from './store/effects/getAllQuestions.effect'
 import {reducers} from './store/reducers'
 
+import {isAnsweredPipe} from './pipes/isAnswered.pipe'
+
 const routes: Routes = [
   {
     path: '',
@@ -16,7 +18,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AllQuestionsComponent],
+  declarations: [AllQuestionsComponent, isAnsweredPipe],
   imports: [
     CommonModule,
     EffectsModule.forFeature([GetAllQuestionsEffect]),

@@ -1,4 +1,11 @@
-<section class="all-questions" *ngFor="let question of allQuestions$ | async">
+<section
+  class="all-questions"
+  *ngFor="
+    let question of allQuestions$
+      | async
+      | isAnswered : this.settingsService.isAnswered
+  "
+>
   <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
     <div class="all-questions__item">
       <h2 class="all-questions__item-title">{{ question.title }}</h2>

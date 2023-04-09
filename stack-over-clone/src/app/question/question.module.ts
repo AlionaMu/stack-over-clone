@@ -15,6 +15,8 @@ import {ReactiveFormsModule} from '@angular/forms'
 import {EditQuestionService} from 'src/app/shared/services/editQuestion.service'
 import {UpdateQuestionEffect} from './store/effects/updateQuestion.effect'
 import {ConvertDataService} from '../shared/services/convertData.service'
+import {MatCheckboxModule} from '@angular/material/checkbox'
+import {MatIconModule} from '@angular/material/icon'
 
 // import { LoadingModule } from '../shared/modules/loading/loading.module';
 // import { ErrorMessageModule } from '../shared/modules/errorMessage/errorMessage.module';
@@ -40,6 +42,8 @@ const routes = [
     RouterModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
+    MatIconModule,
     // LoadingModule,
     // ErrorMessageModule,
     // TagListModule,

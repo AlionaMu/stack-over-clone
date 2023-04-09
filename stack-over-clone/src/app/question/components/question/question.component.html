@@ -56,7 +56,13 @@
           <div class="question__comments-info">
             <span class="question__item-author">Author</span>
             <span>CreatedAt: {{ comment.date | date : 'medium' }} </span>
+            <mat-icon *ngIf="comment.isRightAnswer">check_circle</mat-icon>
           </div>
+          <mat-checkbox
+            class="example-margin"
+            (click)="clickRightAnswer(comment.date)"
+            >Right answer!</mat-checkbox
+          >
         </div>
       </div>
     </div>

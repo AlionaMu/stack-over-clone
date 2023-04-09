@@ -5,6 +5,12 @@
   background-color: $bg-color;
   padding: 10px;
   color: $dark-font-color;
+  transition: all 0.5s ease-out;
+
+  & button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 
   &__container {
     display: flex;
