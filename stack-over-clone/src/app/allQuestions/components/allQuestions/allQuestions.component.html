@@ -4,6 +4,7 @@
     let question of allQuestions$
       | async
       | isAnswered : this.settingsService.isAnswered
+      | filterByDate : this.settingsService.filterByDate
   "
 >
   <a [routerLink]="['/questions', question.slug]" class="all-questions__link">

@@ -46,4 +46,8 @@ export class SettingPanelComponent implements OnInit {
   clickIsAnswered(value: boolean | null): void {
     this.settingsService.setAnswered(value)
   }
+
+  filterByDate(value: string): void {
+    this.settingsService.setFilterByDate(value)
+  }
 }

@@ -22,10 +22,16 @@
       </div>
       <span class="setting-panel__span">By Date</span>
       <div class="setting-panel__buttons">
-        <button mat-stroked-button>Last day</button>
-        <button mat-stroked-button>Week</button>
-        <button mat-stroked-button>Month</button>
-        <button mat-stroked-button>All time</button>
+        <button mat-stroked-button (click)="filterByDate('day')">
+          Last day
+        </button>
+        <button mat-stroked-button (click)="filterByDate('two-days')">
+          Two days
+        </button>
+        <button mat-stroked-button (click)="filterByDate('week')">Week</button>
+        <button mat-stroked-button (click)="filterByDate('all-time')">
+          All time
+        </button>
       </div>
     </section>
 
