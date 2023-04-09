@@ -20,7 +20,7 @@ import {EffectsModule} from '@ngrx/effects'
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {PersistanceService} from './shared/services/persistance.service'
 import {AuthInterceptor} from './shared/services/authinterceptor.service'
-import {routerReducer, StoreRouterConnectingModule} from '@ngrx/router-store'
+import {routerReducer} from '@ngrx/router-store'
 
 @NgModule({
   declarations: [AppComponent],

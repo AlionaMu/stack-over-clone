@@ -27,6 +27,8 @@ export class SettingPanelComponent implements OnInit {
   public backendErrors$: Observable<BackendErrorsInterface | null> =
     {} as Observable<BackendErrorsInterface | null>
 
+  public isSettingsOpen: boolean = false
+
   constructor(
     private store: Store,
     public service: SettingPanelService,
@@ -34,4 +36,8 @@ export class SettingPanelComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  toggleResultsPanel(): void {
+    this.isSettingsOpen = !this.isSettingsOpen
+  }
 }
