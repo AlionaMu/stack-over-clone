@@ -10,6 +10,7 @@ import {reducers} from './store/reducers'
 
 import {isAnsweredPipe} from './pipes/isAnswered.pipe'
 import {FilterByDatePipe} from './pipes/filterByDate.pipe'
+import {FilterByTagPipe} from './pipes/filterByTag.pipe'
 
 const routes: Routes = [
   {
@@ -19,7 +20,12 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AllQuestionsComponent, isAnsweredPipe, FilterByDatePipe],
+  declarations: [
+    AllQuestionsComponent,
+    isAnsweredPipe,
+    FilterByDatePipe,
+    FilterByTagPipe,
+  ],
   imports: [
     CommonModule,
     EffectsModule.forFeature([GetAllQuestionsEffect]),

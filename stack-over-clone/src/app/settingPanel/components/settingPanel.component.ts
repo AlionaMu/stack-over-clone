@@ -8,6 +8,7 @@ import {Observable} from 'rxjs'
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 import {SettingPanelService} from '../services/settingPanel.service'
+import {QuestionCategory} from 'src/app/shared/constants'
 
 @Component({
   selector: 'app-setting-panel',
@@ -29,6 +30,7 @@ export class SettingPanelComponent implements OnInit {
     {} as Observable<BackendErrorsInterface | null>
 
   public isSettingsOpen: boolean = false
+  public tags: string[] = Object.values(QuestionCategory)
 
   constructor(
     private store: Store,
@@ -49,5 +51,9 @@ export class SettingPanelComponent implements OnInit {
 
   filterByDate(value: string): void {
     this.settingsService.setFilterByDate(value)
+  }
+
+  filterByTag(value: string): void {
+    this.settingsService.setFilterByTag(value)
   }
 }
