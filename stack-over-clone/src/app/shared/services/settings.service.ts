@@ -9,6 +9,7 @@ export class SettingsService {
   public filterByDate: string = ''
   public filterByTag: string = ''
   public sortByDate: string = ''
+  public theme: string = 'night'
 
   setAnswered(value: boolean | null) {
     this.isAnswered = value
