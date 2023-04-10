@@ -9,7 +9,11 @@ export class SettingsService {
   public filterByDate: string = ''
   public filterByTag: string = ''
   public sortByDate: string = ''
-  public theme: string = 'night'
+  public allQuestionsItemInfo: string =
+    'all-questions__item-info all-questions__item-info_line'
+  public allQuestionsItem: string =
+    'all-questions__item all-questions__item_line'
+  public allQuestions: string = 'all-questions'
 
   setAnswered(value: boolean | null) {
     this.isAnswered = value
@@ -25,5 +29,20 @@ export class SettingsService {
 
   setSortByDate(value: string) {
     this.sortByDate = value
+  }
+
+  setLayoutType(value: string) {
+    this.allQuestionsItemInfo =
+      value === 'line'
+        ? 'all-questions__item-info all-questions__item-info_line'
+        : 'all-questions__item-info all-questions__item-info_tile'
+
+    this.allQuestionsItem =
+      value === 'line'
+        ? 'all-questions__item all-questions__item_line'
+        : 'all-questions__item all-questions__item_tile'
+
+    this.allQuestions =
+      value === 'line' ? 'all-questions' : 'all-questions all-questions_tile'
   }
 }

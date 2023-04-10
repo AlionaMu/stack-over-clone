@@ -60,4 +60,8 @@ export class SettingPanelComponent implements OnInit {
   sortByDate(value: string): void {
     this.settingsService.setSortByDate(value)
   }
+
+  setLayoutType(value: string): void {
+    this.settingsService.setLayoutType(value)
+  }
 }

@@ -1,26 +1,28 @@
-<section
-  class="all-questions"
-  *ngFor="
-    let question of allQuestions$
-      | async
-      | isAnswered : this.settingsService.isAnswered
-      | filterByDate : this.settingsService.filterByDate
-      | filterByTag : this.settingsService.filterByTag
-      | sortByDate : this.settingsService.sortByDate
-  "
->
-  <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
-    <div class="all-questions__item">
-      <h2 class="all-questions__item-title">{{ question.title }}</h2>
-      <p class="all-questions__item-body">{{ question.body }}</p>
-      <div class="all-questions__item-info">
-        <span>Date: {{ question.date | date : 'medium' }} </span>
-        <span>Comments: {{ question.comments.length }} </span>
-        <span
-          >Tags:
-          <span *ngFor="let tag of question.tags"> #{{ tag }} </span>
-        </span>
+<div [ngClass]="this.settingsService.allQuestions">
+  <section
+    class="all-questions__section"
+    *ngFor="
+      let question of allQuestions$
+        | async
+        | isAnswered : this.settingsService.isAnswered
+        | filterByDate : this.settingsService.filterByDate
+        | filterByTag : this.settingsService.filterByTag
+        | sortByDate : this.settingsService.sortByDate
+    "
+  >
+    <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
+      <div [ngClass]="this.settingsService.allQuestionsItem">
+        <h2 class="all-questions__item-title">{{ question.title }}</h2>
+        <p class="all-questions__item-body">{{ question.body }}</p>
+        <div [ngClass]="this.settingsService.allQuestionsItemInfo">
+          <span>Date: {{ question.date | date : 'medium' }} </span>
+          <span>Comments: {{ question.comments.length }} </span>
+          <span
+            >Tags:
+            <span *ngFor="let tag of question.tags"> #{{ tag }} </span>
+          </span>
+        </div>
       </div>
-    </div>
-  </a>
-</section>
+    </a>
+  </section>
+</div>

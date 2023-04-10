@@ -54,10 +54,10 @@
 
     <section class="setting-panel__filters setting-panel__section">
       <h3 class="settings-panel__title">Settings</h3>
-      <span class="setting-panel__span">Display</span>
+      <span class="setting-panel__span">Layout</span>
       <div class="setting-panel__buttons">
-        <button mat-stroked-button>Line</button>
-        <button mat-stroked-button>Tile</button>
+        <button mat-stroked-button (click)="setLayoutType('line')">Line</button>
+        <button mat-stroked-button (click)="setLayoutType('tile')">Tile</button>
       </div>
       <span class="setting-panel__span">Theme</span>
       <div class="setting-panel__buttons">
