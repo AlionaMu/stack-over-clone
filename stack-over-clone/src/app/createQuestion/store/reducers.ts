@@ -30,10 +30,9 @@ const createQuestionReducer = createReducer(
   ),
   on(
     createQuestionFailureAction,
-    (state, action): CreateQuestionStateInterface => ({
+    (state): CreateQuestionStateInterface => ({
       ...state,
       isSubmitting: false,
-      validationErrors: action.errors,
     }),
   ),
 )

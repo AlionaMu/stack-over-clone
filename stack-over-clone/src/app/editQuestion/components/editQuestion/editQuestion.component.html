@@ -3,6 +3,5 @@
   *ngIf="initialValues$ | async"
   [initialValues]="initialValues$ | async"
   [isSubmitting]="isSubmitting$ | async"
-  [errors]="backendErrors$ | async"
   (questionSubmit)="onSubmit($event)"
 ></app-question-form>

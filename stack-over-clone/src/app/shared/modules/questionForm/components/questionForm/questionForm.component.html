@@ -1,9 +1,5 @@
 <div class="question-form">
   <div class="question-form__container">
-    <!-- <mc-backend-error-messages
-          *ngIf="errorsProps"
-          [backendErrors]="errorsProps"
-        ></mc-backend-error-messages> -->
     <form
       [formGroup]="form"
       (ngSubmit)="onSubmit()"
@@ -18,6 +14,7 @@
             formControlName="title"
           />
         </fieldset>
+
         <fieldset class="question-form__form-group">
           <textarea
             class="question-form__text-area"
@@ -26,6 +23,7 @@
             formControlName="body"
           ></textarea>
         </fieldset>
+
         <fieldset class="question-form__form-group">
           <h4>Select your tags:</h4>
           <div *ngFor="let tag of tags" (change)="onCheckboxChange($event)">

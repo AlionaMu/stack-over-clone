@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {from} from 'rxjs'
+import {from, map} from 'rxjs'
 
 import {QuestionInterface} from '../types/question.interface'
 import {QuestionInputInterface} from '../types/questionInput.interface'
@@ -11,12 +11,16 @@ export class EditQuestionService {
 
   updateQuestion(questionInput: any) {
     //QuestionInputInterface
-    console.log(questionInput)
     return from(
       this.firestore
         .collection('questions')
         .doc(questionInput.slug)
         .update(questionInput),
     )
+    // .pipe(
+    //   map((response: any) => {
+    //     return response;
+    //   })
+    // );
   }
 }

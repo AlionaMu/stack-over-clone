@@ -28,19 +28,14 @@ const editQuestionReducer = createReducer(
       isSubmitting: true,
     }),
   ),
+  on(updateQuestionSuccessAction, (): any => ({
+    isSubmitting: false,
+  })),
   on(
-    updateQuestionSuccessAction,
+    updateQuestionFailureAction,
     (state): EditQuestionStateInterface => ({
       ...state,
       isSubmitting: false,
-    }),
-  ),
-  on(
-    updateQuestionFailureAction,
-    (state, action): EditQuestionStateInterface => ({
-      ...state,
-      isSubmitting: false,
-      validationErrors: action.errors,
     }),
   ),
   on(

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms'
+import {FormBuilder, FormGroup} from '@angular/forms'
 import {QuestionCategory} from 'src/app/shared/constants'
 
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'

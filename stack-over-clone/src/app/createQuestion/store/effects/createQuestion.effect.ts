@@ -1,12 +1,9 @@
 import {Injectable} from '@angular/core'
 import {Router} from '@angular/router'
-import {HttpErrorResponse} from '@angular/common/http'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {from, of} from 'rxjs'
 import {switchMap, catchError, map, tap} from 'rxjs/operators'
-
 import {CreateQuestionService} from '../../services/createQuestion.service'
-import {QuestionInterface} from './../../../shared/types/question.interface'
 import {
   createQuestionAction,
   createQuestionSuccessAction,
@@ -22,30 +19,28 @@ export class CreateQuestionEffect {
         return from(
           this.createQuestionService.createQuestion(questionInput),
         ).pipe(
-          map((question: any) => {
-            return createQuestionSuccessAction({question})
+          map(() => {
+            return createQuestionSuccessAction()
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              createQuestionFailureAction({errors: errorResponse.error.errors}), //errors: errorResponse.error.errors
-            )
+          catchError(() => {
+            return of(createQuestionFailureAction())
           }),
         )
       }),
     ),
   )
 
-  // redirectAfterCreate$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(createQuestionSuccessAction),
-  //       tap(({question}) => {
-  //         this.router.navigate(['/questions', question.slug]) //question.slug
-  //       }),
-  //     ),
-  //   {dispatch: false},
-  // )
+  redirectAfterCreate$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(createQuestionSuccessAction),
+        tap(() => {
+          this.router.navigate(['/'])
+        }),
+      ),
+    {dispatch: false},
+  )
 
   constructor(
     private actions$: Actions,

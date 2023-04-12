@@ -9,13 +9,12 @@ export class SortByDatePipe implements PipeTransform {
     questions: QuestionInterface[],
     value: string,
   ): QuestionInterface[] {
-    const arrayForSort = [...questions]
     if (value === 'asc') {
-      return arrayForSort.sort(
+      return [...questions].sort(
         (a: QuestionInterface, b: QuestionInterface) => b.date - a.date,
       )
     } else if (value === 'desc') {
-      return arrayForSort.sort(
+      return [...questions].sort(
         (a: QuestionInterface, b: QuestionInterface) => a.date - b.date,
       )
     } else {

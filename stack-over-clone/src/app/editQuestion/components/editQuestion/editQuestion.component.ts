@@ -17,8 +17,6 @@ import {
 } from 'src/app/editQuestion/store/selectors'
 import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 
-type NewType = QuestionInputInterface
-
 @Component({
   selector: 'app-edit-question',
   templateUrl: './editQuestion.component.html',
@@ -71,7 +69,6 @@ export class EditQuestionComponent implements OnInit {
   }
 
   fetchData(): void {
-    console.log(this.slug)
     if (this.slug) this.store.dispatch(getQuestionAction({slug: this.slug}))
   }
 

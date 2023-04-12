@@ -19,19 +19,14 @@ export class UpdateQuestionEffect {
     this.actions$.pipe(
       ofType(updateQuestionAction),
       switchMap(({questionInput}) => {
-        console.log(questionInput) // est
-        return from(
-          this.editQuestionService.updateQuestion(questionInput),
-        ).pipe(
-          map((question: any) => {
-            console.log(question)
-            return updateQuestionSuccessAction({question})
+        console.log(questionInput)
+        return this.editQuestionService.updateQuestion(questionInput).pipe(
+          map(() => {
+            console.log()
+            return updateQuestionSuccessAction()
           }),
-
-          catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              updateQuestionFailureAction({errors: errorResponse.error.errors}),
-            )
+          catchError(() => {
+            return of(updateQuestionFailureAction())
           }),
         )
       }),
@@ -42,9 +37,8 @@ export class UpdateQuestionEffect {
     () =>
       this.actions$.pipe(
         ofType(updateQuestionSuccessAction),
-        tap(({question}) => {
-          console.log(question)
-          this.router.navigate(['/questions', question.slug])
+        tap(() => {
+          this.router.navigate(['/'])
         }),
       ),
     {dispatch: false},
