@@ -19,8 +19,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatIconModule} from '@angular/material/icon'
 
 // import { LoadingModule } from '../shared/modules/loading/loading.module';
-// import { ErrorMessageModule } from '../shared/modules/errorMessage/errorMessage.module';
-// import { TagListModule } from '../shared/modules/tagList/tagList.module';
 
 const routes = [
   {
@@ -45,8 +43,6 @@ const routes = [
     MatCheckboxModule,
     MatIconModule,
     // LoadingModule,
-    // ErrorMessageModule,
-    // TagListModule,
   ],
   declarations: [QuestionComponent, CommentFormComponent],
   exports: [],

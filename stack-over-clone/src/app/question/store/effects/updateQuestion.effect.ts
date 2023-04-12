@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core'
 import {Router} from '@angular/router'
-import {HttpErrorResponse} from '@angular/common/http'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {from, of} from 'rxjs'
 import {switchMap, catchError, map, tap} from 'rxjs/operators'
@@ -19,36 +18,31 @@ export class UpdateQuestionEffect {
     this.actions$.pipe(
       ofType(updateQuestionAction),
       switchMap((questionInput) => {
-        console.log({questionInput})
         return from(
           this.editQuestionService.updateQuestion(questionInput),
         ).pipe(
-          map((question: any) => {
-            console.log(question)
-            return updateQuestionSuccessAction(question)
+          map(() => {
+            return updateQuestionSuccessAction()
           }),
 
-          catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              updateQuestionFailureAction({errors: errorResponse.error.errors}),
-            )
+          catchError(() => {
+            return of(updateQuestionFailureAction())
           }),
         )
       }),
     ),
   )
 
-  // redirectAfterCreate$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(updateQuestionSuccessAction),
-  //       tap(({question}) => {
-  //         console.log(question)
-  //         this.router.navigate(['/questions', question.slug])
-  //       }),
-  //     ),
-  //   {dispatch: false},
-  // )
+  redirectAfterCreate$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updateQuestionSuccessAction),
+        tap(() => {
+          this.router.navigate(['/'])
+        }),
+      ),
+    {dispatch: false},
+  )
 
   constructor(
     private actions$: Actions,

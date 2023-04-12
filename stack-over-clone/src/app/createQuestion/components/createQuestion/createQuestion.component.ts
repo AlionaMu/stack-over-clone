@@ -1,5 +1,4 @@
 import {AngularFirestore} from '@angular/fire/compat/firestore'
-import {getFirestore} from '@angular/fire/firestore'
 import {Component, OnInit} from '@angular/core'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
@@ -26,6 +25,7 @@ export class CreateQuestionComponent implements OnInit {
     date: 0,
     slug: '',
     comments: [],
+    isAnswered: false,
   }
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>

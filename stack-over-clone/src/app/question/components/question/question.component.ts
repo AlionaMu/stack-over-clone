@@ -2,7 +2,7 @@ import {CommentInterface} from './../../../shared/types/comment.interface'
 import {Component, OnDestroy, OnInit} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
 import {select, Store} from '@ngrx/store'
-import {combineLatest, Observable, Subscription} from 'rxjs'
+import {Observable, Subscription} from 'rxjs'
 import {filter, map} from 'rxjs/operators'
 
 import {currentUserSelector} from 'src/app/auth/store/selectors'
@@ -68,7 +68,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
       select(questionSelector),
       filter(Boolean),
       map((question: QuestionInterface) => {
-        console.log('initialValue', question)
         return {
           title: question.title,
           slug: question.slug,
@@ -83,17 +82,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   initializeListeners(): void {
-    console.log('listener')
     this.questionSubscription = this.store
       .pipe(select(questionSelector))
       .subscribe((question: QuestionInterface | null) => {
-        console.log('question', question)
         this.question = question
-        console.log('question', this.question)
       })
   }
 
-  onSubmit(commentInput: any) {
+  onSubmit(commentInput: CommentInterface) {
     const obj = this.convertService.convertObj(commentInput, this.question)
     this.store.dispatch(updateQuestionAction(obj))
   }

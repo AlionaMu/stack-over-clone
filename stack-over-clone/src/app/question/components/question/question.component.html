@@ -1,8 +1,6 @@
 <section class="question">
-  <!-- <button class="question__back-button" (click)="goToPreviousPage()"><</button> -->
   <div class="question__container">
-    <!-- <mc-loading *ngIf="isLoading$ | async"></mc-loading>
-    <mc-error-message *ngIf="error$ | async"></mc-error-message> -->
+    <!-- <mc-loading *ngIf="isLoading$ | async"></mc-loading> -->
     <div class="question__info-content">
       <div class="question__info-about">
         <p class="question__date">
@@ -54,8 +52,10 @@
         <div class="question__comments-item">
           <p class="question__item-body">{{ comment.body }}</p>
           <div class="question__comments-info">
-            <span class="question__item-author">Author</span>
-            <span>CreatedAt: {{ comment.date | date : 'medium' }} </span>
+            <div class="question__comments-info-content">
+              <span class="question__item-author">Author</span>
+              <span>CreatedAt: {{ comment.date | date : 'medium' }} </span>
+            </div>
             <mat-icon *ngIf="comment.isRightAnswer">check_circle</mat-icon>
           </div>
           <mat-checkbox

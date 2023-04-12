@@ -6,4 +6,5 @@ export interface QuestionInputInterface {
   date: number
   slug: string
   comments?: CommentInterface[]
+  isAnswered: boolean
 }

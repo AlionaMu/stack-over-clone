@@ -23,12 +23,6 @@ import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interfa
   styleUrls: ['./editQuestion.component.scss'],
 })
 export class EditQuestionComponent implements OnInit {
-  // initialValues$: Observable<QuestionInputInterface> = {} as Observable<QuestionInputInterface>;
-  // isSubmitting$: Observable<boolean> = {} as Observable<boolean>;
-  // isLoading$: Observable<boolean> = {} as Observable<boolean>;
-  // backendErrors$: Observable<BackendErrorsInterface | null> = {} as Observable<BackendErrorsInterface | null>;
-  // slug: string | null = null;
-
   public initialValues$: Observable<any> = {} as Observable<any> // QuestionInputInterface
   public isSubmitting$: Observable<boolean | null> = {} as Observable<
     boolean | null
@@ -54,7 +48,6 @@ export class EditQuestionComponent implements OnInit {
       select(questionSelector),
       filter(Boolean),
       map((question: QuestionInterface) => {
-        console.log('MAP', question)
         return {
           title: question.title,
           slug: question.slug,

@@ -1,4 +1,3 @@
-import {AppStateInterface} from './../../shared/types/appState.interface'
 import {createFeatureSelector, createSelector} from '@ngrx/store'
 import {CreateQuestionStateInterface} from '../types/createQuestionState.interface'
 

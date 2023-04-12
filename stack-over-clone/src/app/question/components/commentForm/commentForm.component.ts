@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms'
+import {FormBuilder, FormGroup} from '@angular/forms'
 import {Store} from '@ngrx/store'
 import {QuestionCategory} from 'src/app/shared/constants'
 
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
+import {CommentInterface} from 'src/app/shared/types/comment.interface'
 import {QuestionInterface} from 'src/app/shared/types/question.interface'
 import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 import {updateQuestionAction} from '../../store/actions/updateQuestion.action'
@@ -14,19 +15,15 @@ import {updateQuestionAction} from '../../store/actions/updateQuestion.action'
   styleUrls: ['./commentForm.component.scss'],
 })
 export class CommentFormComponent implements OnInit {
-  // @Input('initialValues') initialValuesProps: QuestionInputInterface =
-  //   {} as QuestionInputInterface
   @Input('isSubmitting') isSubmittingProps: boolean | null = null
-  // @Input('errors') errorsProps: BackendErrorsInterface | null = null
-
-  @Output('commentSubmit') commentSubmitEvent =
-    new EventEmitter<QuestionInputInterface>()
   @Input('question') questionValueProps: QuestionInterface | null =
     {} as QuestionInterface | null
-  public form: FormGroup = {} as FormGroup
-  // public newQuestion: QuestionInterface = {} as QuestionInterface
+  @Output('commentSubmit') commentSubmitEvent =
+    new EventEmitter<CommentInterface>()
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  public form: FormGroup = {} as FormGroup
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.initializeForm()
@@ -42,7 +39,7 @@ export class CommentFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    ;(this.form.value.date = Date.now()),
-      this.commentSubmitEvent.emit(this.form.value)
+    this.form.value.date = Date.now()
+    this.commentSubmitEvent.emit(this.form.value)
   }
 }

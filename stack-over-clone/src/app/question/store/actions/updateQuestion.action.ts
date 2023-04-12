@@ -12,10 +12,8 @@ export const updateQuestionAction = createAction(
 
 export const updateQuestionSuccessAction = createAction(
   ActionTypes.UPDATE_QUESTION_SUCCESS,
-  props<{question: QuestionInterface}>(),
 )
 
 export const updateQuestionFailureAction = createAction(
   ActionTypes.UPDATE_QUESTION_FAILURE,
-  props<{errors: BackendErrorsInterface}>(),
 )

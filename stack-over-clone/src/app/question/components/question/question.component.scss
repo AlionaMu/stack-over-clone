@@ -4,20 +4,6 @@
 .question {
   width: 70vw;
 
-  &__back-button {
-    min-width: 32px;
-    height: 32px;
-    background-color: green;
-    border: none;
-    color: white;
-    font-size: 20px;
-    border-radius: 5px 0px 0px 5px;
-    &:hover {
-      cursor: pointer;
-      opacity: 0.9;
-    }
-  }
-
   &__container {
     display: flex;
     min-height: 460px;
@@ -107,6 +93,15 @@
     display: flex;
     justify-content: space-between;
     font-size: 10px;
+
+    &-content {
+      width: 70%;
+      display: flex;
+      justify-content: space-around;
+      @include smart {
+        flex-direction: column;
+      }
+    }
   }
 
   &__tags {

@@ -23,6 +23,7 @@ export class SettingPanelComponent implements OnInit {
     date: 0,
     slug: '',
     comments: [],
+    isAnswered: false,
   }
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>

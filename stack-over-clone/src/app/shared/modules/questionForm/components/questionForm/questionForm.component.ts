@@ -23,21 +23,19 @@ export class QuestionFormComponent implements OnInit {
   public tags: string[] = Object.values(QuestionCategory)
   public tagsSet = new Map()
 
-  constructor(private fb: FormBuilder) {
-    // if (this.initialValuesProps.tags?.length) {
-    //   console.log("TRUE")
-    //   this.initialValuesProps.tags?.forEach((item) => {
-    //     this.tagsSet.set(item, true)
-    //   })
-    // } else  {
-    //   this.tags.forEach((item) => {
-    //   this.tagsSet.set(item, false)
-    // })
-    // }
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.initializeForm()
+    this.initializeTags()
+  }
+
+  initializeTags() {
+    if (this.initialValuesProps) {
+      this.initialValuesProps.tags?.forEach((item) => {
+        this.tagsSet.set(item, true)
+      })
+    }
   }
 
   onCheckboxChange($event: any) {
@@ -45,7 +43,6 @@ export class QuestionFormComponent implements OnInit {
       $event.target.value,
       !this.tagsSet.get($event.target.value),
     )
-    console.log(Array.from(this.tagsSet.keys()))
   }
 
   initializeForm(): void {

@@ -9,9 +9,9 @@ export class FilterByDatePipe implements PipeTransform {
     questions: QuestionInterface[],
     value: string,
   ): QuestionInterface[] {
-    const daySec = 3600000 // 86400  /hour --test
-    const twoDaysSec = 7200000 // 172800  /2-hours  --test
-    const weekSec = 10800000 // 604800  /3-hours  --test
+    const daySec = 86400000
+    const twoDaysSec = 172800000
+    const weekSec = 259200000
 
     if (value === 'day') {
       return questions.filter(

@@ -1,7 +1,6 @@
 import {createAction, props} from '@ngrx/store'
 
 import {ActionTypes} from '../actionTypes'
-import {QuestionInterface} from './../../../shared/types/question.interface'
 
 export const deleteQuestionAction = createAction(
   ActionTypes.DELETE_QUESTION,
