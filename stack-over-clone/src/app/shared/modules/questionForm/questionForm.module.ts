@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 
-// import { BackendErrorMessagesModule } from '../backendErrorMessages/backendErrorMessages.module';
 import {ReactiveFormsModule} from '@angular/forms'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatButtonModule} from '@angular/material/button'
@@ -13,7 +12,6 @@ import {QuestionFormComponent} from './components/questionForm/questionForm.comp
 @NgModule({
   imports: [
     CommonModule,
-    // BackendErrorMessagesModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     MatButtonModule,

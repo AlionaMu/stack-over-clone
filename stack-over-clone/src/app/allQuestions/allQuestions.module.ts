@@ -13,6 +13,10 @@ import {FilterByDatePipe} from './pipes/filterByDate.pipe'
 import {FilterByTagPipe} from './pipes/filterByTag.pipe'
 import {SortByDatePipe} from './pipes/sortByDate.pipe'
 
+import {AddButtonComponent} from './components/addButton/addButton.component'
+import {MatIconModule} from '@angular/material/icon'
+import {MatButtonModule} from '@angular/material/button'
+
 const routes: Routes = [
   {
     path: '',
@@ -23,6 +27,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AllQuestionsComponent,
+    AddButtonComponent,
     isAnsweredPipe,
     FilterByDatePipe,
     FilterByTagPipe,
@@ -33,6 +38,8 @@ const routes: Routes = [
     EffectsModule.forFeature([GetAllQuestionsEffect]),
     StoreModule.forFeature('allQuestions', reducers),
     RouterModule.forChild(routes),
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [AllQuestionsService],
 })
