@@ -15,6 +15,18 @@ import {HttpErrorResponse} from '@angular/common/http'
 import {Router} from '@angular/router'
 import {from} from 'rxjs'
 
+// return from(
+//   this.editQuestionService.updateQuestion(questionInput),
+// ).pipe(
+//   map(() => {
+//     return updateQuestionSuccessAction()
+//   }),
+
+//   catchError(() => {
+//     return of(updateQuestionFailureAction())
+//   }),
+// )
+
 @Injectable()
 export class RegisterEffect {
   register$ = createEffect(() =>
@@ -23,14 +35,13 @@ export class RegisterEffect {
       switchMap(({request}) => {
         return from(this.authService.register(request)).pipe(
           map((currentUser: any) => {
+            console.log(currentUser)
             this.persistanceService.set('accessToken', currentUser.token)
             // window.localStorage.setItem('accessToken', currentUser.token)
             return registerSuccessAction({currentUser})
           }),
-          catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              registerFailureAction({errors: errorResponse.error.errors}),
-            )
+          catchError((errorResponse: any) => {
+            return of(registerFailureAction({errors: errorResponse}))
           }),
         )
       }),

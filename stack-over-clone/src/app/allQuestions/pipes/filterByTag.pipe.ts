@@ -11,7 +11,7 @@ export class FilterByTagPipe implements PipeTransform {
   ): QuestionInterface[] {
     if (value) {
       return questions.filter((item: QuestionInterface) =>
-        item.tags.includes(value),
+        item.tags?.includes(value),
       )
     } else {
       return questions

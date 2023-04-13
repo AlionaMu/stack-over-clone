@@ -3,11 +3,8 @@ import {RegisterRequestInterface} from './../types/registerRequest.interface'
 import {Injectable} from '@angular/core'
 import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 import {map, Observable} from 'rxjs'
-import {HttpClient} from '@angular/common/http'
-import {environment} from 'src/environments/environment'
 import {LoginRequestInterface} from '../types/loginRequest.interface'
 import {AngularFireAuth} from '@angular/fire/compat/auth'
-import {Router} from '@angular/router'
 
 @Injectable()
 export class AuthService {
@@ -18,11 +15,9 @@ export class AuthService {
   }
 
   register(data: RegisterRequestInterface) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(data.user.email, data.user.password)
-      .then((result) => {})
-      .catch((error) => {
-        window.alert(error.message)
-      })
+    return this.afAuth.createUserWithEmailAndPassword(
+      data.user.email,
+      data.user.password,
+    )
   }
 }

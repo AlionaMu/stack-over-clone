@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core'
 import {Router} from '@angular/router'
-import {HttpErrorResponse} from '@angular/common/http'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
-import {from, of} from 'rxjs'
+import {of} from 'rxjs'
 import {switchMap, catchError, map, tap} from 'rxjs/operators'
 
 import {EditQuestionService} from '../../../shared/services/editQuestion.service'
-import {QuestionInterface} from '../../../shared/types/question.interface'
 import {
   updateQuestionAction,
   updateQuestionSuccessAction,
@@ -19,10 +17,8 @@ export class UpdateQuestionEffect {
     this.actions$.pipe(
       ofType(updateQuestionAction),
       switchMap(({questionInput}) => {
-        console.log(questionInput)
         return this.editQuestionService.updateQuestion(questionInput).pipe(
           map(() => {
-            console.log()
             return updateQuestionSuccessAction()
           }),
           catchError(() => {

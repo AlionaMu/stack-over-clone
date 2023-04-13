@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {switchMap, catchError, map} from 'rxjs/operators'
 import {from, of} from 'rxjs'
-
-import {QuestionInterface} from './../../../shared/types/question.interface'
 import {SharedQuestionService} from 'src/app/shared/services/sharedQuestion.service'
 import {
   getQuestionAction,

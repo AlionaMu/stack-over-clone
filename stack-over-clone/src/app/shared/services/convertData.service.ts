@@ -16,7 +16,7 @@ export class ConvertDataService {
   }
 
   convertAnswerInObj(value: string, question: QuestionInterface | null) {
-    const commentsArr = question?.comments.map((item: CommentInterface) => {
+    const commentsArr = question?.comments?.map((item: CommentInterface) => {
       if (item.date === value) {
         return Object.assign<any, CommentInterface | null, any>({}, item, {
           isRightAnswer: true,

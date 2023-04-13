@@ -17,7 +17,7 @@
         <p class="all-questions__item-body">{{ question.body }}</p>
         <div [ngClass]="this.settingsService.allQuestionsItemInfo">
           <span>Date: {{ question.date | date : 'medium' }} </span>
-          <span>Comments: {{ question.comments.length }} </span>
+          <span>Comments: {{ question.comments?.length }} </span>
           <span
             >Tags:
             <span *ngFor="let tag of question.tags"> #{{ tag }} </span>
