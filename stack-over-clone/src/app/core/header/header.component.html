@@ -15,14 +15,23 @@
         <li class="header__list-item">
           <a [routerLink]="['/login']" class="header__link"> Sign In </a>
         </li>
-        <li class="header__list-item">
-          <p class="header__link" (click)="logout()">LogOut</p>
-        </li>
         <!-- </ng-container> -->
         <!-- <ng-container *ngIf="isLoggedIn$ | async"> -->
-        <li class="header__list-item">
+        <button mat-button [matMenuTriggerFor]="menu">
           <p>User: {{ (currentUser$ | async)?.email }}</p>
-        </li>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <span class="header__link" (click)="logout()">LogOut</span>
+          </button>
+          <button mat-menu-item>
+            <span
+              ><a [routerLink]="['/profile']" class="header__link">
+                Profile
+              </a></span
+            >
+          </button>
+        </mat-menu>
         <!-- </ng-container> -->
       </ul>
       <div class="header__button-container">

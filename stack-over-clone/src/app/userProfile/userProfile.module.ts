@@ -12,7 +12,7 @@ import {reducers} from './store/reducers'
 
 const routes = [
   {
-    path: 'profiles/:slug',
+    path: 'profile',
     component: UserProfileComponent,
   },
 ]
