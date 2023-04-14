@@ -1,6 +1,4 @@
 import {createSelector, createFeatureSelector} from '@ngrx/store'
-
-import {AppStateInterface} from '../../shared/types/appState.interface'
 import {QuestionStateInterface} from '../types/questionState.interface'
 
 export const questionFeatureSelector =

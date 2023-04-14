@@ -11,21 +11,8 @@ import {Injectable} from '@angular/core'
 import {createEffect} from '@ngrx/effects'
 import {Actions, ofType} from '@ngrx/effects'
 import {catchError, map, of, switchMap, tap} from 'rxjs'
-import {HttpErrorResponse} from '@angular/common/http'
 import {Router} from '@angular/router'
 import {from} from 'rxjs'
-
-// return from(
-//   this.editQuestionService.updateQuestion(questionInput),
-// ).pipe(
-//   map(() => {
-//     return updateQuestionSuccessAction()
-//   }),
-
-//   catchError(() => {
-//     return of(updateQuestionFailureAction())
-//   }),
-// )
 
 @Injectable()
 export class RegisterEffect {
@@ -35,10 +22,10 @@ export class RegisterEffect {
       switchMap(({request}) => {
         return from(this.authService.register(request)).pipe(
           map((currentUser: any) => {
-            console.log(currentUser)
-            this.persistanceService.set('accessToken', currentUser.token)
-            // window.localStorage.setItem('accessToken', currentUser.token)
-            return registerSuccessAction({currentUser})
+            console.log(currentUser.user._delegate)
+
+            // this.persistanceService.set('accessToken', currentUser.user._delegate.accessToken)
+            return registerSuccessAction(currentUser.user._delegate)
           }),
           catchError((errorResponse: any) => {
             return of(registerFailureAction({errors: errorResponse}))
@@ -53,7 +40,7 @@ export class RegisterEffect {
       this.actions$.pipe(
         ofType(registerSuccessAction),
         tap(() => {
-          this.router.navigateByUrl('/')
+          this.router.navigateByUrl('/login')
         }),
       ),
     {dispatch: false},

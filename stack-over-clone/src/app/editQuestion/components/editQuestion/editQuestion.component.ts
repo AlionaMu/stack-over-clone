@@ -5,7 +5,6 @@ import {Observable} from 'rxjs'
 import {filter, map} from 'rxjs/operators'
 
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
-// import { QuestionInputInterface } from 'src/app/shared/types/questionInput.interface';
 import {QuestionInterface} from 'src/app/shared/types/question.interface'
 import {getQuestionAction} from 'src/app/editQuestion/store/actions/getQuestion.action'
 import {updateQuestionAction} from 'src/app/editQuestion/store/actions/updateQuestion.action'
@@ -15,7 +14,6 @@ import {
   isLoadingSelector,
   questionSelector,
 } from 'src/app/editQuestion/store/selectors'
-import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 
 @Component({
   selector: 'app-edit-question',

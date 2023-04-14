@@ -1,4 +1,6 @@
 import {Component} from '@angular/core'
+import {Store} from '@ngrx/store'
+import {getCurrentUserAction} from './auth/store/actions/getCurrentUser.action'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import {Component} from '@angular/core'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'stack-over-clone'
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(getCurrentUserAction())
+  }
 }

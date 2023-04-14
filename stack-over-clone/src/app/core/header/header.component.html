@@ -8,23 +8,20 @@
         <li class="header__list-item">
           <a [routerLink]="['/']" class="header__link">Home</a>
         </li>
-        <!-- <ng-container *ngIf="isLoggedIn$ | async">
-        <li class="header__list-item">
-          <a
-            [routerLink]="['/profiles', (currentUser$ | async)?.username]"
-            class="header__link"
-          >
-            <img class="user-pic" [src]="(currentUser$ | async)?.image" />
-            &nbsp; {{ (currentUser$ | async)?.username }}
-          </a>
-        </li> -->
-        <!-- </ng-container> -->
         <!-- <ng-container *ngIf="isAnonymous$ | async"> -->
         <li class="header__list-item">
           <a [routerLink]="['/register']" class="header__link"> Sign Up </a>
         </li>
         <li class="header__list-item">
           <a [routerLink]="['/login']" class="header__link"> Sign In </a>
+        </li>
+        <li class="header__list-item">
+          <p class="header__link" (click)="logout()">LogOut</p>
+        </li>
+        <!-- </ng-container> -->
+        <!-- <ng-container *ngIf="isLoggedIn$ | async"> -->
+        <li class="header__list-item">
+          <p>User: {{ (currentUser$ | async)?.email }}</p>
         </li>
         <!-- </ng-container> -->
       </ul>

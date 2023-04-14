@@ -108,7 +108,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   clickRightAnswer(value: string) {
     const obj = this.convertService.convertAnswerInObj(value, this.question)
-    console.log('obj in ts', obj)
     this.store.dispatch(updateQuestionAction(obj))
   }
 }

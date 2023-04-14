@@ -35,9 +35,9 @@ export class RegisterComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.formBuilder.group({
-      username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
+      isAdmin: ['', Validators.required],
     })
   }
 
@@ -45,6 +45,7 @@ export class RegisterComponent implements OnInit {
     const request: RegisterRequestInterface = {
       user: this.form.value,
     }
+    console.log(request)
     this.store.dispatch(registerAction({request}))
   }
 }

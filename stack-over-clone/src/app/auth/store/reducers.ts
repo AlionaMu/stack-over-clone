@@ -36,11 +36,13 @@ const authReducer = createReducer(
   ),
   on(
     registerSuccessAction,
-    (state, action): AuthStateInterface => ({
+    // (state, action): AuthStateInterface => ({
+    (state): AuthStateInterface => ({
       ...state,
       isSubmitting: false,
-      isLoggedIn: true,
-      currentUser: action.currentUser,
+      isLoading: false,
+      // isLoggedIn: true,
+      // currentUser: action.currentUser,
     }),
   ),
   on(

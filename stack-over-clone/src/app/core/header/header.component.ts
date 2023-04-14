@@ -1,3 +1,4 @@
+import {logoutAction} from './../../auth/store/actions/logout.action'
 import {Component, OnInit} from '@angular/core'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
@@ -25,5 +26,10 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
     this.isAnonymous$ = this.store.pipe(select(isAnonymousSelector))
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
+  }
+
+  logout() {
+    console.log('mmmmm')
+    this.store.dispatch(logoutAction())
   }
 }

@@ -14,15 +14,7 @@
       <mat-form-field appearance="fill">
         <input
           matInput
-          type="text"
-          placeholder="Username"
-          formControlName="username"
-        />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <input
-          matInput
-          type="text"
+          type="email"
           placeholder="Email"
           formControlName="email"
         />
@@ -35,6 +27,7 @@
           formControlName="password"
         />
       </mat-form-field>
+      <mat-checkbox formControlName="isAdmin">Is Admin?</mat-checkbox>
       <button type="submit" mat-raised-button class="register__button">
         Sign Up
       </button>

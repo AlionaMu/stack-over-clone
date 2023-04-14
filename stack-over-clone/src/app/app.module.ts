@@ -21,6 +21,8 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {PersistanceService} from './shared/services/persistance.service'
 import {AuthInterceptor} from './shared/services/authinterceptor.service'
 import {routerReducer} from '@ngrx/router-store'
+import {UserProfileModule} from './userProfile/userProfile.module'
+import {getAuth, provideAuth} from '@angular/fire/auth'
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +36,7 @@ import {routerReducer} from '@ngrx/router-store'
     QuestionModule,
     EditQuestionModule,
     SettingPanelModule,
+    UserProfileModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({router: routerReducer}),
@@ -45,14 +48,15 @@ import {routerReducer} from '@ngrx/router-store'
       maxAge: 25,
       logOnly: environment.production,
     }),
+    provideAuth(() => getAuth()),
   ],
   providers: [
     PersistanceService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true,
+    // }
   ],
   bootstrap: [AppComponent],
 })

@@ -1,8 +1,5 @@
 import {createAction, props} from '@ngrx/store'
-
 import {ActionTypes} from '../actionTypes'
-import {QuestionInterface} from '../../../shared/types/question.interface'
-import {BackendErrorsInterface} from '../../../shared/types/backendErrors.interface'
 import {QuestionInputInterface} from '../../../shared/types/questionInput.interface'
 
 export const updateQuestionAction = createAction(

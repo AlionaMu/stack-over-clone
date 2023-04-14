@@ -1,3 +1,6 @@
+import {UpdateCurrentUserEffect} from './store/effects/updateCurrentUser.effect'
+import {LogoutEffect} from './store/effects/logout.effect'
+import {LoginEffect} from './store/effects/login.effect'
 import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {RouterModule} from '@angular/router'
@@ -5,6 +8,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input'
 import {MatButtonModule} from '@angular/material/button'
+import {MatCheckboxModule} from '@angular/material/checkbox'
 
 import {RegisterComponent} from './components/register/register.component'
 import {LoginComponent} from './components/login/login.component'
@@ -15,6 +19,8 @@ import {RegisterEffect} from './store/effects/register.effect'
 import {AuthService} from './services/auth.service'
 import {PersistanceService} from '../shared/services/persistance.service'
 import {BackendErrorMessagesModule} from '../shared/modules/backendErrorMessage/backendErrorMessage.module'
+import {GetCurrentUserEffect} from './store/effects/getCurrentUser.effect'
+import {getAuth, provideAuth} from '@angular/fire/auth'
 
 const routes = [
   {
@@ -35,19 +41,20 @@ const routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([RegisterEffect]),
+    EffectsModule.forFeature([
+      RegisterEffect,
+      LoginEffect,
+      LogoutEffect,
+      GetCurrentUserEffect,
+      RegisterEffect,
+      UpdateCurrentUserEffect,
+    ]),
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     BackendErrorMessagesModule,
+    MatCheckboxModule,
+    provideAuth(() => getAuth()),
   ],
 })
 export class AuthModule {}
-
-// EffectsModule.forFeature([
-//   RegisterEffect,
-//   LoginEffect,
-//   GetCurrentUserEffect,
-//   UpdateCurrentUserEffect,
-//   LogoutEffect,
-// ]),
