@@ -1,4 +1,4 @@
 export interface UserProfileInterface {
-  username: string
+  email: string
   isAdmin: boolean
 }

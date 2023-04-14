@@ -1,0 +1,16 @@
+.user-profile {
+  margin-top: 30px;
+
+  &__p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
+}
+
+.mat-mdc-card-header {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -20,7 +20,7 @@ import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
   styleUrls: ['./userProfile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  public userProfile: UserProfileInterface = {} as UserProfileInterface
+  public userProfile: CurrentUserInterface = {} as CurrentUserInterface
   public isLoading$: Observable<boolean> = {} as Observable<boolean>
   publicerror$: Observable<string | null> = {} as Observable<string | null>
   public userProfileSubscription: Subscription = {} as Subscription
@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   initializeValues(): void {
-    this.slug = this.route.snapshot.paramMap.get('slug')
+    // this.slug = this.route.snapshot.paramMap.get('slug')
     // this.isLoading$ = this.store.pipe(select(isLoadingSelector));
     // this.error$ = this.store.pipe(select(errorSelector));
     // this.isCurrentUserProfile$ = combineLatest([
@@ -58,16 +58,19 @@ export class UserProfileComponent implements OnInit {
   }
 
   initializeListeners(): void {
-    // this.userProfileSubscription = this.store
-    //   .pipe(select(userProfileSelector))
-    //   .subscribe((userProfile: UserProfileInterface) => {
-    //     this.userProfile = userProfile;
-    //   });
+    this.userProfileSubscription = this.store
+      .pipe(select(currentUserSelector))
+      .subscribe((userProfile: any) => {
+        console.log(userProfile)
+        this.userProfile = userProfile
+      })
 
-    this.route.params.subscribe((params: Params) => {
-      this.slug = params['slug']
-      this.fetchUserProfile()
-    })
+    console.log(this.userProfileSubscription)
+
+    // this.route.params.subscribe((params: Params) => {
+    //   this.slug = params['slug']
+    //   this.fetchUserProfile()
+    // })
   }
 
   fetchUserProfile(): void {
