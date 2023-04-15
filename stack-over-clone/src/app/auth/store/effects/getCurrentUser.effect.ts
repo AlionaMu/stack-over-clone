@@ -18,11 +18,6 @@ export class GetCurrentUserEffect {
     this.actions$.pipe(
       ofType(getCurrentUserAction),
       switchMap(() => {
-        // const token = this.persistanceService.get('acessToken');
-        // if (!token) {
-        //   return of(getCurrentUserFailureAction());
-        // }
-
         return from(this.authService.getCurrentUser()).pipe(
           map((currentUser: any) => {
             console.log(currentUser)
@@ -37,9 +32,5 @@ export class GetCurrentUserEffect {
     ),
   )
 
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService,
-    private persistanceService: PersistanceService,
-  ) {}
+  constructor(private actions$: Actions, private authService: AuthService) {}
 }

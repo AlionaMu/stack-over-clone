@@ -77,6 +77,10 @@ export class AuthService {
     )
   }
 
+  logout() {
+    this.afAuth.signOut()
+  }
+
   getCurrentUser() {
     // return this.http.get(url).pipe(map(this.getUser));
     console.log(this.afAuth)

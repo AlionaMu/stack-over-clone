@@ -1,4 +1,5 @@
 @import 'src/styles/_variables.scss';
+@import 'src/styles/_mixins.scss';
 
 .all-questions {
   &_tile {
@@ -48,6 +49,10 @@
 
       &_line {
         height: 20px;
+        @include smart {
+          flex-direction: column;
+          height: 60px;
+        }
       }
 
       &_tile {
@@ -59,6 +64,10 @@
     &-title {
       min-height: 20px;
       border-bottom: 1px solid $bright-color;
+
+      &-name {
+        color: $button-color;
+      }
     }
 
     &-body {

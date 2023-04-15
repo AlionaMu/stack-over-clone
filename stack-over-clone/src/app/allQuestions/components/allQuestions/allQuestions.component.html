@@ -13,7 +13,10 @@
   >
     <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
       <div [ngClass]="this.settingsService.allQuestionsItem">
-        <h2 class="all-questions__item-title">{{ question.title }}</h2>
+        <h2 class="all-questions__item-title">
+          <span class="all-questions__item-title-name"> Question: </span>
+          {{ question.title }}
+        </h2>
         <p class="all-questions__item-body">{{ question.body }}</p>
         <div [ngClass]="this.settingsService.allQuestionsItemInfo">
           <span>Date: {{ question.date | date : 'medium' }} </span>

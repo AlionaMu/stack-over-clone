@@ -11,7 +11,7 @@ export class FilterByDatePipe implements PipeTransform {
   ): QuestionInterface[] {
     const daySec = 86400000
     const twoDaysSec = 172800000
-    const weekSec = 259200000
+    const weekSec = 604800000
 
     if (value === 'day') {
       return questions.filter(

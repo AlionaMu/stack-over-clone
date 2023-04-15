@@ -1,0 +1,12 @@
+@import 'src/styles/_variables';
+
+.backend-error {
+  color: $error-color;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+
+  &__span {
+    color: $error-info-color;
+  }
+}

@@ -23,12 +23,10 @@ export class RegisterEffect {
         return from(this.authService.register(request)).pipe(
           map((currentUser: any) => {
             console.log(currentUser.user._delegate)
-
-            // this.persistanceService.set('accessToken', currentUser.user._delegate.accessToken)
             return registerSuccessAction(currentUser.user._delegate)
           }),
           catchError((errorResponse: any) => {
-            return of(registerFailureAction({errors: errorResponse}))
+            return of(registerFailureAction({errors: errorResponse.code}))
           }),
         )
       }),

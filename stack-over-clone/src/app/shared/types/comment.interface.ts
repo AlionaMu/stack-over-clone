@@ -1,5 +1,5 @@
 export interface CommentInterface {
-  // author: string
+  author: string
   body: string
   date: string
   isRightAnswer: boolean

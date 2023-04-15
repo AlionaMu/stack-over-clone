@@ -6,6 +6,10 @@
         <a [routerLink]="['/register']" class="login__link">Need an account?</a>
       </div>
     </div>
+    <app-backend-error-message
+      *ngIf="backendErrors$ | async"
+      [backendErrors]="backendErrors$ | async"
+    ></app-backend-error-message>
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="login__form">
       <mat-form-field appearance="fill">
         <input

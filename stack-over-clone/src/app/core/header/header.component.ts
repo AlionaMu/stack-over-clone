@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    console.log('mmmmm')
     this.store.dispatch(logoutAction())
   }
 }

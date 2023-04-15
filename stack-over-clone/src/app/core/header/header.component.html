@@ -8,31 +8,31 @@
         <li class="header__list-item">
           <a [routerLink]="['/']" class="header__link">Home</a>
         </li>
-        <!-- <ng-container *ngIf="isAnonymous$ | async"> -->
-        <li class="header__list-item">
-          <a [routerLink]="['/register']" class="header__link"> Sign Up </a>
-        </li>
-        <li class="header__list-item">
-          <a [routerLink]="['/login']" class="header__link"> Sign In </a>
-        </li>
-        <!-- </ng-container> -->
-        <!-- <ng-container *ngIf="isLoggedIn$ | async"> -->
-        <button mat-button [matMenuTriggerFor]="menu">
-          <p>User: {{ (currentUser$ | async)?.email }}</p>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <span class="header__link" (click)="logout()">LogOut</span>
+        <div *ngIf="!(isLoggedIn$ | async)" class="header__link-container">
+          <li class="header__list-item">
+            <a [routerLink]="['/register']" class="header__link"> Sign Up </a>
+          </li>
+          <li class="header__list-item">
+            <a [routerLink]="['/login']" class="header__link"> Sign In </a>
+          </li>
+        </div>
+        <div *ngIf="isLoggedIn$ | async">
+          <button mat-button [matMenuTriggerFor]="menu">
+            <p>User: {{ (currentUser$ | async)?.email }}</p>
           </button>
-          <button mat-menu-item>
-            <span
-              ><a [routerLink]="['/profile']" class="header__link">
-                Profile
-              </a></span
-            >
-          </button>
-        </mat-menu>
-        <!-- </ng-container> -->
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span class="header__link" (click)="logout()">LogOut</span>
+            </button>
+            <button mat-menu-item>
+              <span
+                ><a [routerLink]="['/profile']" class="header__link">
+                  Profile
+                </a></span
+              >
+            </button>
+          </mat-menu>
+        </div>
       </ul>
       <div class="header__button-container">
         <a

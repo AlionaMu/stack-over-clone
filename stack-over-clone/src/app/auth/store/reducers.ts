@@ -37,13 +37,10 @@ const authReducer = createReducer(
   ),
   on(
     registerSuccessAction,
-    // (state, action): AuthStateInterface => ({
     (state): AuthStateInterface => ({
       ...state,
       isSubmitting: false,
       isLoading: false,
-      // isLoggedIn: true,
-      // currentUser: action.currentUser,
     }),
   ),
   on(
@@ -83,6 +80,8 @@ const authReducer = createReducer(
     logoutAction,
     (state): AuthStateInterface => ({
       ...state,
+      ...initialState,
+      isLoggedIn: false,
       currentUser: null,
     }),
   ),
