@@ -5,7 +5,6 @@ import {StoreModule} from '@ngrx/store'
 import {EffectsModule} from '@ngrx/effects'
 
 import {QuestionFormModule} from 'src/app/shared/modules/questionForm/questionForm.module'
-// import { LoadingModule } from '../shared/modules/loading/loading.module';
 import {EditQuestionComponent} from './components/editQuestion/editQuestion.component'
 import {EditQuestionService} from '../shared/services/editQuestion.service'
 import {SharedQuestionService} from '../shared/services/sharedQuestion.service'
@@ -25,7 +24,6 @@ const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     QuestionFormModule,
-    // LoadingModule,
     EffectsModule.forFeature([GetQuestionEffect, UpdateQuestionEffect]),
     StoreModule.forFeature('editQuestion', reducers),
   ],

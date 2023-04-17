@@ -19,7 +19,6 @@ export class GetQuestionEffect {
       switchMap(({slug}) => {
         return from(this.sharedQuestionService.getQuestion(slug)).pipe(
           map((question: any) => {
-            // QuestionInterface
             return getQuestionSuccessAction({question})
           }),
 

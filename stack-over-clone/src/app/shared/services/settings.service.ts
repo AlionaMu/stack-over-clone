@@ -16,6 +16,7 @@ export class SettingsService {
   public allQuestions: string = 'all-questions'
   public filterByAuthor: string = ''
   public isLoggedIn: boolean = false
+  public filterByNotApproved: boolean = true
 
   setAnswered(value: boolean | null) {
     this.isAnswered = value
@@ -50,5 +51,9 @@ export class SettingsService {
 
   setFilterByAuthor(value: string) {
     this.filterByAuthor = value
+  }
+
+  setFilterByNotApproved(value: boolean) {
+    this.filterByNotApproved = value
   }
 }

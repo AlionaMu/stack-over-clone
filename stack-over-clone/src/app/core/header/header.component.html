@@ -1,15 +1,16 @@
 <header class="header">
   <nav class="header__nav">
     <div class="header__container">
-      <a [routerLink]="['/']" class="header__title-link header__link">
+      <a
+        [routerLink]="['/']"
+        class="header__title-link header__link"
+        (click)="unsetFilters()"
+      >
         STACK OVER CLONE
       </a>
       <ul class="header__list">
         <li class="header__list-item">
-          <a
-            [routerLink]="['/']"
-            class="header__link"
-            (click)="unsetFilterByAuthor()"
+          <a [routerLink]="['/']" class="header__link" (click)="unsetFilters()"
             >Home</a
           >
         </li>
@@ -27,6 +28,13 @@
             (click)="filterByAuthor(this.userProfile.name)"
           >
             <a [routerLink]="['/']" class="header__link"> My Feed </a>
+          </li>
+          <li
+            *ngIf="(currentUser$ | async)?.user?.isAdmin"
+            class="header__list-item"
+            (click)="filterByNotApproved()"
+          >
+            <a [routerLink]="['/']" class="header__link"> Not Approved Feed </a>
           </li>
           <button mat-button [matMenuTriggerFor]="menu">
             <p class="header__current-user">

@@ -14,6 +14,7 @@ export class LogoutEffect {
         tap(() => {
           this.router.navigateByUrl('/')
           this.settingsService.isLoggedIn = false
+          this.settingsService.filterByNotApproved = false
         }),
       ),
     {dispatch: false},

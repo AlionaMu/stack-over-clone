@@ -21,7 +21,7 @@ import {
   styleUrls: ['./editQuestion.component.scss'],
 })
 export class EditQuestionComponent implements OnInit {
-  public initialValues$: Observable<any> = {} as Observable<any> // QuestionInputInterface
+  public initialValues$: Observable<any> = {} as Observable<any>
   public isSubmitting$: Observable<boolean | null> = {} as Observable<
     boolean | null
   >

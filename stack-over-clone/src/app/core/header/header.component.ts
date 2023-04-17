@@ -44,13 +44,19 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.store.dispatch(logoutAction())
+    this.unsetFilters()
   }
 
-  unsetFilterByAuthor(): void {
+  unsetFilters(): void {
     this.settingsService.setFilterByAuthor('')
+    this.settingsService.setFilterByNotApproved(true)
   }
 
   filterByAuthor(value: string): void {
     this.settingsService.setFilterByAuthor(value)
+  }
+
+  filterByNotApproved(): void {
+    this.settingsService.setFilterByNotApproved(false)
   }
 }

@@ -10,11 +10,15 @@
         | filterByTag : this.settingsService.filterByTag
         | sortByDate : this.settingsService.sortByDate
         | filterByAuthor : this.settingsService.filterByAuthor
-        | filterByApproved : this.settingsService.isLoggedIn
+        | filterByNotApproved : this.settingsService.filterByNotApproved
+        | filterByLogged : this.settingsService.isLoggedIn
     "
   >
     <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
       <div [ngClass]="this.settingsService.allQuestionsItem">
+        <span *ngIf="!question.approved" class="all-questions__not-approved"
+          >not approved</span
+        >
         <h2 class="all-questions__item-title">
           <span class="all-questions__item-title-name"> Question: </span>
           {{ question.title }}

@@ -5,9 +5,13 @@
   width: 100%;
   height: 80px;
   text-decoration: none;
-  @include smart {
-    height: 140px;
+  @include small-tablet {
+    height: 130px;
     margin-bottom: 20px;
+  }
+  @include smart {
+    height: 160px;
+    margin-bottom: 10px;
   }
 
   &__link-container {
@@ -23,13 +27,16 @@
     justify-content: space-between;
     @include smart {
       flex-direction: column;
+      align-items: center;
     }
   }
 
   &__list {
     padding: 0;
-    @include smart {
-      justify-content: center;
+    flex-direction: row;
+    @include small-tablet {
+      display: flex;
+      flex-direction: row;
     }
   }
 

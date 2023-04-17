@@ -18,8 +18,6 @@ import {ConvertDataService} from '../shared/services/convertData.service'
 import {MatCheckboxModule} from '@angular/material/checkbox'
 import {MatIconModule} from '@angular/material/icon'
 
-// import { LoadingModule } from '../shared/modules/loading/loading.module';
-
 const routes = [
   {
     path: 'questions/:slug',
@@ -42,7 +40,6 @@ const routes = [
     ReactiveFormsModule,
     MatCheckboxModule,
     MatIconModule,
-    // LoadingModule,
   ],
   declarations: [QuestionComponent, CommentFormComponent],
   exports: [],
