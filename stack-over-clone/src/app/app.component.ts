@@ -1,6 +1,10 @@
 import {Component} from '@angular/core'
-import {Store} from '@ngrx/store'
+import {select, Store} from '@ngrx/store'
+import {Observable, Subscription} from 'rxjs'
 import {getCurrentUserAction} from './auth/store/actions/getCurrentUser.action'
+import {currentUserSelector} from './auth/store/selectors'
+import {SettingsService} from './shared/services/settings.service'
+import {CurrentUserInterface} from './shared/types/currentUser.interface'
 
 @Component({
   selector: 'app-root',

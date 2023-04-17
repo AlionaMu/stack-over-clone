@@ -77,6 +77,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
           comments: question.comments,
           isAnswered: question.isAnswered,
           author: question.author,
+          approved: question.approved,
         }
       }),
     )
@@ -109,6 +110,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   clickRightAnswer(value: string) {
     const obj = this.convertService.convertAnswerInObj(value, this.question)
+    this.store.dispatch(updateQuestionAction(obj))
+  }
+
+  setApproved() {
+    const obj = this.convertService.convertApproved(this.question)
     this.store.dispatch(updateQuestionAction(obj))
   }
 }

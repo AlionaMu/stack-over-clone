@@ -1,3 +1,4 @@
+import {FilterByApprovedPipe} from './pipes/filterApproved.pipe'
 import {FilterByAuthorPipe} from './pipes/filterByAuthor.pipe'
 import {CommonModule} from '@angular/common'
 import {NgModule} from '@angular/core'
@@ -34,6 +35,7 @@ const routes: Routes = [
     FilterByTagPipe,
     SortByDatePipe,
     FilterByAuthorPipe,
+    FilterByApprovedPipe,
   ],
   imports: [
     CommonModule,

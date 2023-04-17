@@ -16,7 +16,7 @@ import {SettingsService} from 'src/app/shared/services/settings.service'
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public isLoggedIn$: Observable<boolean | null> = {} as Observable<boolean>
+  public isLoggedIn$: Observable<boolean> = {} as Observable<boolean>
   public isAnonymous$: Observable<boolean> = {} as Observable<boolean>
   public currentUser$: Observable<CurrentUserInterface | null> =
     {} as Observable<CurrentUserInterface>

@@ -1,6 +1,5 @@
 <section class="question">
   <div class="question__container">
-    <!-- <mc-loading *ngIf="isLoading$ | async"></mc-loading> -->
     <div class="question__info-content">
       <div class="question__info-about">
         <p class="question__date">
@@ -23,12 +22,20 @@
           <a
             [routerLink]="['/questions', question?.slug, 'edit']"
             class="question__link"
+            *ngIf="!question?.approved"
             >Edit question</a
           >
           <div class="question__link" (click)="toggleComment()">Comment</div>
         </div>
         <div class="question__buttons">
-          <button class="question__button" mat-raised-button>Approve</button>
+          <button
+            *ngIf="!question?.approved"
+            class="question__button"
+            mat-raised-button
+            (click)="setApproved()"
+          >
+            Approve
+          </button>
           <button
             class="question__button"
             mat-raised-button

@@ -29,6 +29,7 @@ export class CreateQuestionComponent implements OnInit {
     comments: [],
     isAnswered: false,
     author: null,
+    approved: false,
   }
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>
@@ -61,6 +62,7 @@ export class CreateQuestionComponent implements OnInit {
     questionInput.date = Date.now()
     questionInput.comments = []
     questionInput.author = this.currentUser
+    questionInput.approved = false
     this.store.dispatch(createQuestionAction({questionInput}))
   }
 }

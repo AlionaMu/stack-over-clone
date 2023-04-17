@@ -15,6 +15,15 @@ export class ConvertDataService {
     return obj
   }
 
+  convertApproved(question: QuestionInterface | null) {
+    const obj = Object.assign<any, QuestionInterface | null, unknown>(
+      {},
+      question,
+      {approved: true},
+    )
+    return obj
+  }
+
   convertAnswerInObj(value: string, question: QuestionInterface | null) {
     const commentsArr = question?.comments?.map((item: CommentInterface) => {
       if (item.date === value) {

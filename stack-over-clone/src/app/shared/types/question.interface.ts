@@ -10,4 +10,5 @@ export interface QuestionInterface {
   slug: string
   comments?: CommentInterface[]
   isAnswered: boolean
+  approved: boolean
 }

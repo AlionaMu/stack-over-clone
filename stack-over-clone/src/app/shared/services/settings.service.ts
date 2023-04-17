@@ -15,6 +15,7 @@ export class SettingsService {
     'all-questions__item all-questions__item_line'
   public allQuestions: string = 'all-questions'
   public filterByAuthor: string = ''
+  public isLoggedIn: boolean = false
 
   setAnswered(value: boolean | null) {
     this.isAnswered = value

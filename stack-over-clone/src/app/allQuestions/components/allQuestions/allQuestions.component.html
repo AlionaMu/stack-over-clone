@@ -10,6 +10,7 @@
         | filterByTag : this.settingsService.filterByTag
         | sortByDate : this.settingsService.sortByDate
         | filterByAuthor : this.settingsService.filterByAuthor
+        | filterByApproved : this.settingsService.isLoggedIn
     "
   >
     <a [routerLink]="['/questions', question.slug]" class="all-questions__link">

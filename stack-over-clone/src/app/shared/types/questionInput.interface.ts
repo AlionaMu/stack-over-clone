@@ -10,4 +10,5 @@ export interface QuestionInputInterface {
   comments?: CommentInterface[]
   isAnswered: boolean
   author: CurrentUserInterface | null
+  approved: boolean
 }

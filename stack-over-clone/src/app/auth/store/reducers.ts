@@ -20,7 +20,7 @@ import {logoutAction} from './actions/logout.action'
 const initialState: AuthStateInterface = {
   isSubmitting: false,
   currentUser: null,
-  isLoggedIn: null,
+  isLoggedIn: false,
   validationErrors: null,
   isLoading: false,
 }

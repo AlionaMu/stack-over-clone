@@ -1,3 +1,4 @@
+import {SettingsService} from 'src/app/shared/services/settings.service'
 import {currentUserSelector} from './../selectors'
 import {AuthResponseInterface} from './../../types/authResponse.interface'
 import {LoginRequestInterface} from './../../types/loginRequest.interface'
@@ -40,6 +41,7 @@ export class LoginEffect {
         ofType(loginSuccessAction),
         tap(() => {
           this.router.navigateByUrl('/')
+          this.settingsService.isLoggedIn = true
         }),
       ),
     {dispatch: false},
@@ -49,5 +51,6 @@ export class LoginEffect {
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
+    private settingsService: SettingsService,
   ) {}
 }
