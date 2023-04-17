@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core'
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
+import {GetRandomIdService} from 'src/app/shared/services/getRandomId.service'
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {registerAction} from '../../store/actions/register.action'
 import {
@@ -9,6 +10,8 @@ import {
   validationErrorsSelector,
 } from '../../store/selectors'
 import {RegisterRequestInterface} from '../../types/registerRequest.interface'
+
+const MIN_LENGTH = 8
 
 @Component({
   selector: 'app-register',
@@ -21,7 +24,11 @@ export class RegisterComponent implements OnInit {
   public backendErrors$: Observable<BackendErrorsInterface | null> =
     {} as Observable<BackendErrorsInterface | null>
 
-  constructor(private formBuilder: FormBuilder, private store: Store) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store,
+    public service: GetRandomIdService,
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm()
@@ -35,17 +42,19 @@ export class RegisterComponent implements OnInit {
 
   initializeForm(): void {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      isAdmin: ['', Validators.required],
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(MIN_LENGTH)]],
+      isAdmin: [false, Validators.required],
     })
   }
 
   handleSubmit(): void {
+    const id = this.service.getId(this.form.value.name)
+    const newUser = Object.assign({}, this.form.value, {id: id})
     const request: RegisterRequestInterface = {
-      user: this.form.value,
+      user: newUser,
     }
-    console.log(request)
     this.store.dispatch(registerAction({request}))
   }
 }

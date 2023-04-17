@@ -11,6 +11,8 @@ import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interfa
 import {createQuestionAction} from '../../store/actions/createQuestion.action'
 import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 import {CreateQuestionService} from '../../services/createQuestion.service'
+import {currentUserSelector} from 'src/app/auth/store/selectors'
+import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 
 @Component({
   selector: 'app-create-question',
@@ -26,11 +28,15 @@ export class CreateQuestionComponent implements OnInit {
     slug: '',
     comments: [],
     isAnswered: false,
+    author: null,
   }
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>
   public backendErrors$: Observable<BackendErrorsInterface | null> =
     {} as Observable<BackendErrorsInterface | null>
+  public currentUser$: Observable<CurrentUserInterface | null> =
+    {} as Observable<CurrentUserInterface>
+  public currentUser: CurrentUserInterface = {} as CurrentUserInterface
 
   constructor(
     private store: Store,
@@ -41,12 +47,20 @@ export class CreateQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
     this.backendErrors$ = this.store.pipe(select(validationErrorsSelector))
+    this.store
+      .pipe(select(currentUserSelector))
+      .subscribe((userProfile: CurrentUserInterface | null) => {
+        if (userProfile) {
+          this.currentUser = userProfile
+        }
+      })
   }
 
   onSubmit(questionInput: QuestionInputInterface) {
     questionInput.slug = this.firestore.createId()
     questionInput.date = Date.now()
     questionInput.comments = []
+    questionInput.author = this.currentUser
     this.store.dispatch(createQuestionAction({questionInput}))
   }
 }

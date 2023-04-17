@@ -1,5 +1,8 @@
 export interface CurrentUserInterface {
-  displayName: string | null
-  email: string | null
-  uid: string
+  user: CurrentUserInterface
+  name: string
+  email: string
+  password: string
+  isAdmin?: boolean
+  id: string
 }

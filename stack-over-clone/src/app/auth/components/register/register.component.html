@@ -12,6 +12,9 @@
     ></app-backend-error-message>
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="register__form">
       <mat-form-field appearance="fill">
+        <input matInput type="text" placeholder="Name" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
         <input
           matInput
           type="email"

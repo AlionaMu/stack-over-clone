@@ -7,7 +7,7 @@ export const getCurrentUserAction = createAction(ActionTypes.GET_CURRENT_USER)
 
 export const getCurrentUserSuccessAction = createAction(
   ActionTypes.GET_CURRENT_USER_SUCCESS,
-  props<{currentUser: any}>(), //CurrentUserInterface
+  props<{currentUser: CurrentUserInterface}>(),
 )
 
 export const getCurrentUserFailureAction = createAction(

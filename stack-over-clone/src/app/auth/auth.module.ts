@@ -1,4 +1,4 @@
-import {UpdateCurrentUserEffect} from './store/effects/updateCurrentUser.effect'
+import {GetRandomIdService} from './../shared/services/getRandomId.service'
 import {LogoutEffect} from './store/effects/logout.effect'
 import {LoginEffect} from './store/effects/login.effect'
 import {NgModule} from '@angular/core'
@@ -17,7 +17,6 @@ import {reducers} from './store/reducers'
 import {EffectsModule} from '@ngrx/effects'
 import {RegisterEffect} from './store/effects/register.effect'
 import {AuthService} from './services/auth.service'
-import {PersistanceService} from '../shared/services/persistance.service'
 import {BackendErrorMessagesModule} from '../shared/modules/backendErrorMessage/backendErrorMessage.module'
 import {GetCurrentUserEffect} from './store/effects/getCurrentUser.effect'
 import {getAuth, provideAuth} from '@angular/fire/auth'
@@ -35,7 +34,7 @@ const routes = [
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
-  providers: [AuthService, PersistanceService],
+  providers: [AuthService, GetRandomIdService],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -47,14 +46,12 @@ const routes = [
       LogoutEffect,
       GetCurrentUserEffect,
       RegisterEffect,
-      UpdateCurrentUserEffect,
     ]),
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     BackendErrorMessagesModule,
     MatCheckboxModule,
-    provideAuth(() => getAuth()),
   ],
 })
 export class AuthModule {}

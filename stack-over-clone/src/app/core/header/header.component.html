@@ -8,7 +8,7 @@
         <li class="header__list-item">
           <a [routerLink]="['/']" class="header__link">Home</a>
         </li>
-        <div *ngIf="!(isLoggedIn$ | async)" class="header__link-container">
+        <div *ngIf="!(currentUser$ | async)" class="header__link-container">
           <li class="header__list-item">
             <a [routerLink]="['/register']" class="header__link"> Sign Up </a>
           </li>
@@ -16,13 +16,13 @@
             <a [routerLink]="['/login']" class="header__link"> Sign In </a>
           </li>
         </div>
-        <div *ngIf="isLoggedIn$ | async">
+        <div *ngIf="currentUser$ | async">
           <button mat-button [matMenuTriggerFor]="menu">
-            <p>User: {{ (currentUser$ | async)?.email }}</p>
+            <p>User: {{ this.userProfile.name }}</p>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>
-              <span class="header__link" (click)="logout()">LogOut</span>
+              <span class="header__link" (click)="logout()">Logout</span>
             </button>
             <button mat-menu-item>
               <span

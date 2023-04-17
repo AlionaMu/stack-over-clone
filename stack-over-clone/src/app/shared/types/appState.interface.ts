@@ -1,4 +1,4 @@
-import {UserProfileInterface} from './../../userProfile/types/userProfile.interface'
+import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 import {EditQuestionStateInterface} from './../../editQuestion/types/editQuestionState.interface'
 import {AllQuestionsStateInterface} from 'src/app/allQuestions/types/allQuestionsState.interface'
 import {QuestionStateInterface} from 'src/app/question/types/questionState.interface'
@@ -11,5 +11,5 @@ export interface AppStateInterface {
   allQuestions: AllQuestionsStateInterface
   question: QuestionStateInterface
   editQuestion: EditQuestionStateInterface
-  userProfile: UserProfileInterface
+  userProfile: CurrentUserInterface
 }

@@ -1,4 +1,4 @@
-import {PersistanceService} from '../../../shared/services/persistance.service'
+import {RegisterRequestInterface} from 'src/app/auth/types/registerRequest.interface'
 import {BackendErrorsInterface} from '../../../shared/types/backendErrors.interface'
 import {CurrentUserInterface} from '../../../shared/types/currentUser.interface'
 import {AuthService} from '../../services/auth.service'
@@ -20,13 +20,13 @@ export class RegisterEffect {
     this.actions$.pipe(
       ofType(registerAction),
       switchMap(({request}) => {
+        console.log(request)
         return from(this.authService.register(request)).pipe(
-          map((currentUser: any) => {
-            console.log(currentUser.user._delegate)
-            return registerSuccessAction(currentUser.user._delegate)
+          map(() => {
+            return registerSuccessAction()
           }),
           catchError((errorResponse: any) => {
-            return of(registerFailureAction({errors: errorResponse.code}))
+            return of(registerFailureAction({errors: errorResponse}))
           }),
         )
       }),
@@ -47,7 +47,6 @@ export class RegisterEffect {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private persistanceService: PersistanceService,
     private router: Router,
   ) {}
 }

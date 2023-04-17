@@ -1,3 +1,6 @@
+import {currentUserSelector} from './../selectors'
+import {AuthResponseInterface} from './../../types/authResponse.interface'
+import {LoginRequestInterface} from './../../types/loginRequest.interface'
 import {Injectable} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {Router} from '@angular/router'
@@ -12,18 +15,6 @@ import {
   loginFailureAction,
 } from '../actions/login.action'
 
-// switchMap(({request}) => {
-//   return from(this.authService.register(request)).pipe(
-//     map((currentUser: any) => {
-//       console.log(currentUser.user._delegate)
-//       return registerSuccessAction(currentUser.user._delegate)
-//     }),
-//     catchError((errorResponse: any) => {
-//       return of(registerFailureAction({errors: errorResponse.code}))
-//     }),
-//   )
-// }),
-
 @Injectable()
 export class LoginEffect {
   login$ = createEffect(() =>
@@ -31,19 +22,13 @@ export class LoginEffect {
       ofType(loginAction),
       switchMap(({request}) => {
         return from(this.authService.login(request)).pipe(
-          map((response: any) => {
-            console.log(response)
-            const currentUser = {
-              email: response.user._delegate.email,
-              displayName: response.user._delegate.displayName,
-              uid: response.user._delegate.uid,
-            }
+          map((currentUser: CurrentUserInterface | any) => {
             return loginSuccessAction({currentUser})
           }),
 
           catchError((errorResponse: any) => {
             console.log(errorResponse)
-            return of(loginFailureAction({errors: errorResponse.code}))
+            return of(loginFailureAction({errors: errorResponse}))
           }),
         )
       }),

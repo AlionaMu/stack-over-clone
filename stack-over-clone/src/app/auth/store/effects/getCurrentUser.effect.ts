@@ -5,7 +5,6 @@ import {from, of} from 'rxjs'
 
 import {CurrentUserInterface} from './../../../shared/types/currentUser.interface'
 import {AuthService} from './../../services/auth.service'
-import {PersistanceService} from 'src/app/shared/services/persistance.service'
 import {
   getCurrentUserAction,
   getCurrentUserSuccessAction,
@@ -18,10 +17,10 @@ export class GetCurrentUserEffect {
     this.actions$.pipe(
       ofType(getCurrentUserAction),
       switchMap(() => {
-        return from(this.authService.getCurrentUser()).pipe(
+        return this.authService.getCurrentUser().pipe(
           map((currentUser: any) => {
             console.log(currentUser)
-            return getCurrentUserSuccessAction(currentUser)
+            return getCurrentUserSuccessAction({currentUser})
           }),
 
           catchError(() => {

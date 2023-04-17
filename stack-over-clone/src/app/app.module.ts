@@ -17,12 +17,9 @@ import {AuthModule} from './auth/auth.module'
 import {StoreModule} from '@ngrx/store'
 import {StoreDevtoolsModule} from '@ngrx/store-devtools'
 import {EffectsModule} from '@ngrx/effects'
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
-import {PersistanceService} from './shared/services/persistance.service'
-import {AuthInterceptor} from './shared/services/authinterceptor.service'
+import {HttpClientModule} from '@angular/common/http'
 import {routerReducer} from '@ngrx/router-store'
 import {UserProfileModule} from './userProfile/userProfile.module'
-import {getAuth, provideAuth} from '@angular/fire/auth'
 
 @NgModule({
   declarations: [AppComponent],
@@ -48,16 +45,8 @@ import {getAuth, provideAuth} from '@angular/fire/auth'
       maxAge: 25,
       logOnly: environment.production,
     }),
-    provideAuth(() => getAuth()),
   ],
-  providers: [
-    PersistanceService,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true,
-    // }
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

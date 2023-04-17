@@ -24,6 +24,7 @@ export class SettingPanelComponent implements OnInit {
     slug: '',
     comments: [],
     isAnswered: false,
+    author: null,
   }
 
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>

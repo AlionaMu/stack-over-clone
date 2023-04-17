@@ -76,6 +76,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
           date: question.date,
           comments: question.comments,
           isAnswered: question.isAnswered,
+          author: question.author,
         }
       }),
     )
