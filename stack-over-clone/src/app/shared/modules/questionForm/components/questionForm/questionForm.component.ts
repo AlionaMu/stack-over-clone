@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 import {FormBuilder, FormGroup} from '@angular/forms'
 import {QuestionCategory} from 'src/app/shared/constants'
-
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {QuestionInputInterface} from '../../../../types/questionInput.interface'
 
@@ -59,12 +58,5 @@ export class QuestionFormComponent implements OnInit {
     this.form.value.date = this.initialValuesProps.date
     this.form.value.isAnswered = false
     this.questionSubmitEvent.emit(this.form.value)
-  }
-
-  selectionChange($event: any) {
-    this.tagsSet.set(
-      $event.source.value,
-      !this.tagsSet.get($event.source.value),
-    )
   }
 }

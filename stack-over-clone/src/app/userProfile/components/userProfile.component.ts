@@ -12,11 +12,7 @@ import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 })
 export class UserProfileComponent implements OnInit {
   public userProfile: CurrentUserInterface = {} as CurrentUserInterface
-  // public isLoading$: Observable<boolean> = {} as Observable<boolean>
-  // public error$: Observable<string | null> = {} as Observable<string | null>
   public userProfileSubscription: Subscription = {} as Subscription
-  // public slug: string | null = ''
-  // public isCurrentUserProfile$: Observable<boolean> = {} as Observable<boolean>
 
   constructor(private store: Store) {}
 

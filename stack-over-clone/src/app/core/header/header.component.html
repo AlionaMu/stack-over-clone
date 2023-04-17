@@ -6,7 +6,12 @@
       </a>
       <ul class="header__list">
         <li class="header__list-item">
-          <a [routerLink]="['/']" class="header__link">Home</a>
+          <a
+            [routerLink]="['/']"
+            class="header__link"
+            (click)="unsetFilterByAuthor()"
+            >Home</a
+          >
         </li>
         <div *ngIf="!(currentUser$ | async)" class="header__link-container">
           <li class="header__list-item">
@@ -16,9 +21,18 @@
             <a [routerLink]="['/login']" class="header__link"> Sign In </a>
           </li>
         </div>
-        <div *ngIf="currentUser$ | async">
+        <div *ngIf="currentUser$ | async" style="display: flex">
+          <li
+            class="header__list-item"
+            (click)="filterByAuthor(this.userProfile.name)"
+          >
+            <a [routerLink]="['/']" class="header__link"> My Feed </a>
+          </li>
           <button mat-button [matMenuTriggerFor]="menu">
-            <p>User: {{ this.userProfile.name }}</p>
+            <p class="header__current-user">
+              User: {{ this.userProfile.name }}
+              <span>({{ this.userProfile.isAdmin ? 'Admin' : 'User' }})</span>
+            </p>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>

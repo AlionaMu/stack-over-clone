@@ -7,7 +7,7 @@ export class ConvertDataService {
   constructor() {}
 
   convertObj(value: CommentInterface, question: QuestionInterface | null) {
-    const obj = Object.assign<any, QuestionInterface | null, any>(
+    const obj = Object.assign<any, QuestionInterface | null, unknown>(
       {},
       question,
       {comments: [...(question?.comments as []), value]},
@@ -18,7 +18,7 @@ export class ConvertDataService {
   convertAnswerInObj(value: string, question: QuestionInterface | null) {
     const commentsArr = question?.comments?.map((item: CommentInterface) => {
       if (item.date === value) {
-        return Object.assign<any, CommentInterface | null, any>({}, item, {
+        return Object.assign<any, CommentInterface | null, unknown>({}, item, {
           isRightAnswer: true,
         })
       } else {
@@ -27,12 +27,12 @@ export class ConvertDataService {
         })
       }
     })
-    const obj = Object.assign<any, QuestionInterface | null, any>(
+    const obj = Object.assign<any, QuestionInterface | null, unknown>(
       {},
       question,
       {comments: [...(commentsArr as [])]},
     )
-    const questionObj = Object.assign<any, QuestionInterface | null, any>(
+    const questionObj = Object.assign<any, QuestionInterface | null, unknown>(
       {},
       obj,
       {isAnswered: true},

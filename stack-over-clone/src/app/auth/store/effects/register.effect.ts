@@ -20,7 +20,6 @@ export class RegisterEffect {
     this.actions$.pipe(
       ofType(registerAction),
       switchMap(({request}) => {
-        console.log(request)
         return from(this.authService.register(request)).pipe(
           map(() => {
             return registerSuccessAction()

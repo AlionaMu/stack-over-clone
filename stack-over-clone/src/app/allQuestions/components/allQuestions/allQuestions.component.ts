@@ -8,6 +8,8 @@ import {
   errorSelector,
   isLoadingSelector,
 } from './../../store/selectors'
+import {GetAllQuestionsResponseInterface} from '../../types/getAllQuestionsResponse.interface'
+import {QuestionInterface} from 'src/app/shared/types/question.interface'
 
 @Component({
   selector: 'app-all-questions',

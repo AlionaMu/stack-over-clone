@@ -14,6 +14,7 @@ export class SettingsService {
   public allQuestionsItem: string =
     'all-questions__item all-questions__item_line'
   public allQuestions: string = 'all-questions'
+  public filterByAuthor: string = ''
 
   setAnswered(value: boolean | null) {
     this.isAnswered = value
@@ -44,5 +45,9 @@ export class SettingsService {
 
     this.allQuestions =
       value === 'line' ? 'all-questions' : 'all-questions all-questions_tile'
+  }
+
+  setFilterByAuthor(value: string) {
+    this.filterByAuthor = value
   }
 }

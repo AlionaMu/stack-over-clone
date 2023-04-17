@@ -35,7 +35,6 @@ export class SettingPanelComponent implements OnInit {
   public tags: string[] = Object.values(QuestionCategory)
 
   constructor(
-    private store: Store,
     public service: SettingPanelService,
     public firestore: AngularFirestore,
     public settingsService: SettingsService,

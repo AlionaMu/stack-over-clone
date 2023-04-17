@@ -8,6 +8,7 @@ import {
   isLoggedInSelector,
 } from 'src/app/auth/store/selectors'
 import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
+import {SettingsService} from 'src/app/shared/services/settings.service'
 
 @Component({
   selector: 'app-header',
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
   public userProfileSubscription: Subscription = {} as Subscription
   public userProfile: CurrentUserInterface = {} as CurrentUserInterface
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, public settingsService: SettingsService) {}
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
@@ -43,5 +44,13 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.store.dispatch(logoutAction())
+  }
+
+  unsetFilterByAuthor(): void {
+    this.settingsService.setFilterByAuthor('')
+  }
+
+  filterByAuthor(value: string): void {
+    this.settingsService.setFilterByAuthor(value)
   }
 }
