@@ -27,7 +27,6 @@ export class LoginEffect {
           }),
 
           catchError((errorResponse: any) => {
-            console.log(errorResponse)
             return of(loginFailureAction({errors: errorResponse}))
           }),
         )

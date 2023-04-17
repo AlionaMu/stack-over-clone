@@ -19,7 +19,6 @@ export class GetCurrentUserEffect {
       switchMap(() => {
         return this.authService.getCurrentUser().pipe(
           map((currentUser: any) => {
-            console.log(currentUser)
             return getCurrentUserSuccessAction({currentUser})
           }),
 

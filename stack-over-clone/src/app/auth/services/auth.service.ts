@@ -31,7 +31,6 @@ export class AuthService {
   }
 
   register(data: RegisterRequestInterface): Promise<void> {
-    console.log(data)
     return this.firestore.collection('users').doc(data.user.email).set(data)
   }
 
