@@ -9,6 +9,14 @@ import {Store} from '@ngrx/store'
 export class SettingPanelService {
   constructor(private firestore: AngularFirestore, public store: Store) {}
 
+  setMapToArray(map: Map<any, any>) {
+    const arrValues = Array.from(map.values())
+    const arrKeys = Array.from(map.keys())
+    return arrKeys.filter(
+      (item: string, index: number) => arrValues[index] === true,
+    )
+  }
+
   createQuestion(questionInput: QuestionInputInterface) {
     return this.firestore
       .collection('questions')

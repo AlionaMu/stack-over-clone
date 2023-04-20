@@ -28,12 +28,14 @@ export class SettingPanelComponent implements OnInit {
     approved: false,
   }
 
+  public isTagsChanged$: Observable<boolean | null> = {} as Observable<boolean>
+
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>
   public backendErrors$: Observable<BackendErrorsInterface | null> =
     {} as Observable<BackendErrorsInterface | null>
 
   public isSettingsOpen: boolean = false
-  public tags: string[] = Object.values(QuestionCategory)
+  // public tags: string[] = Object.values(QuestionCategory)
 
   constructor(
     public service: SettingPanelService,
@@ -55,7 +57,7 @@ export class SettingPanelComponent implements OnInit {
     this.settingsService.setFilterByDate(value)
   }
 
-  filterByTag(value: string): void {
+  filterByTag(value: string[]): void {
     this.settingsService.setFilterByTag(value)
   }
 

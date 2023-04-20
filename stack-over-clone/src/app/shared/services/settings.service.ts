@@ -7,7 +7,7 @@ export class SettingsService {
   public isAnswered: boolean | null = null
   public selectedTag: string | null = null
   public filterByDate: string = ''
-  public filterByTag: string = ''
+  public filterByTag: string[] = []
   public sortByDate: string = ''
   public allQuestionsItemInfo: string =
     'all-questions__item-info all-questions__item-info_line'
@@ -26,7 +26,7 @@ export class SettingsService {
     this.filterByDate = value
   }
 
-  setFilterByTag(value: string) {
+  setFilterByTag(value: string[]) {
     this.filterByTag = value
   }
 

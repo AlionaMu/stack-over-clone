@@ -4,10 +4,15 @@ import {CommonModule} from '@angular/common'
 import {SettingPanelComponent} from './components/settingPanel.component'
 import {SettingPanelService} from './services/settingPanel.service'
 import {MatButtonToggleModule} from '@angular/material/button-toggle'
+import {TagsFormComponent} from './components/tagsForm/tagsForm.component'
 
 @NgModule({
   imports: [CommonModule, MatButtonToggleModule],
-  declarations: [SettingPanelComponent, ThemeSwitchComponent],
+  declarations: [
+    SettingPanelComponent,
+    ThemeSwitchComponent,
+    TagsFormComponent,
+  ],
   providers: [SettingPanelService],
   exports: [SettingPanelComponent],
 })

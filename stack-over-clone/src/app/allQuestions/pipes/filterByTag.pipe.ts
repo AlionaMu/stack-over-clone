@@ -7,12 +7,14 @@ import {QuestionInterface} from 'src/app/shared/types/question.interface'
 export class FilterByTagPipe implements PipeTransform {
   public transform(
     questions: QuestionInterface[],
-    value: string,
+    value: string[],
   ): QuestionInterface[] {
-    if (value) {
-      return questions.filter((item: QuestionInterface) =>
-        item.tags?.includes(value),
-      )
+    if (value && questions) {
+      return questions.filter((item: QuestionInterface) => {
+        return value.every((itemValue: string) =>
+          item.tags?.includes(itemValue),
+        )
+      })
     } else {
       return questions
     }

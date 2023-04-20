@@ -17,16 +17,7 @@
       </div>
       <span class="setting-panel__span">By Tag</span>
       <div class="setting-panel__buttons">
-        <button
-          mat-stroked-button
-          *ngFor="let tag of tags"
-          (click)="filterByTag(tag)"
-        >
-          {{ tag }}
-        </button>
-        <button mat-stroked-button (click)="filterByTag('')">
-          Reset filter by tag
-        </button>
+        <app-tags-form></app-tags-form>
       </div>
       <span class="setting-panel__span">By Date</span>
       <div class="setting-panel__buttons">
