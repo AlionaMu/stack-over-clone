@@ -12,6 +12,7 @@ const initialState: AllQuestionsStateInterface = {
   questions: null,
   isLoading: false,
   error: null,
+  questionsCount: 0,
 }
 
 const allQuestionsReducer = createReducer(
@@ -29,6 +30,7 @@ const allQuestionsReducer = createReducer(
       ...state,
       isLoading: false,
       questions: action.allQuestions,
+      // questionsCount: action.allQuestions?.questions.length
     }),
   ),
   on(

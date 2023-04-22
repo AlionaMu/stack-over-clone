@@ -4,6 +4,7 @@
 import 'zone.js/plugins/zone-error'
 export const environment = {
   production: false,
+  limit: 5,
   firebase: {
     projectId: 'fir-stack-over',
     appId: '1:716807091844:web:f1f3fdbab136425d8134d1',
@@ -13,7 +14,6 @@ export const environment = {
     apiKey: 'AIzaSyA3xBrKc9VoG68bbn9wHd_znbLnEIG27qA',
     authDomain: 'fir-stack-over.firebaseapp.com',
     messagingSenderId: '716807091844',
-    automaticDataCollectionEnabled: false,
   },
 }
 

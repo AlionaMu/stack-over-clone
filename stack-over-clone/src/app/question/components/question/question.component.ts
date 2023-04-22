@@ -34,7 +34,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
   public isLoading$: Observable<boolean> = {} as Observable<boolean>
   public error$: Observable<string | null> = {} as Observable<string | null>
   public isAuthor$: Observable<boolean> = {} as Observable<boolean>
-
   public isSubmitting$: Observable<boolean | null> = {} as Observable<
     boolean | null
   >
@@ -60,9 +59,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   initializeValues(): void {
     this.slug = this.route.snapshot.paramMap.get('slug')
-    this.isLoading$ = this.store.pipe(select(isLoadingSelector))
     this.error$ = this.store.pipe(select(errorSelector))
-
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
     this.question$ = this.store.pipe(
       select(questionSelector),

@@ -1,5 +1,6 @@
 <div [ngClass]="this.settingsService.allQuestions">
   <app-add-button></app-add-button>
+  <div>{{ (allQuestions$ | async)?.length }}</div>
   <section
     class="all-questions__section"
     *ngFor="
@@ -12,10 +13,13 @@
         | filterByAuthor : this.settingsService.filterByAuthor
         | filterByNotApproved : this.settingsService.filterByNotApproved
         | filterByLogged : this.settingsService.isLoggedIn
+        | filterByPage : this.settingsService.pageInfo.currentPage;
+      index as i
     "
   >
     <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
       <div [ngClass]="this.settingsService.allQuestionsItem">
+        <span>{{ i }}</span>
         <span *ngIf="!question.approved" class="all-questions__not-approved"
           >not approved</span
         >
@@ -35,4 +39,9 @@
       </div>
     </a>
   </section>
+  <app-pagination
+    [total]="(allQuestions$ | async)?.length"
+    [currentPage]="currentPage"
+    (pages)="(getPages)"
+  ></app-pagination>
 </div>

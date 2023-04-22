@@ -1,3 +1,4 @@
+import {PaginationInfoInterface} from './../../allQuestions/components/allQuestions/allQuestions.component'
 import {Injectable} from '@angular/core'
 
 @Injectable({
@@ -17,6 +18,15 @@ export class SettingsService {
   public filterByAuthor: string = ''
   public isLoggedIn: boolean = false
   public filterByNotApproved: boolean = true
+  public pageInfo: PaginationInfoInterface = {} as PaginationInfoInterface
+
+  setCurrentPageInfo(value: number) {
+    this.pageInfo.currentPage = value
+  }
+
+  setPageInfo(value: number) {
+    this.pageInfo.pagesCount = value
+  }
 
   setAnswered(value: boolean | null) {
     this.isAnswered = value

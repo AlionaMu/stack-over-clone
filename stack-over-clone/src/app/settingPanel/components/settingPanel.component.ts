@@ -1,14 +1,10 @@
 import {SettingsService} from './../../shared/services/settings.service'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
-import {getFirestore} from '@angular/fire/firestore'
 import {Component, OnInit} from '@angular/core'
-import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
-
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 import {SettingPanelService} from '../services/settingPanel.service'
-import {QuestionCategory} from 'src/app/shared/constants'
 
 @Component({
   selector: 'app-setting-panel',
@@ -29,13 +25,11 @@ export class SettingPanelComponent implements OnInit {
   }
 
   public isTagsChanged$: Observable<boolean | null> = {} as Observable<boolean>
-
   public isSubmitting$: Observable<boolean | null> = {} as Observable<boolean>
   public backendErrors$: Observable<BackendErrorsInterface | null> =
     {} as Observable<BackendErrorsInterface | null>
 
   public isSettingsOpen: boolean = false
-  // public tags: string[] = Object.values(QuestionCategory)
 
   constructor(
     public service: SettingPanelService,

@@ -1,5 +1,10 @@
+@import 'src/styles/_mixins.scss';
+
 .add-button__button {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 110px;
+  right: 30px;
+  @include smart {
+    bottom: 150px;
+  }
 }

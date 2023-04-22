@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnDestroy, OnInit} from '@angular/core'
 import {Subscription} from 'rxjs'
 import {select, Store} from '@ngrx/store'
 
@@ -10,7 +10,7 @@ import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
   templateUrl: './userProfile.component.html',
   styleUrls: ['./userProfile.component.scss'],
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
   public userProfile: CurrentUserInterface = {} as CurrentUserInterface
   public userProfileSubscription: Subscription = {} as Subscription
 
@@ -26,5 +26,9 @@ export class UserProfileComponent implements OnInit {
       .subscribe((userProfile: any) => {
         this.userProfile = userProfile.user
       })
+  }
+
+  ngOnDestroy(): void {
+    this.userProfileSubscription.unsubscribe()
   }
 }

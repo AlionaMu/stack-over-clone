@@ -1,3 +1,4 @@
+import {FilterByPagePipe} from './pipes/filterByPage.pipe'
 import {FilterByLoggedPipe} from './pipes/filterByLogged.pipe'
 import {FilterByNotApprovedPipe} from './pipes/filterByNotApproved.pipe'
 import {FilterByAuthorPipe} from './pipes/filterByAuthor.pipe'
@@ -19,6 +20,7 @@ import {SortByDatePipe} from './pipes/sortByDate.pipe'
 import {AddButtonComponent} from './components/addButton/addButton.component'
 import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
+import {PaginationModule} from '../shared/modules/pagination/pagination.module'
 
 const routes: Routes = [
   {
@@ -38,7 +40,9 @@ const routes: Routes = [
     FilterByAuthorPipe,
     FilterByNotApprovedPipe,
     FilterByLoggedPipe,
+    FilterByPagePipe,
   ],
+  providers: [AllQuestionsService],
   imports: [
     CommonModule,
     EffectsModule.forFeature([GetAllQuestionsEffect]),
@@ -46,7 +50,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MatIconModule,
     MatButtonModule,
+    PaginationModule,
   ],
-  providers: [AllQuestionsService],
 })
 export class AllQuestionsModule {}

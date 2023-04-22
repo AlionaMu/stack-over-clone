@@ -5,4 +5,5 @@ export interface AllQuestionsStateInterface {
   isLoading: boolean
   error: string | null
   questions: GetAllQuestionsResponseInterface | null
+  questionsCount: number
 }
