@@ -1,5 +1,5 @@
 import {logoutAction} from './../../auth/store/actions/logout.action'
-import {Component, OnInit} from '@angular/core'
+import {Component, OnDestroy, OnInit} from '@angular/core'
 import {select, Store} from '@ngrx/store'
 import {Observable, Subscription} from 'rxjs'
 import {
@@ -15,7 +15,7 @@ import {SettingsService} from 'src/app/shared/services/settings.service'
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public isLoggedIn$: Observable<boolean> = {} as Observable<boolean>
   public isAnonymous$: Observable<boolean> = {} as Observable<boolean>
   public currentUser$: Observable<CurrentUserInterface | null> =
@@ -54,9 +54,15 @@ export class HeaderComponent implements OnInit {
 
   filterByAuthor(value: string): void {
     this.settingsService.setFilterByAuthor(value)
+    this.settingsService.setFilterByNotApproved(true)
   }
 
   filterByNotApproved(): void {
+    this.settingsService.setFilterByAuthor('')
     this.settingsService.setFilterByNotApproved(false)
+  }
+
+  ngOnDestroy(): void {
+    this.userProfileSubscription.unsubscribe()
   }
 }

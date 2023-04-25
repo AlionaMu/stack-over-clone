@@ -51,7 +51,7 @@ export class CommentFormComponent implements OnInit {
 
   onSubmit(): void {
     this.form.value.date = Date.now()
-    this.form.value.author = this.currentUser.user.name
+    this.form.value.author = this.currentUser.user.name || null
     this.commentSubmitEvent.emit(this.form.value)
   }
 }

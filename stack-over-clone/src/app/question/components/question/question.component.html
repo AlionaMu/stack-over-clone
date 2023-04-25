@@ -22,14 +22,23 @@
           <a
             [routerLink]="['/questions', question?.slug, 'edit']"
             class="question__link"
-            *ngIf="!question?.approved"
+            *ngIf="
+              !question?.approved &&
+              userProfile?.email === question?.author?.user?.email
+            "
             >Edit question</a
           >
           <div class="question__link" (click)="toggleComment()">Comment</div>
         </div>
-        <div class="question__buttons">
+        <div
+          class="question__buttons"
+          *ngIf="
+            userProfile?.isAdmin ||
+            userProfile?.email === question?.author?.user?.email
+          "
+        >
           <button
-            *ngIf="!question?.approved"
+            *ngIf="!question?.approved && userProfile?.isAdmin"
             class="question__button"
             mat-raised-button
             (click)="setApproved()"
@@ -68,6 +77,7 @@
             <mat-icon *ngIf="comment.isRightAnswer">check_circle</mat-icon>
           </div>
           <mat-checkbox
+            *ngIf="!question?.isAnswered"
             class="example-margin"
             (click)="clickRightAnswer(comment.date)"
             >Right answer!</mat-checkbox

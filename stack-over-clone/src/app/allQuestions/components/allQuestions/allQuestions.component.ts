@@ -12,10 +12,14 @@ import {Store, select} from '@ngrx/store'
 import {Observable, Subscription} from 'rxjs'
 import {getAllQuestionsAction} from '../../store/actions/getAllQuestions.action'
 import {allQuestionsSelector} from './../../store/selectors'
-import {isLoggedInSelector} from 'src/app/auth/store/selectors'
+import {
+  currentUserSelector,
+  isLoggedInSelector,
+} from 'src/app/auth/store/selectors'
 import {environment} from 'src/environments/environment'
 import {Router, ActivatedRoute, Params} from '@angular/router'
 import {AllQuestionsService} from '../../services/allQuestions.service'
+import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 
 export interface PaginationInfoInterface {
   currentPage: number
@@ -35,6 +39,9 @@ export class AllQuestionsComponent implements OnInit, OnDestroy {
   isLoading$: Observable<boolean> = {} as Observable<boolean>
   isLoggedIn$: Observable<boolean> = {} as Observable<boolean>
   isLoggedIn: boolean = false
+
+  public userProfileSubscription: Subscription = {} as Subscription
+  public userProfile: CurrentUserInterface | null = null
 
   // page: PageInterface[] = {} as PageInterface[]
   paginationInfo: PaginationInfoInterface = {} as PaginationInfoInterface
@@ -62,7 +69,7 @@ export class AllQuestionsComponent implements OnInit, OnDestroy {
   }
 
   initializeListeners(): void {
-    this.queryParamsSubscription = this.route.queryParams.subscribe(
+    ;(this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params: Params) => {
         // this.paginationInfo.currentPage = Number(params['page'] || '1');
         // this.paginationInfo.pagesCount = this.getPages
@@ -72,14 +79,16 @@ export class AllQuestionsComponent implements OnInit, OnDestroy {
 
         // this.settingsService.setPageInfo(this.getPages)
         this.settingsService.setCurrentPageInfo(Number(params['page'] || '1'))
-        console.log(this.settingsService.pageInfo)
         // this.fetchAllQuestions();
       },
-    )
-  }
-
-  ngOnDestroy(): void {
-    this.queryParamsSubscription.unsubscribe()
+    )),
+      (this.userProfileSubscription = this.store
+        .pipe(select(currentUserSelector))
+        .subscribe((userProfile: any) => {
+          if (userProfile) {
+            this.userProfile = userProfile.user
+          }
+        }))
   }
 
   initializeValues(): void {
@@ -89,5 +98,10 @@ export class AllQuestionsComponent implements OnInit, OnDestroy {
 
   fetchAllQuestions(): void {
     this.store.dispatch(getAllQuestionsAction({value: 'questions'}))
+  }
+
+  ngOnDestroy(): void {
+    this.queryParamsSubscription.unsubscribe()
+    this.userProfileSubscription.unsubscribe()
   }
 }

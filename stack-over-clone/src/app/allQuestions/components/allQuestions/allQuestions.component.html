@@ -17,7 +17,18 @@
       index as i
     "
   >
-    <a [routerLink]="['/questions', question.slug]" class="all-questions__link">
+    <a
+      [routerLink]="['/questions', question.slug]"
+      class="all-questions__link"
+      *ngIf="
+        question.approved
+          ? true
+          : userProfile?.isAdmin ||
+            userProfile?.email === question?.author?.user?.email
+          ? true
+          : false
+      "
+    >
       <div [ngClass]="this.settingsService.allQuestionsItem">
         <span>{{ i }}</span>
         <span *ngIf="!question.approved" class="all-questions__not-approved"
@@ -30,6 +41,7 @@
         <p class="all-questions__item-body">{{ question.body }}</p>
         <div [ngClass]="this.settingsService.allQuestionsItemInfo">
           <span>Date: {{ question.date | date : 'medium' }} </span>
+          <span>Author: {{ question?.author?.user?.name }} </span>
           <span>Comments: {{ question.comments?.length }} </span>
           <span
             >Tags:

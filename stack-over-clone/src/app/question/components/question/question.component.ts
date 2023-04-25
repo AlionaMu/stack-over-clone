@@ -12,7 +12,6 @@ import {QuestionInterface} from 'src/app/shared/types/question.interface'
 import {CurrentUserInterface} from '../../../shared/types/currentUser.interface'
 import {
   questionSelector,
-  isLoadingSelector,
   errorSelector,
   isSubmittingSelector,
 } from '../../store/selectors'
@@ -39,6 +38,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
   >
   public question$: Observable<QuestionInputInterface> =
     {} as Observable<QuestionInputInterface>
+  public userProfileSubscription: Subscription = {} as Subscription
+  public userProfile: CurrentUserInterface | null = null
 
   constructor(
     private store: Store,
@@ -55,6 +56,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.questionSubscription.unsubscribe()
+    this.userProfileSubscription.unsubscribe()
   }
 
   initializeValues(): void {
@@ -85,6 +87,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
       .pipe(select(questionSelector))
       .subscribe((question: QuestionInterface | null) => {
         this.question = question
+      })
+
+    this.userProfileSubscription = this.store
+      .pipe(select(currentUserSelector))
+      .subscribe((userProfile: any) => {
+        if (userProfile) {
+          this.userProfile = userProfile.user
+        }
       })
   }
 
