@@ -30,7 +30,6 @@ const allQuestionsReducer = createReducer(
       ...state,
       isLoading: false,
       questions: action.allQuestions,
-      // questionsCount: action.allQuestions?.questions.length
     }),
   ),
   on(

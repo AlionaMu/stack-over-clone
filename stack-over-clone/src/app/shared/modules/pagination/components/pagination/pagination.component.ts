@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core'
+import {Component, Input, OnInit} from '@angular/core'
 import {SettingsService} from 'src/app/shared/services/settings.service'
 import {UtilsService} from 'src/app/shared/services/utils.service'
 
@@ -8,15 +8,13 @@ import {UtilsService} from 'src/app/shared/services/utils.service'
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-  @Input('total') totalProps: number = {} as number
-  @Input('limit') limitProps: number = 5
+  @Input('totalCount') totalCountProps: number = {} as number
+  @Input('pagesCount') pagesCountProps: number = {} as number
   @Input('currentPage') currentPageProps: number = {} as number
   @Input('url') urlProps: string = ''
 
   pagesCount: number = 0
   pages: number[] = []
-
-  @Output('getPages') getPages: number = this.pagesCount
 
   constructor(
     private utilsService: UtilsService,
@@ -24,11 +22,8 @@ export class PaginationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.pagesCount = Math.ceil(this.totalProps / this.limitProps)
+    this.pagesCount = this.settingsService.pageInfo.pagesCount
     this.pages = this.utilsService.range(1, this.pagesCount)
-  }
-
-  setPage(): void {
-    this.settingsService.setPageInfo(this.pagesCount)
+    this.settingsService.setPageInfo(this.pagesCountProps)
   }
 }

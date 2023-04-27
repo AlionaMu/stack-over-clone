@@ -41,10 +41,6 @@ import {UserProfileModule} from './userProfile/userProfile.module'
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    // StoreDevtoolsModule.instrument({
-    //   maxAge: 25,
-    //   logOnly: environment.production,
-    // }),
   ],
   providers: [],
   bootstrap: [AppComponent],

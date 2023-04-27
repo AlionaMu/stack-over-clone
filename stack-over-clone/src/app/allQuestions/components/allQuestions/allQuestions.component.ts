@@ -1,13 +1,6 @@
-import {PageInterface} from './../../types/page.interface'
+import {UtilsService} from 'src/app/shared/services/utils.service'
 import {SettingsService} from './../../../shared/services/settings.service'
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core'
+import {Component, OnDestroy, OnInit} from '@angular/core'
 import {Store, select} from '@ngrx/store'
 import {Observable, Subscription} from 'rxjs'
 import {getAllQuestionsAction} from '../../store/actions/getAllQuestions.action'
@@ -16,15 +9,9 @@ import {
   currentUserSelector,
   isLoggedInSelector,
 } from 'src/app/auth/store/selectors'
-import {environment} from 'src/environments/environment'
-import {Router, ActivatedRoute, Params} from '@angular/router'
+import {ActivatedRoute, Params} from '@angular/router'
 import {AllQuestionsService} from '../../services/allQuestions.service'
 import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
-
-export interface PaginationInfoInterface {
-  currentPage: number
-  pagesCount: number
-}
 
 @Component({
   selector: 'app-all-questions',
@@ -32,34 +19,23 @@ export interface PaginationInfoInterface {
   styleUrls: ['./allQuestions.component.scss'],
 })
 export class AllQuestionsComponent implements OnInit, OnDestroy {
-  @Input('getPages') getPages: number = {} as number
-
-  allQuestions$: Observable<any | null> = {} as Observable<any | null>
-  error$: Observable<string | null> = {} as Observable<string | null>
-  isLoading$: Observable<boolean> = {} as Observable<boolean>
-  isLoggedIn$: Observable<boolean> = {} as Observable<boolean>
-  isLoggedIn: boolean = false
+  public allQuestions$: Observable<any | null> = {} as Observable<any | null>
+  public error$: Observable<string | null> = {} as Observable<string | null>
+  public isLoading$: Observable<boolean> = {} as Observable<boolean>
+  public isLoggedIn$: Observable<boolean> = {} as Observable<boolean>
+  public isLoggedIn: boolean = false
 
   public userProfileSubscription: Subscription = {} as Subscription
   public userProfile: CurrentUserInterface | null = null
 
-  // page: PageInterface[] = {} as PageInterface[]
-  paginationInfo: PaginationInfoInterface = {} as PaginationInfoInterface
-
-  // apiUrlProps: string = ''
-
-  // limit = environment.limit
-  // baseUrl: string = ''
-  queryParamsSubscription: Subscription = {} as Subscription
-  currentPage: number = 1
-
-  questionCount: any = 0
+  public queryParamsSubscription: Subscription = {} as Subscription
 
   constructor(
     private store: Store,
     public settingsService: SettingsService,
     private route: ActivatedRoute,
     public service: AllQuestionsService,
+    public utilsService: UtilsService,
   ) {}
 
   ngOnInit(): void {
@@ -71,15 +47,7 @@ export class AllQuestionsComponent implements OnInit, OnDestroy {
   initializeListeners(): void {
     ;(this.queryParamsSubscription = this.route.queryParams.subscribe(
       (params: Params) => {
-        // this.paginationInfo.currentPage = Number(params['page'] || '1');
-        // this.paginationInfo.pagesCount = this.getPages
-        // console.log(this.paginationInfo.currentPage)
-        // console.log(this.paginationInfo.pagesCount)
-        // const num = Number(params['page'] || '1')
-
-        // this.settingsService.setPageInfo(this.getPages)
         this.settingsService.setCurrentPageInfo(Number(params['page'] || '1'))
-        // this.fetchAllQuestions();
       },
     )),
       (this.userProfileSubscription = this.store
@@ -94,6 +62,7 @@ export class AllQuestionsComponent implements OnInit, OnDestroy {
   initializeValues(): void {
     this.allQuestions$ = this.store.pipe(select(allQuestionsSelector))
     this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector))
+    this.settingsService.pageInfo.pagesCount = 1
   }
 
   fetchAllQuestions(): void {
