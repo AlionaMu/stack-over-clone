@@ -1,0 +1,64 @@
+<div class="all-question">
+  <div [ngClass]="this.settingsService.allQuestions">
+    <app-add-button></app-add-button>
+    <section
+      class="all-questions__section"
+      *ngFor="
+        let question of allQuestions$
+          | async
+          | isAnswered : this.settingsService.isAnswered
+          | filterByDate : this.settingsService.filterByDate
+          | filterByTag : this.settingsService.filterByTag
+          | sortByDate : this.settingsService.sortByDate
+          | filterByAuthor : this.settingsService.filterByAuthor
+          | filterByNotApproved : this.settingsService.filterByNotApproved
+          | filterByLogged : this.settingsService.isLoggedIn
+          | filterByPage : this.settingsService.pageInfo.currentPage;
+        index as i;
+        last as last
+      "
+    >
+      <ng-container #myVar>
+        <a
+          [routerLink]="['/questions', question.slug]"
+          class="all-questions__link"
+          *ngIf="
+            question.approved
+              ? true
+              : userProfile?.isAdmin ||
+                userProfile?.email === question?.author?.email
+              ? true
+              : false
+          "
+        >
+          <div [ngClass]="this.settingsService.allQuestionsItem">
+            <span *ngIf="!question.approved" class="all-questions__not-approved"
+              >not approved</span
+            >
+            <h2 class="all-questions__item-title">
+              <span class="all-questions__item-title-name"> Question: </span>
+              {{ question.title }}
+            </h2>
+            <p class="all-questions__item-body">{{ question.body }}</p>
+            <div [ngClass]="this.settingsService.allQuestionsItemInfo">
+              <span>Date: {{ question.date | date : 'medium' }} </span>
+              <span>Author: {{ question?.author?.name }} </span>
+              <span>Comments: {{ question.comments?.length }} </span>
+              <span
+                >Tags:
+                <span *ngFor="let tag of question.tags"> #{{ tag }} </span>
+              </span>
+            </div>
+          </div>
+        </a>
+      </ng-container>
+    </section>
+  </div>
+  <app-pagination
+    [totalCount]="(allQuestions$ | async)?.length"
+    [currentPage]="this.settingsService.pageInfo.currentPage"
+    [pagesCount]="
+      this.utilsService.getPagesCount((allQuestions$ | async)?.length)
+    "
+  ></app-pagination>
+</div>

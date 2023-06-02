@@ -1,0 +1,19 @@
+<div class="comment-form">
+  <div class="comment-form__container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="comment-form__form">
+      <fieldset class="comment-form__form-group">
+        <textarea
+          class="comment-form__text-area"
+          rows="8"
+          placeholder="Write your comment"
+          formControlName="body"
+        ></textarea>
+      </fieldset>
+      <fieldset class="comment-form__form-group">
+        <button mat-raised-button type="submit" class="comment-form__button">
+          Publish comment
+        </button>
+      </fieldset>
+    </form>
+  </div>
+</div>

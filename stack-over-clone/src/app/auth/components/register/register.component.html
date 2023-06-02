@@ -1,0 +1,39 @@
+<section class="register">
+  <div class="register__container">
+    <div class="register__title-container">
+      <h2 class="register__title">Sign Up</h2>
+      <div>
+        <a [routerLink]="['/login']" class="register__link">Have an account?</a>
+      </div>
+    </div>
+    <app-backend-error-message
+      *ngIf="backendErrors$ | async"
+      [backendErrors]="backendErrors$ | async"
+    ></app-backend-error-message>
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="register__form">
+      <mat-form-field appearance="fill">
+        <input matInput type="text" placeholder="Name" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </mat-form-field>
+      <mat-checkbox formControlName="isAdmin">Is Admin?</mat-checkbox>
+      <button type="submit" mat-raised-button class="register__button">
+        Sign Up
+      </button>
+    </form>
+  </div>
+</section>

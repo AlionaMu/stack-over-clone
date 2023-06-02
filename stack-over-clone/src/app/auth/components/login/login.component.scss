@@ -1,0 +1,49 @@
+@import 'src/styles/_variables';
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $dark-font-color;
+  margin-top: 50px;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    height: auto;
+    padding: 20px 20px;
+  }
+
+  &__link {
+    font-size: 16px;
+    color: $button-hover;
+    transition: all 0.5s ease-out;
+
+    &:hover {
+      color: $add-color;
+      opacity: 0.8;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+
+    & > * {
+      margin-top: 8px;
+    }
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  &__button {
+    font-size: 20px;
+  }
+}

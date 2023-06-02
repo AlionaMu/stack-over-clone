@@ -1,0 +1,89 @@
+<section class="question">
+  <div class="question__container">
+    <div class="question__info-content">
+      <div class="question__info-about">
+        <p class="question__date">
+          CreatedAt: {{ question?.date | date : 'medium' }}
+        </p>
+        <p class="question__date">Author: {{ question?.author?.name }}</p>
+      </div>
+      <h4 class="question__item-title">{{ question?.title }}</h4>
+    </div>
+    <div class="question__description-content">
+      <div class="question__description-text">{{ question?.body }}</div>
+    </div>
+    <div class="question__info-manage">
+      <div class="question__info">
+        <div class="question__tags">
+          Tags:
+          <span *ngFor="let tag of question?.tags"> #{{ tag }} </span>
+        </div>
+        <div class="question__links">
+          <a
+            [routerLink]="['/questions', question?.slug, 'edit']"
+            class="question__link"
+            *ngIf="
+              !question?.approved &&
+              userProfile?.email === question?.author?.email
+            "
+            >Edit question</a
+          >
+          <div class="question__link" (click)="toggleComment()">Comment</div>
+        </div>
+        <div
+          class="question__buttons"
+          *ngIf="
+            userProfile?.isAdmin ||
+            userProfile?.email === question?.author?.email
+          "
+        >
+          <button
+            *ngIf="!question?.approved && userProfile?.isAdmin"
+            class="question__button"
+            mat-raised-button
+            (click)="setApproved()"
+          >
+            Approve
+          </button>
+          <button
+            class="question__button"
+            mat-raised-button
+            (click)="deleteQuestion()"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      <app-comment-form
+        *ngIf="this.questionService.isOpenComment"
+        (commentSubmit)="onSubmit($event)"
+        [question]="question"
+        [isSubmitting]="isSubmitting$ | async"
+      ></app-comment-form>
+      <p class="question__comments-title">Comments</p>
+      <div
+        class="question__comments"
+        *ngFor="let comment of question?.comments"
+      >
+        <div class="question__comments-item">
+          <p class="question__item-body">{{ comment.body }}</p>
+          <div class="question__comments-info">
+            <div class="question__comments-info-content">
+              <span class="question__item-author"
+                >Author: {{ comment.author }}</span
+              >
+              <span>CreatedAt: {{ comment.date | date : 'medium' }} </span>
+            </div>
+            <mat-icon *ngIf="comment.isRightAnswer">check_circle</mat-icon>
+          </div>
+          <mat-checkbox
+            *ngIf="!question?.isAnswered"
+            class="example-margin"
+            (click)="clickRightAnswer(comment.date)"
+            >Right answer!</mat-checkbox
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

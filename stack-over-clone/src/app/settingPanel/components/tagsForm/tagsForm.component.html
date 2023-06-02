@@ -1,0 +1,8 @@
+<fieldset class="tags-form__form-group">
+  <div *ngFor="let tag of tags" (change)="onCheckboxChange($event)">
+    <label>
+      <input type="checkbox" [value]="tag" [checked]="tagsSet.get(tag)" />
+      {{ tag }}
+    </label>
+  </div>
+</fieldset>

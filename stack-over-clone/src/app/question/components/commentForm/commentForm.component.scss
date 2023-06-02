@@ -1,0 +1,13 @@
+@import 'src/styles/_variables';
+
+.comment-form {
+  transition: all 0.5s ease-out;
+
+  &__tags-list {
+    list-style: none;
+  }
+
+  &__form-group {
+    border: none;
+  }
+}

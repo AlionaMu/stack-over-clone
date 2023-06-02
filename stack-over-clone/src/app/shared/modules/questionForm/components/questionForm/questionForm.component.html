@@ -1,0 +1,54 @@
+<div class="question-form">
+  <div class="question-form__container">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="question-form__form"
+    >
+      <fieldset>
+        <fieldset class="question-form__form-group">
+          <input
+            type="text"
+            class="question-form__input"
+            placeholder="Question title"
+            formControlName="title"
+          />
+        </fieldset>
+
+        <fieldset class="question-form__form-group">
+          <textarea
+            class="question-form__text-area"
+            rows="8"
+            placeholder="Write your question"
+            formControlName="body"
+          ></textarea>
+        </fieldset>
+
+        <fieldset class="question-form__form-group">
+          <h4>Select your tags:</h4>
+          <div *ngFor="let tag of tags" (change)="onCheckboxChange($event)">
+            <label>
+              <input
+                type="checkbox"
+                [value]="tag"
+                [checked]="tagsSet.get(tag)"
+              />
+              {{ tag }}
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <button
+            mat-raised-button
+            type="submit"
+            class="question-form__button"
+            [disabled]="isSubmittingProps"
+          >
+            Publish question
+          </button>
+        </fieldset>
+      </fieldset>
+    </form>
+  </div>
+</div>

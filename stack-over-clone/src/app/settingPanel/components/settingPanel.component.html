@@ -1,0 +1,59 @@
+<div class="settings-panel">
+  <div class="settings-panel__titles" (click)="toggleResultsPanel()">
+    Filters / Sort / Settings
+  </div>
+  <div class="settings-panel__container" *ngIf="this.isSettingsOpen">
+    <section class="setting-panel__filters setting-panel__section">
+      <h3 class="settings-panel__title">Filters</h3>
+      <span class="setting-panel__span">By Answer</span>
+      <div class="setting-panel__buttons">
+        <button mat-stroked-button (click)="clickIsAnswered(null)">All</button>
+        <button mat-stroked-button (click)="clickIsAnswered(true)">
+          Answered questions
+        </button>
+        <button mat-stroked-button (click)="clickIsAnswered(false)">
+          Not answered questions
+        </button>
+      </div>
+      <span class="setting-panel__span">By Tag</span>
+      <div class="setting-panel__buttons">
+        <app-tags-form></app-tags-form>
+      </div>
+      <span class="setting-panel__span">By Date</span>
+      <div class="setting-panel__buttons">
+        <button mat-stroked-button (click)="filterByDate('day')">
+          Last day
+        </button>
+        <button mat-stroked-button (click)="filterByDate('two-days')">
+          Two days
+        </button>
+        <button mat-stroked-button (click)="filterByDate('week')">Week</button>
+        <button mat-stroked-button (click)="filterByDate('all-time')">
+          All time
+        </button>
+      </div>
+    </section>
+
+    <section class="setting-panel__sort setting-panel__section">
+      <h3 class="settings-panel__title">Sort</h3>
+      <span class="setting-panel__span">By Date</span>
+      <div class="setting-panel__buttons">
+        <button mat-stroked-button (click)="sortByDate('asc')">Asc</button>
+        <button mat-stroked-button (click)="sortByDate('desc')">Desc</button>
+      </div>
+    </section>
+
+    <section class="setting-panel__filters setting-panel__section">
+      <h3 class="settings-panel__title">Settings</h3>
+      <span class="setting-panel__span">Layout</span>
+      <div class="setting-panel__buttons">
+        <button mat-stroked-button (click)="setLayoutType('line')">Line</button>
+        <button mat-stroked-button (click)="setLayoutType('tile')">Tile</button>
+      </div>
+      <span class="setting-panel__span">Theme</span>
+      <div class="setting-panel__buttons">
+        <app-theme-switch></app-theme-switch>
+      </div>
+    </section>
+  </div>
+</div>

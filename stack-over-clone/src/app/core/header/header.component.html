@@ -1,0 +1,70 @@
+<header class="header">
+  <nav class="header__nav">
+    <div class="header__container">
+      <a
+        [routerLink]="['/']"
+        class="header__title-link header__link"
+        (click)="unsetFilters()"
+      >
+        STACK OVER CLONE
+      </a>
+      <ul class="header__list">
+        <li class="header__list-item">
+          <a [routerLink]="['/']" class="header__link" (click)="unsetFilters()"
+            >Home</a
+          >
+        </li>
+        <div *ngIf="!(currentUser$ | async)" class="header__link-container">
+          <li class="header__list-item">
+            <a [routerLink]="['/register']" class="header__link"> Sign Up </a>
+          </li>
+          <li class="header__list-item">
+            <a [routerLink]="['/login']" class="header__link"> Sign In </a>
+          </li>
+        </div>
+        <div *ngIf="currentUser$ | async" style="display: flex">
+          <li
+            class="header__list-item"
+            (click)="filterByAuthor(this.userProfile.name)"
+          >
+            <a [routerLink]="['/']" class="header__link"> My Feed </a>
+          </li>
+          <li
+            *ngIf="(currentUser$ | async)?.isAdmin"
+            class="header__list-item"
+            (click)="filterByNotApproved()"
+          >
+            <a [routerLink]="['/']" class="header__link"> Not Approved Feed </a>
+          </li>
+          <button mat-button [matMenuTriggerFor]="menu">
+            <p class="header__current-user">
+              User: {{ this.userProfile.name }}
+              <span>({{ this.userProfile.isAdmin ? 'Admin' : 'User' }})</span>
+            </p>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span class="header__link" (click)="logout()">Logout</span>
+            </button>
+            <button mat-menu-item>
+              <span
+                ><a [routerLink]="['/profile']" class="header__link">
+                  Profile
+                </a></span
+              >
+            </button>
+          </mat-menu>
+        </div>
+      </ul>
+      <div class="header__button-container">
+        <a
+          mat-raised-button
+          [routerLink]="['/questions/new']"
+          class="header__button"
+        >
+          Add question
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>

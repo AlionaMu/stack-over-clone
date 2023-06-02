@@ -1,0 +1,7 @@
+<app-question-form
+  [initialValues]="initialValues"
+  [isSubmitting]="isSubmitting$ | async"
+  [errors]="backendErrors$ | async"
+  (questionSubmit)="onSubmit($event)"
+>
+</app-question-form>

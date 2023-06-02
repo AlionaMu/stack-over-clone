@@ -1,0 +1,72 @@
+import {PaginationInfoInterface} from 'src/app/shared/types/paginationInfo.interface'
+import {Injectable} from '@angular/core'
+
+@Injectable({
+  providedIn: 'root',
+})
+export class SettingsService {
+  public isAnswered: boolean | null = null
+  public selectedTag: string | null = null
+  public filterByDate: string = ''
+  public filterByTag: string[] = []
+  public sortByDate: string = ''
+  public allQuestionsItemInfo: string =
+    'all-questions__item-info all-questions__item-info_line'
+  public allQuestionsItem: string =
+    'all-questions__item all-questions__item_line'
+  public allQuestions: string = 'all-questions'
+  public filterByAuthor: string = ''
+  public isLoggedIn: boolean = false
+  public filterByNotApproved: boolean = true
+  public pageInfo: PaginationInfoInterface = {
+    currentPage: 1,
+    pagesCount: 1,
+  }
+
+  setCurrentPageInfo(value: number) {
+    this.pageInfo.currentPage = value
+  }
+
+  setPageInfo(value: number) {
+    this.pageInfo.pagesCount = value
+  }
+
+  setAnswered(value: boolean | null) {
+    this.isAnswered = value
+  }
+
+  setFilterByDate(value: string) {
+    this.filterByDate = value
+  }
+
+  setFilterByTag(value: string[]) {
+    this.filterByTag = value
+  }
+
+  setSortByDate(value: string) {
+    this.sortByDate = value
+  }
+
+  setLayoutType(value: string) {
+    this.allQuestionsItemInfo =
+      value === 'line'
+        ? 'all-questions__item-info all-questions__item-info_line'
+        : 'all-questions__item-info all-questions__item-info_tile'
+
+    this.allQuestionsItem =
+      value === 'line'
+        ? 'all-questions__item all-questions__item_line'
+        : 'all-questions__item all-questions__item_tile'
+
+    this.allQuestions =
+      value === 'line' ? 'all-questions' : 'all-questions all-questions_tile'
+  }
+
+  setFilterByAuthor(value: string) {
+    this.filterByAuthor = value
+  }
+
+  setFilterByNotApproved(value: boolean) {
+    this.filterByNotApproved = value
+  }
+}

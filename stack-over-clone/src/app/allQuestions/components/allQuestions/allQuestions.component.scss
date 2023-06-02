@@ -1,0 +1,83 @@
+@import 'src/styles/_variables.scss';
+@import 'src/styles/_mixins.scss';
+
+.all-questions {
+  &__not-approved {
+    text-transform: capitalize;
+    color: red;
+    font-weight: 600;
+  }
+
+  &_tile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    position: relative;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    color: $dark-font-color;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $dark-font-color;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    border-radius: 10px;
+    padding: 10px 8px;
+    margin: 20px;
+    background-color: $font-color;
+
+    &_line {
+      min-width: 80vw;
+    }
+
+    &_tile {
+      width: 250px;
+    }
+
+    &-info {
+      border-top: 1px solid $bright-color;
+      padding: 5px 10px;
+      display: flex;
+      justify-content: space-between;
+
+      &_line {
+        height: 20px;
+        @include smart {
+          flex-direction: column;
+          height: 70px;
+        }
+      }
+
+      &_tile {
+        flex-direction: column;
+        height: 70px;
+      }
+    }
+
+    &-title {
+      min-height: 20px;
+      border-bottom: 1px solid $bright-color;
+
+      &-name {
+        color: $button-color;
+      }
+    }
+
+    &-body {
+      flex-grow: 3;
+    }
+  }
+}

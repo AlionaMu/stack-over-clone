@@ -1,0 +1,15 @@
+.question-form {
+  margin-top: 30px;
+
+  &__tags-list {
+    list-style: none;
+  }
+
+  &__form-group {
+    border: none;
+  }
+}
+
+fieldset {
+  border: none;
+}

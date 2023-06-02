@@ -1,0 +1,20 @@
+<section class="user-profile">
+  <mat-card *ngIf="userProfile">
+    <mat-card-header>
+      <mat-card-title
+        >Name:
+        <p class="user-profile__p">
+          {{ userProfile.name }}
+        </p></mat-card-title
+      >
+      <mat-card-title
+        >E-mail:
+        <p class="user-profile__p">{{ userProfile.email }}</p></mat-card-title
+      >
+      <mat-card-title
+        >Is Admin:
+        <p class="user-profile__p">{{ userProfile.isAdmin }}</p></mat-card-title
+      >
+    </mat-card-header>
+  </mat-card>
+</section>
