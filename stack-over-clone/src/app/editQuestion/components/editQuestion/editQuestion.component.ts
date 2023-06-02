@@ -3,7 +3,6 @@ import {ActivatedRoute} from '@angular/router'
 import {Store, select} from '@ngrx/store'
 import {Observable} from 'rxjs'
 import {filter, map} from 'rxjs/operators'
-
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {QuestionInterface} from 'src/app/shared/types/question.interface'
 import {getQuestionAction} from 'src/app/editQuestion/store/actions/getQuestion.action'
@@ -21,7 +20,8 @@ import {
   styleUrls: ['./editQuestion.component.scss'],
 })
 export class EditQuestionComponent implements OnInit {
-  public initialValues$: Observable<any> = {} as Observable<any>
+  public initialValues$: Observable<QuestionInterface> =
+    {} as Observable<QuestionInterface>
   public isSubmitting$: Observable<boolean | null> = {} as Observable<
     boolean | null
   >
@@ -45,17 +45,7 @@ export class EditQuestionComponent implements OnInit {
     this.initialValues$ = this.store.pipe(
       select(questionSelector),
       filter(Boolean),
-      map((question: QuestionInterface) => {
-        return {
-          title: question.title,
-          slug: question.slug,
-          body: question.body,
-          tags: question.tags,
-          date: question.date,
-          comments: question.comments,
-          isAnswered: question.isAnswered,
-        }
-      }),
+      map((question: QuestionInterface) => question),
     )
   }
 
@@ -63,7 +53,7 @@ export class EditQuestionComponent implements OnInit {
     if (this.slug) this.store.dispatch(getQuestionAction({slug: this.slug}))
   }
 
-  onSubmit(questionInput: any): void {
+  onSubmit(questionInput: QuestionInterface): void {
     if (this.slug) this.store.dispatch(updateQuestionAction({questionInput}))
   }
 }

@@ -19,7 +19,7 @@ import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
   styleUrls: ['./allQuestions.component.scss'],
 })
 export class AllQuestionsComponent implements OnInit, OnDestroy {
-  public allQuestions$: Observable<any | null> = {} as Observable<any | null>
+  public allQuestions$: Observable<any> = {} as Observable<any>
   public error$: Observable<string | null> = {} as Observable<string | null>
   public isLoading$: Observable<boolean> = {} as Observable<boolean>
   public isLoggedIn$: Observable<boolean> = {} as Observable<boolean>
@@ -52,9 +52,9 @@ export class AllQuestionsComponent implements OnInit, OnDestroy {
     )),
       (this.userProfileSubscription = this.store
         .pipe(select(currentUserSelector))
-        .subscribe((userProfile: any) => {
+        .subscribe((userProfile: CurrentUserInterface | null) => {
           if (userProfile) {
-            this.userProfile = userProfile.user
+            this.userProfile = userProfile
           }
         }))
   }

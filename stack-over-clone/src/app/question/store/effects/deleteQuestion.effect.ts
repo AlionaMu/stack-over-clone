@@ -18,13 +18,9 @@ export class DeleteQuestionEffect {
       ofType(deleteQuestionAction),
       switchMap(({slug}) => {
         return from(this.questionService.deleteQuestion(slug)).pipe(
-          map(() => {
-            return deleteQuestionSuccessAction()
-          }),
+          map(() => deleteQuestionSuccessAction()),
 
-          catchError(() => {
-            return of(deleteQuestionFailureAction())
-          }),
+          catchError(() => of(deleteQuestionFailureAction())),
         )
       }),
     ),

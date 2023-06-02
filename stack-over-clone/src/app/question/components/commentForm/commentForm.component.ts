@@ -1,14 +1,8 @@
-import {getCurrentUserAction} from './../../../auth/store/actions/getCurrentUser.action'
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 import {FormBuilder, FormGroup} from '@angular/forms'
 import {select, Store} from '@ngrx/store'
-import {QuestionCategory} from 'src/app/shared/constants'
-
-import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {CommentInterface} from 'src/app/shared/types/comment.interface'
 import {QuestionInterface} from 'src/app/shared/types/question.interface'
-import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
-import {updateQuestionAction} from '../../store/actions/updateQuestion.action'
 import {currentUserSelector} from 'src/app/auth/store/selectors'
 import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 
@@ -51,7 +45,7 @@ export class CommentFormComponent implements OnInit {
 
   onSubmit(): void {
     this.form.value.date = Date.now()
-    this.form.value.author = this.currentUser.user.name || null
+    this.form.value.author = this.currentUser.name || null
     this.commentSubmitEvent.emit(this.form.value)
   }
 }

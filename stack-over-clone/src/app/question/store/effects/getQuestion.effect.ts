@@ -1,3 +1,4 @@
+import {QuestionInterface} from 'src/app/shared/types/question.interface'
 import {Injectable} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {switchMap, catchError, map} from 'rxjs/operators'
@@ -16,9 +17,9 @@ export class GetQuestionEffect {
       ofType(getQuestionAction),
       switchMap(({slug}) => {
         return from(this.sharedQuestionService.getQuestion(slug)).pipe(
-          map((question: any) => {
-            return getQuestionSuccessAction({question})
-          }),
+          map((question: QuestionInterface) =>
+            getQuestionSuccessAction({question}),
+          ),
 
           catchError(() => {
             return of(getQuestionFailureAction())

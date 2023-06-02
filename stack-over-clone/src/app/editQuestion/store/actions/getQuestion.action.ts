@@ -9,7 +9,7 @@ export const getQuestionAction = createAction(
 
 export const getQuestionSuccessAction = createAction(
   ActionTypes.GET_QUESTION_SUCCESS,
-  props<{question: QuestionInterface}>(),
+  props<{question: QuestionInterface | null}>(),
 )
 
 export const getQuestionFailureAction = createAction(

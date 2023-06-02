@@ -1,7 +1,6 @@
-import {GetAllQuestionsResponseInterface} from './../../types/getAllQuestionsResponse.interface'
 import {createAction, props} from '@ngrx/store'
-
 import {ActionTypes} from '../actionTypes'
+import {QuestionInterface} from 'src/app/shared/types/question.interface'
 
 export const getAllQuestionsAction = createAction(
   ActionTypes.GET_ALL_QUESTIONS,
@@ -10,7 +9,7 @@ export const getAllQuestionsAction = createAction(
 
 export const getAllQuestionsSuccessAction = createAction(
   ActionTypes.GET_ALL_QUESTIONS_SUCCESS,
-  props<{allQuestions: GetAllQuestionsResponseInterface}>(),
+  props<{allQuestions: QuestionInterface[]}>(),
 )
 
 export const getAllQuestionsFailureAction = createAction(

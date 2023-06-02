@@ -3,7 +3,7 @@ import {AngularFirestore} from '@angular/fire/compat/firestore'
 import {Component, OnInit} from '@angular/core'
 import {Observable} from 'rxjs'
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
-import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
+import {QuestionInterface} from 'src/app/shared/types/question.interface'
 import {SettingPanelService} from '../services/settingPanel.service'
 
 @Component({
@@ -12,7 +12,7 @@ import {SettingPanelService} from '../services/settingPanel.service'
   styleUrls: ['./settingPanel.component.scss'],
 })
 export class SettingPanelComponent implements OnInit {
-  initialValues: QuestionInputInterface = {
+  initialValues: QuestionInterface = {
     title: '',
     body: '',
     tags: [],

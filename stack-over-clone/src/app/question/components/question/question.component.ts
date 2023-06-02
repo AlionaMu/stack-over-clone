@@ -18,7 +18,6 @@ import {
 
 import {QuestionService} from 'src/app/question/services/question.service'
 import {updateQuestionAction} from '../../store/actions/updateQuestion.action'
-import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
 import {ConvertDataService} from 'src/app/shared/services/convertData.service'
 
 @Component({
@@ -36,8 +35,8 @@ export class QuestionComponent implements OnInit, OnDestroy {
   public isSubmitting$: Observable<boolean | null> = {} as Observable<
     boolean | null
   >
-  public question$: Observable<QuestionInputInterface> =
-    {} as Observable<QuestionInputInterface>
+  public question$: Observable<QuestionInterface> =
+    {} as Observable<QuestionInterface>
   public userProfileSubscription: Subscription = {} as Subscription
   public userProfile: CurrentUserInterface | null = null
 
@@ -66,19 +65,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.question$ = this.store.pipe(
       select(questionSelector),
       filter(Boolean),
-      map((question: QuestionInterface) => {
-        return {
-          title: question.title,
-          slug: question.slug,
-          body: question.body,
-          tags: question.tags,
-          date: question.date,
-          comments: question.comments,
-          isAnswered: question.isAnswered,
-          author: question.author,
-          approved: question.approved,
-        }
-      }),
+      map((question: QuestionInterface) => question),
     )
   }
 
@@ -91,16 +78,17 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
     this.userProfileSubscription = this.store
       .pipe(select(currentUserSelector))
-      .subscribe((userProfile: any) => {
+      .subscribe((userProfile: CurrentUserInterface | null) => {
         if (userProfile) {
-          this.userProfile = userProfile.user
+          this.userProfile = userProfile
         }
       })
   }
 
   onSubmit(commentInput: CommentInterface) {
     const obj = this.convertService.convertObj(commentInput, this.question)
-    this.store.dispatch(updateQuestionAction(obj))
+    if (this.question)
+      this.store.dispatch(updateQuestionAction({questionInput: obj}))
   }
 
   fetchData(): void {
@@ -117,11 +105,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   clickRightAnswer(value: string) {
     const obj = this.convertService.convertAnswerInObj(value, this.question)
-    this.store.dispatch(updateQuestionAction(obj))
+    this.store.dispatch(updateQuestionAction({questionInput: obj}))
   }
 
   setApproved() {
     const obj = this.convertService.convertApproved(this.question)
-    this.store.dispatch(updateQuestionAction(obj))
+    if (this.question)
+      this.store.dispatch(updateQuestionAction({questionInput: obj}))
   }
 }

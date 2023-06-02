@@ -3,9 +3,7 @@ import {Router} from '@angular/router'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {from, of} from 'rxjs'
 import {switchMap, catchError, map, tap} from 'rxjs/operators'
-
 import {EditQuestionService} from 'src/app/shared/services/editQuestion.service'
-import {QuestionInterface} from '../../../shared/types/question.interface'
 import {
   updateQuestionAction,
   updateQuestionSuccessAction,
@@ -17,7 +15,7 @@ export class UpdateQuestionEffect {
   updateQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(updateQuestionAction),
-      switchMap((questionInput) => {
+      switchMap(({questionInput}) => {
         return from(
           this.editQuestionService.updateQuestion(questionInput),
         ).pipe(

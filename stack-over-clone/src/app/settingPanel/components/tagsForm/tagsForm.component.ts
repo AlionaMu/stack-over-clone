@@ -1,8 +1,8 @@
-import {SettingPanelService} from './../../services/settingPanel.service'
 import {SettingsService} from 'src/app/shared/services/settings.service'
 import {Component, OnInit} from '@angular/core'
 import {FormBuilder, FormGroup} from '@angular/forms'
 import {QuestionCategory} from 'src/app/shared/constants'
+import {SetMapToArrayService} from 'src/app/shared/services/setMapToArray.service'
 
 @Component({
   selector: 'app-tags-form',
@@ -18,7 +18,7 @@ export class TagsFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public settingsService: SettingsService,
-    public settingsPanelService: SettingPanelService,
+    public service: SetMapToArrayService,
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class TagsFormComponent implements OnInit {
       !this.tagsSet.get($event.target.value),
     )
     this.settingsService.setFilterByTag(
-      this.settingsPanelService.setMapToArray(this.tagsSet),
+      this.service.setMapToArray(this.tagsSet),
     )
   }
 

@@ -9,7 +9,7 @@ import {
 
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 import {createQuestionAction} from '../../store/actions/createQuestion.action'
-import {QuestionInputInterface} from 'src/app/shared/types/questionInput.interface'
+import {QuestionInterface} from 'src/app/shared/types/question.interface'
 import {CreateQuestionService} from '../../services/createQuestion.service'
 import {currentUserSelector} from 'src/app/auth/store/selectors'
 import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
@@ -20,7 +20,7 @@ import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
   styleUrls: ['./createQuestion.component.scss'],
 })
 export class CreateQuestionComponent implements OnInit {
-  initialValues: QuestionInputInterface = {
+  initialValues: QuestionInterface = {
     title: '',
     body: '',
     tags: [],
@@ -57,7 +57,7 @@ export class CreateQuestionComponent implements OnInit {
       })
   }
 
-  onSubmit(questionInput: QuestionInputInterface) {
+  onSubmit(questionInput: QuestionInterface) {
     questionInput.slug = this.firestore.createId()
     questionInput.date = Date.now()
     questionInput.comments = []

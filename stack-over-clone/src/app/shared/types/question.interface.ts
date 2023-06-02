@@ -2,7 +2,7 @@ import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 import {CommentInterface} from './comment.interface'
 
 export interface QuestionInterface {
-  author: CurrentUserInterface
+  author: CurrentUserInterface | null
   title: string
   body: string
   tags?: string[]

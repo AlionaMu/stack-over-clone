@@ -5,7 +5,7 @@
         <p class="question__date">
           CreatedAt: {{ question?.date | date : 'medium' }}
         </p>
-        <p class="question__date">Author: {{ question?.author?.user?.name }}</p>
+        <p class="question__date">Author: {{ question?.author?.name }}</p>
       </div>
       <h4 class="question__item-title">{{ question?.title }}</h4>
     </div>
@@ -24,7 +24,7 @@
             class="question__link"
             *ngIf="
               !question?.approved &&
-              userProfile?.email === question?.author?.user?.email
+              userProfile?.email === question?.author?.email
             "
             >Edit question</a
           >
@@ -34,7 +34,7 @@
           class="question__buttons"
           *ngIf="
             userProfile?.isAdmin ||
-            userProfile?.email === question?.author?.user?.email
+            userProfile?.email === question?.author?.email
           "
         >
           <button

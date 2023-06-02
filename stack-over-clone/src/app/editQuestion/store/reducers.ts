@@ -1,5 +1,4 @@
 import {on, createReducer, Action} from '@ngrx/store'
-
 import {EditQuestionStateInterface} from '../types/editQuestionState.interface'
 import {
   getQuestionAction,

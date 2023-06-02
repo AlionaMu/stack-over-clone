@@ -1,7 +1,4 @@
 import {SettingsService} from 'src/app/shared/services/settings.service'
-import {currentUserSelector} from './../selectors'
-import {AuthResponseInterface} from './../../types/authResponse.interface'
-import {LoginRequestInterface} from './../../types/loginRequest.interface'
 import {Injectable} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {Router} from '@angular/router'
@@ -15,6 +12,7 @@ import {
   loginSuccessAction,
   loginFailureAction,
 } from '../actions/login.action'
+import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 
 @Injectable()
 export class LoginEffect {
@@ -23,11 +21,11 @@ export class LoginEffect {
       ofType(loginAction),
       switchMap(({request}) => {
         return from(this.authService.login(request)).pipe(
-          map((currentUser: CurrentUserInterface | any) => {
+          map((currentUser: CurrentUserInterface) => {
             return loginSuccessAction({currentUser})
           }),
 
-          catchError((errorResponse: any) => {
+          catchError((errorResponse: BackendErrorsInterface) => {
             return of(loginFailureAction({errors: errorResponse}))
           }),
         )

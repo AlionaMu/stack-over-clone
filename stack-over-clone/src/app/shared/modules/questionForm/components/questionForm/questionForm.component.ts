@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 import {FormBuilder, FormGroup} from '@angular/forms'
 import {QuestionCategory} from 'src/app/shared/constants'
+import {SetMapToArrayService} from 'src/app/shared/services/setMapToArray.service'
 import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
-import {QuestionInputInterface} from '../../../../types/questionInput.interface'
+import {QuestionInterface} from 'src/app/shared/types/question.interface'
 
 @Component({
   selector: 'app-question-form',
@@ -10,19 +11,19 @@ import {QuestionInputInterface} from '../../../../types/questionInput.interface'
   styleUrls: ['./questionForm.component.scss'],
 })
 export class QuestionFormComponent implements OnInit {
-  @Input('initialValues') initialValuesProps: QuestionInputInterface =
-    {} as QuestionInputInterface
+  @Input('initialValues') initialValuesProps: QuestionInterface | null =
+    {} as QuestionInterface | null
   @Input('isSubmitting') isSubmittingProps: boolean | null = null
   @Input('errors') errorsProps: BackendErrorsInterface | null = null
 
   @Output('questionSubmit') questionSubmitEvent =
-    new EventEmitter<QuestionInputInterface>()
+    new EventEmitter<QuestionInterface>()
 
   public form: FormGroup = {} as FormGroup
   public tags: string[] = Object.values(QuestionCategory)
   public tagsSet = new Map()
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, public service: SetMapToArrayService) {}
 
   ngOnInit(): void {
     this.initializeForm()
@@ -37,25 +38,23 @@ export class QuestionFormComponent implements OnInit {
     }
   }
 
-  onCheckboxChange($event: any) {
-    this.tagsSet.set(
-      $event.target.value,
-      !this.tagsSet.get($event.target.value),
-    )
+  onCheckboxChange($event: Event) {
+    const input = $event.target as HTMLInputElement
+    this.tagsSet.set(input.value, !this.tagsSet.get(input.value))
   }
 
   initializeForm(): void {
     this.form = this.fb.group({
-      title: this.initialValuesProps.title,
-      body: this.initialValuesProps.body,
-      tags: [this.initialValuesProps.tags],
+      title: this.initialValuesProps?.title,
+      body: this.initialValuesProps?.body,
+      tags: [this.initialValuesProps?.tags],
     })
   }
 
   onSubmit(): void {
-    this.form.value.tags = Array.from(this.tagsSet.keys())
-    this.form.value.slug = this.initialValuesProps.slug
-    this.form.value.date = this.initialValuesProps.date
+    this.form.value.tags = this.service.setMapToArray(this.tagsSet)
+    this.form.value.slug = this.initialValuesProps?.slug
+    this.form.value.date = this.initialValuesProps?.date
     this.form.value.isAnswered = false
     this.questionSubmitEvent.emit(this.form.value)
   }

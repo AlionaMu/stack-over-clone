@@ -30,7 +30,7 @@
             <a [routerLink]="['/']" class="header__link"> My Feed </a>
           </li>
           <li
-            *ngIf="(currentUser$ | async)?.user?.isAdmin"
+            *ngIf="(currentUser$ | async)?.isAdmin"
             class="header__list-item"
             (click)="filterByNotApproved()"
           >

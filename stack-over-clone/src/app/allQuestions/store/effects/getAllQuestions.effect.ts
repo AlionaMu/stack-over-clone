@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core'
 import {createEffect, Actions, ofType} from '@ngrx/effects'
 import {switchMap, catchError, map} from 'rxjs/operators'
 import {from, of} from 'rxjs'
-
-import {GetAllQuestionsResponseInterface} from './../../types/getAllQuestionsResponse.interface'
 import {AllQuestionsService} from '../../services/allQuestions.service'
 import {
   getAllQuestionsAction,

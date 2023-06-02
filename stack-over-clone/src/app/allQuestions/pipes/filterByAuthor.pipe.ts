@@ -12,9 +12,9 @@ export class FilterByAuthorPipe implements PipeTransform {
     if (value) {
       return questions.filter((item: QuestionInterface) =>
         item.author
-          ? item.author.user
-            ? item.author.user.name
-              ? item.author.user.name === value
+          ? item.author
+            ? item.author.name
+              ? item.author.name === value
                 ? true
                 : false
               : false

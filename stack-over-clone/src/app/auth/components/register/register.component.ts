@@ -9,7 +9,7 @@ import {
   isSubmittingSelector,
   validationErrorsSelector,
 } from '../../store/selectors'
-import {RegisterRequestInterface} from '../../types/registerRequest.interface'
+import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 
 const MIN_LENGTH = 8
 
@@ -52,9 +52,7 @@ export class RegisterComponent implements OnInit {
   handleSubmit(): void {
     const id = this.service.getId(this.form.value.name)
     const newUser = Object.assign({}, this.form.value, {id: id})
-    const request: RegisterRequestInterface = {
-      user: newUser,
-    }
+    const request: CurrentUserInterface = newUser
     this.store.dispatch(registerAction({request}))
   }
 }

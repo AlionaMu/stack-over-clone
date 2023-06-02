@@ -23,8 +23,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   initializeListeners(): void {
     this.userProfileSubscription = this.store
       .pipe(select(currentUserSelector))
-      .subscribe((userProfile: any) => {
-        this.userProfile = userProfile.user
+      .subscribe((userProfile: CurrentUserInterface | null) => {
+        if (userProfile) {
+          this.userProfile = userProfile
+        }
       })
   }
 

@@ -1,14 +1,12 @@
 import {currentUserSelector} from './../store/selectors'
 import {GetRandomIdService} from './../../shared/services/getRandomId.service'
 import {AuthResponseInterface} from './../types/authResponse.interface'
-import {RegisterRequestInterface} from './../types/registerRequest.interface'
 import {Injectable} from '@angular/core'
 import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
-import {LoginRequestInterface} from '../types/loginRequest.interface'
 import {AngularFireAuth} from '@angular/fire/compat/auth'
 import {Observable} from 'rxjs'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
-import {doc, DocumentData, getDoc, getFirestore} from '@angular/fire/firestore'
+import {doc, getDoc, getFirestore} from '@angular/fire/firestore'
 import {select, Store} from '@ngrx/store'
 
 @Injectable()
@@ -22,22 +20,22 @@ export class AuthService {
     public store: Store,
   ) {}
 
-  getById(id: string): Observable<any> {
-    return this.firestore.doc<any>('users/' + id).get()
+  getById(id: string): Observable<unknown> {
+    return this.firestore.doc('users/' + id).get()
   }
 
   getUser(response: AuthResponseInterface): CurrentUserInterface {
     return response.user
   }
 
-  register(data: RegisterRequestInterface): Promise<void> {
-    return this.firestore.collection('users').doc(data.user.email).set(data)
+  register(data: CurrentUserInterface): Promise<void> {
+    return this.firestore.collection('users').doc(data.email).set(data)
   }
 
-  async login(data: LoginRequestInterface) {
-    const docRef = doc(this.db, 'users', data.user.email)
+  async login(data: CurrentUserInterface) {
+    const docRef = doc(this.db, 'users', data.email)
     const docSnap = await getDoc(docRef)
-    return docSnap.data()
+    return docSnap.data() as CurrentUserInterface
   }
 
   getCurrentUser(): Observable<CurrentUserInterface | null> {

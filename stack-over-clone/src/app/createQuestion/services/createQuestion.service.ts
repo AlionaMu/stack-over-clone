@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {QuestionInputInterface} from './../../shared/types/questionInput.interface'
+import {QuestionInterface} from './../../shared/types/question.interface'
 import {AngularFirestore} from '@angular/fire/compat/firestore'
 import {Store} from '@ngrx/store'
 
@@ -9,7 +9,7 @@ import {Store} from '@ngrx/store'
 export class CreateQuestionService {
   constructor(private firestore: AngularFirestore, public store: Store) {}
 
-  createQuestion(questionInput: QuestionInputInterface) {
+  createQuestion(questionInput: QuestionInterface) {
     return this.firestore
       .collection('questions')
       .doc(questionInput.slug)

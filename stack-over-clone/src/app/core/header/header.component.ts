@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .pipe(select(currentUserSelector))
       .subscribe((userProfile: CurrentUserInterface | null) => {
         if (userProfile) {
-          this.userProfile = userProfile.user
+          this.userProfile = userProfile
         }
       })
   }

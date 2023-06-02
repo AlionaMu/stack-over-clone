@@ -8,7 +8,7 @@ import {
   isSubmittingSelector,
   validationErrorsSelector,
 } from '../../store/selectors'
-import {LoginRequestInterface} from '../../types/loginRequest.interface'
+import {CurrentUserInterface} from 'src/app/shared/types/currentUser.interface'
 
 @Component({
   selector: 'app-login',
@@ -41,9 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleSubmit(): void {
-    const request: LoginRequestInterface = {
-      user: this.form.value,
-    }
+    const request: CurrentUserInterface = this.form.value
     this.store.dispatch(loginAction({request}))
   }
 }

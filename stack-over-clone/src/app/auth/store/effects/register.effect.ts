@@ -1,6 +1,3 @@
-import {RegisterRequestInterface} from 'src/app/auth/types/registerRequest.interface'
-import {BackendErrorsInterface} from '../../../shared/types/backendErrors.interface'
-import {CurrentUserInterface} from '../../../shared/types/currentUser.interface'
 import {AuthService} from '../../services/auth.service'
 import {
   registerAction,
@@ -13,6 +10,7 @@ import {Actions, ofType} from '@ngrx/effects'
 import {catchError, map, of, switchMap, tap} from 'rxjs'
 import {Router} from '@angular/router'
 import {from} from 'rxjs'
+import {BackendErrorsInterface} from 'src/app/shared/types/backendErrors.interface'
 
 @Injectable()
 export class RegisterEffect {
@@ -24,7 +22,7 @@ export class RegisterEffect {
           map(() => {
             return registerSuccessAction()
           }),
-          catchError((errorResponse: any) => {
+          catchError((errorResponse: BackendErrorsInterface) => {
             return of(registerFailureAction({errors: errorResponse}))
           }),
         )
